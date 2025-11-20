@@ -1,9 +1,21 @@
 import { useState, useEffect } from 'react';
-import { supabase, type Product } from '../lib/supabase';
 import AnimatedCard from '../components/AnimatedCard';
 import ShopifyBuyButton from '../components/ShopifyBuyButton';
 import { motion } from 'framer-motion';
 import { Search } from 'lucide-react';
+
+type Product = {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  image_url: string;
+  category: string;
+  in_stock: boolean;
+  created_at?: string;
+  shopify_product_id?: string | number;
+  handle?: string | null;
+};
 
 export default function Ricambi() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -17,32 +29,7 @@ export default function Ricambi() {
 
   const fetchProducts = async () => {
     try {
-      // Prova a caricare da Supabase solo se configurato
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-
-      if (supabaseUrl && supabaseAnonKey && supabaseUrl !== 'https://placeholder.supabase.co') {
-        try {
-          const { data, error } = await supabase
-            .from('products')
-            .select('*')
-            .order('created_at', { ascending: false });
-
-          if (!error && data && data.length > 0) {
-            // Filtra solo i prodotti che sono ricambi
-            const ricambiData = data.filter((p: Product) => 
-              p.category && p.category.toLowerCase().includes('ricambi')
-            );
-            setProducts(ricambiData);
-            setLoading(false);
-            return;
-          }
-        } catch (supabaseError) {
-          console.warn('Supabase non disponibile, uso fallback JSON:', supabaseError);
-        }
-      }
-
-      // Fallback: carica da JSON locale
+      // Carica da JSON locale
       console.log('📦 Caricamento ricambi da file JSON locale...');
       const response = await fetch('/ricambi.json');
       if (response.ok) {
@@ -53,18 +40,8 @@ export default function Ricambi() {
         setProducts([]);
       }
     } catch (error) {
-      console.error('Error fetching products:', error);
-      // Ultimo tentativo: carica da JSON
-      try {
-        const response = await fetch('/ricambi.json');
-        if (response.ok) {
-          const jsonData = await response.json();
-          setProducts(jsonData);
-        }
-      } catch (jsonError) {
-        console.error('Error loading JSON fallback:', jsonError);
-        setProducts([]);
-      }
+      console.error('Error loading products:', error);
+      setProducts([]);
     } finally {
       setLoading(false);
     }

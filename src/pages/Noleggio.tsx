@@ -1,6 +1,15 @@
 import { useState, useEffect } from 'react';
-import { supabase, type Rental } from '../lib/supabase';
 import { Calendar, Clock } from 'lucide-react';
+
+type Rental = {
+  id: string;
+  name: string;
+  description: string;
+  price_per_day: number;
+  image_url: string;
+  available: boolean;
+  created_at?: string;
+};
 
 export default function Noleggio() {
   const [rentals, setRentals] = useState<Rental[]>([]);
@@ -12,15 +21,11 @@ export default function Noleggio() {
 
   const fetchRentals = async () => {
     try {
-      const { data, error } = await supabase
-        .from('rentals')
-        .select('*')
-        .order('created_at', { ascending: false });
-
-      if (error) throw error;
-      setRentals(data || []);
+      // Nessun dato disponibile per ora - array vuoto
+      setRentals([]);
     } catch (error) {
       console.error('Error fetching rentals:', error);
+      setRentals([]);
     } finally {
       setLoading(false);
     }

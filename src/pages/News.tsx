@@ -1,8 +1,17 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { supabase, type NewsArticle } from '../lib/supabase';
 import { Calendar, ArrowRight } from 'lucide-react';
 import AnimatedCard from '../components/AnimatedCard';
+
+type NewsArticle = {
+  id: string;
+  title: string;
+  content: string;
+  excerpt: string;
+  image_url: string;
+  published_at: string;
+  created_at?: string;
+};
 
 export default function News() {
   const [articles, setArticles] = useState<NewsArticle[]>([]);
@@ -15,15 +24,11 @@ export default function News() {
 
   const fetchArticles = async () => {
     try {
-      const { data, error } = await supabase
-        .from('news')
-        .select('*')
-        .order('published_at', { ascending: false });
-
-      if (error) throw error;
-      setArticles(data || []);
+      // Nessun dato disponibile per ora - array vuoto
+      setArticles([]);
     } catch (error) {
       console.error('Error fetching articles:', error);
+      setArticles([]);
     } finally {
       setLoading(false);
     }

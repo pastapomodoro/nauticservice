@@ -1,12 +1,5 @@
-import { createClient } from '@supabase/supabase-js';
-
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
-
-// Crea il client solo se le variabili sono configurate
-export const supabase = supabaseUrl && supabaseAnonKey
-  ? createClient(supabaseUrl, supabaseAnonKey)
-  : createClient('https://placeholder.supabase.co', 'placeholder-key');
+// Supabase non utilizzato - tutti i dati vengono caricati da file JSON locali
+// Questo file mantiene solo i tipi TypeScript per compatibilità
 
 export type Product = {
   id: string;

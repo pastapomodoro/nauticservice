@@ -1,6 +1,17 @@
 import { useState, useEffect } from 'react';
-import { supabase, type Accessory } from '../lib/supabase';
 import ShopifyBuyButton from '../components/ShopifyBuyButton';
+
+type Accessory = {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  image_url: string;
+  in_stock: boolean;
+  created_at?: string;
+  shopify_product_id?: string | number;
+  handle?: string | null;
+};
 
 export default function Accessori() {
   const [accessories, setAccessories] = useState<Accessory[]>([]);
@@ -12,31 +23,28 @@ export default function Accessori() {
 
   const fetchAccessories = async () => {
     try {
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-
-      // Prova Supabase solo se configurato
-      if (supabaseUrl && supabaseAnonKey && supabaseUrl !== 'https://placeholder.supabase.co') {
-        try {
-          const { data, error } = await supabase
-            .from('accessories')
-            .select('*')
-            .order('created_at', { ascending: false });
-
-          if (!error && data && data.length > 0) {
-            setAccessories(data);
-            setLoading(false);
-            return;
-          }
-        } catch (supabaseError) {
-          console.warn('Supabase non disponibile, uso fallback:', supabaseError);
-        }
+      // Carica da JSON locale - filtra solo accessori
+      console.log('📦 Caricamento accessori da file JSON locale...');
+      const response = await fetch('/products.json');
+      if (response.ok) {
+        const jsonData = await response.json();
+        // Filtra prodotti che sono accessori
+        const accessoriesData = jsonData.filter((item: any) =>
+          item.category && (
+            item.category.toLowerCase().includes('accessori') ||
+            item.category.toLowerCase().includes('ancore') ||
+            item.category.toLowerCase().includes('cime') ||
+            item.category.toLowerCase().includes('elettronica') ||
+            item.category.toLowerCase().includes('sicurezza')
+          )
+        );
+        setAccessories(accessoriesData);
+      } else {
+        console.warn('File products.json non trovato');
+        setAccessories([]);
       }
-
-      // Fallback: array vuoto se Supabase non è configurato
-      setAccessories([]);
     } catch (error) {
-      console.error('Error fetching accessories:', error);
+      console.error('Error loading accessories:', error);
       setAccessories([]);
     } finally {
       setLoading(false);

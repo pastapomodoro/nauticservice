@@ -1,8 +1,19 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { supabase, type Product } from '../lib/supabase';
 import AnimatedCard from '../components/AnimatedCard';
 import ShopifyBuyButton from '../components/ShopifyBuyButton';
+
+type Product = {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  image_url: string;
+  category: string;
+  in_stock: boolean;
+  created_at?: string;
+  shopify_product_id?: string | number;
+};
 
 type VenditaProps = {
   onNavigate: (page: string) => void;
@@ -19,49 +30,25 @@ export default function Vendita({ onNavigate }: VenditaProps) {
 
   const fetchProducts = async () => {
     try {
-      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-      const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-
-      // Prova Supabase solo se configurato
-      if (supabaseUrl && supabaseAnonKey && supabaseUrl !== 'https://placeholder.supabase.co') {
-        try {
-          const { data, error } = await supabase
-            .from('products')
-            .select('*')
-            .order('created_at', { ascending: false });
-
-          if (!error && data && data.length > 0) {
-            setProducts(data);
-            setLoading(false);
-            return;
-          }
-        } catch (supabaseError) {
-          console.warn('Supabase non disponibile, uso fallback JSON:', supabaseError);
-        }
-      }
-
-      // Fallback: carica da JSON locale
+      // Carica da JSON locale
       console.log('📦 Caricamento prodotti da file JSON locale...');
       const response = await fetch('/products.json');
       if (response.ok) {
         const jsonData = await response.json();
-        setProducts(jsonData);
+        // Filtra solo prodotti che NON sono ricambi o accessori
+        const venditaData = jsonData.filter((p: Product) => 
+          p.category && 
+          !p.category.toLowerCase().includes('ricambi') && 
+          !p.category.toLowerCase().includes('accessori')
+        );
+        setProducts(venditaData);
       } else {
         console.warn('File products.json non trovato');
         setProducts([]);
       }
     } catch (error) {
-      console.error('Error fetching products:', error);
-      try {
-        const response = await fetch('/products.json');
-        if (response.ok) {
-          const jsonData = await response.json();
-          setProducts(jsonData);
-        }
-      } catch (jsonError) {
-        console.error('Error loading JSON fallback:', jsonError);
-        setProducts([]);
-      }
+      console.error('Error loading products:', error);
+      setProducts([]);
     } finally {
       setLoading(false);
     }
