@@ -12,15 +12,32 @@ export default function Accessori() {
 
   const fetchAccessories = async () => {
     try {
-      const { data, error } = await supabase
-        .from('accessories')
-        .select('*')
-        .order('created_at', { ascending: false });
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-      if (error) throw error;
-      setAccessories(data || []);
+      // Prova Supabase solo se configurato
+      if (supabaseUrl && supabaseAnonKey && supabaseUrl !== 'https://placeholder.supabase.co') {
+        try {
+          const { data, error } = await supabase
+            .from('accessories')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+          if (!error && data && data.length > 0) {
+            setAccessories(data);
+            setLoading(false);
+            return;
+          }
+        } catch (supabaseError) {
+          console.warn('Supabase non disponibile, uso fallback:', supabaseError);
+        }
+      }
+
+      // Fallback: array vuoto se Supabase non è configurato
+      setAccessories([]);
     } catch (error) {
       console.error('Error fetching accessories:', error);
+      setAccessories([]);
     } finally {
       setLoading(false);
     }

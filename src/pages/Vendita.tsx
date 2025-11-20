@@ -19,15 +19,49 @@ export default function Vendita({ onNavigate }: VenditaProps) {
 
   const fetchProducts = async () => {
     try {
-      const { data, error } = await supabase
-        .from('products')
-        .select('*')
-        .order('created_at', { ascending: false });
+      const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+      const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-      if (error) throw error;
-      setProducts(data || []);
+      // Prova Supabase solo se configurato
+      if (supabaseUrl && supabaseAnonKey && supabaseUrl !== 'https://placeholder.supabase.co') {
+        try {
+          const { data, error } = await supabase
+            .from('products')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+          if (!error && data && data.length > 0) {
+            setProducts(data);
+            setLoading(false);
+            return;
+          }
+        } catch (supabaseError) {
+          console.warn('Supabase non disponibile, uso fallback JSON:', supabaseError);
+        }
+      }
+
+      // Fallback: carica da JSON locale
+      console.log('📦 Caricamento prodotti da file JSON locale...');
+      const response = await fetch('/products.json');
+      if (response.ok) {
+        const jsonData = await response.json();
+        setProducts(jsonData);
+      } else {
+        console.warn('File products.json non trovato');
+        setProducts([]);
+      }
     } catch (error) {
       console.error('Error fetching products:', error);
+      try {
+        const response = await fetch('/products.json');
+        if (response.ok) {
+          const jsonData = await response.json();
+          setProducts(jsonData);
+        }
+      } catch (jsonError) {
+        console.error('Error loading JSON fallback:', jsonError);
+        setProducts([]);
+      }
     } finally {
       setLoading(false);
     }

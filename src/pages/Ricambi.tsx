@@ -17,24 +17,28 @@ export default function Ricambi() {
 
   const fetchProducts = async () => {
     try {
-      // Prova a caricare da Supabase
+      // Prova a caricare da Supabase solo se configurato
       const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
       const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-      if (supabaseUrl && supabaseAnonKey) {
-        const { data, error } = await supabase
-          .from('products')
-          .select('*')
-          .order('created_at', { ascending: false });
+      if (supabaseUrl && supabaseAnonKey && supabaseUrl !== 'https://placeholder.supabase.co') {
+        try {
+          const { data, error } = await supabase
+            .from('products')
+            .select('*')
+            .order('created_at', { ascending: false });
 
-        if (!error && data && data.length > 0) {
-          // Filtra solo i prodotti che sono ricambi
-          const ricambiData = data.filter((p: Product) => 
-            p.category && p.category.toLowerCase().includes('ricambi')
-          );
-          setProducts(ricambiData);
-          setLoading(false);
-          return;
+          if (!error && data && data.length > 0) {
+            // Filtra solo i prodotti che sono ricambi
+            const ricambiData = data.filter((p: Product) => 
+              p.category && p.category.toLowerCase().includes('ricambi')
+            );
+            setProducts(ricambiData);
+            setLoading(false);
+            return;
+          }
+        } catch (supabaseError) {
+          console.warn('Supabase non disponibile, uso fallback JSON:', supabaseError);
         }
       }
 
