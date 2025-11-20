@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AnimatedCard from '../components/AnimatedCard';
 import ShopifyBuyButton from '../components/ShopifyBuyButton';
+import ProductModal from '../components/ProductModal';
 
 type Product = {
   id: string;
@@ -13,6 +14,7 @@ type Product = {
   in_stock: boolean;
   created_at?: string;
   shopify_product_id?: string | number;
+  handle?: string | null;
 };
 
 type VenditaProps = {
@@ -23,6 +25,8 @@ export default function Vendita({ onNavigate }: VenditaProps) {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchProducts();
@@ -114,7 +118,13 @@ export default function Vendita({ onNavigate }: VenditaProps) {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
               {filteredProducts.map((product, index) => (
                 <AnimatedCard key={product.id} delay={index * 0.1}>
-                  <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full flex flex-col">
+                  <div 
+                    className="bg-white rounded-lg shadow-lg overflow-hidden h-full flex flex-col cursor-pointer hover:shadow-xl transition-shadow"
+                    onClick={() => {
+                      setSelectedProduct(product);
+                      setIsModalOpen(true);
+                    }}
+                  >
                     <motion.div
                       className="h-48 bg-cover bg-center overflow-hidden flex-shrink-0"
                       style={{ backgroundImage: `url(${product.image_url})` }}
@@ -142,16 +152,21 @@ export default function Vendita({ onNavigate }: VenditaProps) {
                             €{product.price.toLocaleString()}
                           </span>
                         </div>
-                        {product.shopify_product_id ? (
+                        {product.shopify_product_id || product.handle ? (
                           <ShopifyBuyButton 
-                            productId={product.shopify_product_id} 
+                            productId={product.shopify_product_id}
+                            productHandle={product.handle}
                             className="w-full"
                           />
                         ) : (
                           <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            onClick={() => onNavigate('payment')}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedProduct(product);
+                              setIsModalOpen(true);
+                            }}
                             className="bg-[#006A71] hover:bg-[#48A6A7] text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 transition-colors"
                           >
                             Acquista
@@ -183,6 +198,14 @@ export default function Vendita({ onNavigate }: VenditaProps) {
           </div>
         )}
       </div>
+      <ProductModal
+        product={selectedProduct}
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedProduct(null);
+        }}
+      />
     </div>
   );
 }

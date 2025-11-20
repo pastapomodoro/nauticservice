@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import AnimatedCard from '../components/AnimatedCard';
 import ShopifyBuyButton from '../components/ShopifyBuyButton';
+import ProductModal from '../components/ProductModal';
 import { motion } from 'framer-motion';
 import { Search } from 'lucide-react';
 
@@ -22,6 +23,8 @@ export default function Ricambi() {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchProducts();
@@ -156,7 +159,13 @@ export default function Ricambi() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
               {filteredProducts.map((product, index) => (
                 <AnimatedCard key={product.id} delay={index * 0.1}>
-                  <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full flex flex-col">
+                  <div 
+                    className="bg-white rounded-lg shadow-lg overflow-hidden h-full flex flex-col cursor-pointer hover:shadow-xl transition-shadow"
+                    onClick={() => {
+                      setSelectedProduct(product);
+                      setIsModalOpen(true);
+                    }}
+                  >
                     <motion.div
                       className="h-48 bg-cover bg-center overflow-hidden flex-shrink-0"
                       style={{ backgroundImage: `url(${product.image_url})` }}
@@ -231,6 +240,14 @@ export default function Ricambi() {
           </div>
         )}
       </div>
+      <ProductModal
+        product={selectedProduct}
+        isOpen={isModalOpen}
+        onClose={() => {
+          setIsModalOpen(false);
+          setSelectedProduct(null);
+        }}
+      />
     </div>
   );
 }

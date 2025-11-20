@@ -1,5 +1,6 @@
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ShoppingCart } from 'lucide-react';
 import { useState } from 'react';
+import { useCart } from '../contexts/CartContext';
 
 type NavbarProps = {
   currentPage: string;
@@ -8,6 +9,7 @@ type NavbarProps = {
 
 export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { itemCount } = useCart();
 
   const navItems = [
     { id: 'home', label: 'Home' },
@@ -32,7 +34,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
             />
           </div>
 
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <button
                 key={item.id}
@@ -46,18 +48,41 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
                 {item.label}
               </button>
             ))}
+            <button
+              onClick={() => onNavigate('checkout')}
+              className="relative p-2 text-[#006A71] hover:text-[#48A6A7] transition-colors"
+            >
+              <ShoppingCart className="h-6 w-6" />
+              {itemCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                  {itemCount > 9 ? '9+' : itemCount}
+                </span>
+              )}
+            </button>
           </div>
 
-          <button
-            className="md:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? (
-              <X className="h-6 w-6 text-[#006A71]" />
-            ) : (
-              <Menu className="h-6 w-6 text-[#006A71]" />
-            )}
-          </button>
+          <div className="flex items-center gap-4 md:hidden">
+            <button
+              onClick={() => onNavigate('checkout')}
+              className="relative p-2 text-[#006A71]"
+            >
+              <ShoppingCart className="h-6 w-6" />
+              {itemCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                  {itemCount > 9 ? '9+' : itemCount}
+                </span>
+              )}
+            </button>
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? (
+                <X className="h-6 w-6 text-[#006A71]" />
+              ) : (
+                <Menu className="h-6 w-6 text-[#006A71]" />
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
