@@ -14,6 +14,7 @@ export default function Home({ onNavigate }: HomeProps) {
     const updateImageHeight = () => {
       if (textContainerRef.current && imageRef.current) {
         const textHeight = textContainerRef.current.offsetHeight;
+        // Usa minHeight invece di height per non restringere l'immagine
         setImageHeight(`${textHeight}px`);
       }
     };
@@ -109,13 +110,12 @@ export default function Home({ onNavigate }: HomeProps) {
       <div className="bg-white py-8 sm:py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
-            <div className="w-full order-2 md:order-1">
+            <div className="w-full order-2 md:order-1 flex items-start">
               <img 
                 ref={imageRef}
                 src="/jet-ski.jpg" 
                 alt="Sea Doo Moto d'acqua" 
-                className="w-full h-auto object-cover rounded-lg"
-                style={{ height: imageHeight }}
+                className="w-full h-auto object-contain rounded-lg"
                 onError={(e) => {
                   e.currentTarget.src = 'https://images.pexels.com/photos/163236/luxury-yacht-boat-speed-water-163236.jpeg?auto=compress&cs=tinysrgb&w=800';
                 }}
