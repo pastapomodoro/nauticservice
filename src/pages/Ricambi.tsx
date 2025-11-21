@@ -203,26 +203,16 @@ export default function Ricambi() {
                             €{product.price.toLocaleString()}
                           </span>
                         </div>
-                        {(product.shopify_product_id || (product as any).handle) ? (
-                          <div onClick={(e) => e.stopPropagation()}>
-                            <ShopifyBuyButton 
-                              productId={product.shopify_product_id}
-                              productHandle={(product as any).handle}
-                              className="w-full"
-                            />
-                          </div>
-                        ) : (
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setSelectedProduct(product);
-                              setIsModalOpen(true);
-                            }}
-                            className="bg-[#006A71] hover:bg-[#48A6A7] active:bg-[#005a61] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-sm sm:text-base font-medium flex items-center justify-center gap-2 transition-colors touch-manipulation"
-                          >
-                            Acquista
-                          </button>
-                        )}
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedProduct(product);
+                            setIsModalOpen(true);
+                          }}
+                          className="bg-[#006A71] hover:bg-[#48A6A7] active:bg-[#005a61] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-sm sm:text-base font-medium flex items-center justify-center gap-2 transition-colors touch-manipulation w-full"
+                        >
+                          Acquista
+                        </button>
                       </div>
                     </div>
                   </div>
