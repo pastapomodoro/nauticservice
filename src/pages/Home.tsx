@@ -32,27 +32,47 @@ export default function Home({ onNavigate }: HomeProps) {
     };
   }, []);
   return (
-    <div className="bg-[#F2EFE7]">
-      <div
-        className="relative h-[400px] sm:h-[500px] md:h-[600px] bg-cover bg-center"
-        style={{
-          backgroundImage:
-            'url(https://images.pexels.com/photos/163236/luxury-yacht-boat-speed-water-163236.jpeg?auto=compress&cs=tinysrgb&w=1920)',
-        }}
-      >
-        <div className="absolute inset-0 bg-black/40"></div>
-        <div className="relative h-full flex items-center justify-center text-center text-white px-4">
-          <div className="flex flex-col items-center max-w-2xl">
-            <div className="flex items-center justify-center mb-6 sm:mb-8">
-              <img 
-                src="/nautic.png" 
-                alt="Nautic Service Logo" 
-                className="h-32 sm:h-48 md:h-64 lg:h-80 w-auto"
-              />
-            </div>
+    <div className="bg-[#F4F7F6]">
+      <div className="relative h-[500px] sm:h-[700px] md:h-[900px] overflow-hidden">
+        {/* Video di sfondo */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ minWidth: '100%', minHeight: '100%' }}
+        >
+          <source src="/landing.mp4" type="video/mp4" />
+        </video>
+        
+        {/* Contenuto */}
+        <div className="relative h-full flex flex-col items-center justify-center text-center text-white px-4 z-10">
+          {/* Logo */}
+          <div className="flex items-center justify-center mb-8 animate-[fadeIn_1.5s_ease-out_forwards] opacity-0" style={{ animationDelay: '0.3s' }}>
+            <img
+              src="/nautic.png"
+              alt="Nautic Service Logo"
+              className="w-full max-w-4xl h-auto object-contain"
+            />
+          </div>
+        </div>
+        
+        {/* Bottone in basso */}
+        <div className="absolute bottom-0 left-0 right-0 w-full flex justify-center pb-8 sm:pb-12 md:pb-16 z-10">
+          <div className="animate-[fadeIn_1.5s_ease-out_forwards] opacity-0" style={{ animationDelay: '0.6s' }}>
             <button
               onClick={() => onNavigate('vendita')}
-              className="bg-[#006A71] hover:bg-[#48A6A7] active:bg-[#005a61] text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg text-base sm:text-lg font-semibold transition-colors touch-manipulation"
+              className="text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg text-base sm:text-lg font-semibold transition-all touch-manipulation"
+              style={{
+                background: 'linear-gradient(90deg, #1FA9A0 0%, #7EDB8A 100%)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'linear-gradient(90deg, #1FA9A0 0%, #7EDB8A 100%)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'linear-gradient(90deg, #1FA9A0 0%, #7EDB8A 100%)';
+              }}
             >
               Scopri i Nostri Prodotti
             </button>
@@ -61,7 +81,7 @@ export default function Home({ onNavigate }: HomeProps) {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-[#006A71] mb-6 sm:mb-8 md:mb-12">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-[#0E0E0E] mb-6 sm:mb-8 md:mb-12">
           I Nostri Servizi
         </h2>
 
@@ -70,11 +90,11 @@ export default function Home({ onNavigate }: HomeProps) {
             onClick={() => onNavigate('vendita')}
             className="bg-white rounded-lg p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-xl active:shadow-lg transition-shadow cursor-pointer touch-manipulation"
           >
-            <div className="bg-[#9ACBD0] w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-3 sm:mb-4">
-              <Ship className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-[#006A71]" />
+            <div className="bg-[#00D9CC] w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-3 sm:mb-4">
+              <Ship className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-[#0E0E0E]" />
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-[#006A71] mb-2 sm:mb-3">Vendita</h3>
-            <p className="text-sm sm:text-base text-gray-700">
+            <h3 className="text-xl sm:text-2xl font-bold text-[#0E0E0E] mb-2 sm:mb-3">Vendita</h3>
+            <p className="text-sm sm:text-base text-[#0E0E0E]">
               Ampia selezione di barche nuove e moto d'acqua delle migliori marche.
             </p>
           </div>
@@ -83,11 +103,11 @@ export default function Home({ onNavigate }: HomeProps) {
             onClick={() => onNavigate('noleggio')}
             className="bg-white rounded-lg p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-xl active:shadow-lg transition-shadow cursor-pointer touch-manipulation"
           >
-            <div className="bg-[#9ACBD0] w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-3 sm:mb-4">
-              <Waves className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-[#006A71]" />
+            <div className="bg-[#00D9CC] w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-3 sm:mb-4">
+              <Waves className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-[#0E0E0E]" />
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-[#006A71] mb-2 sm:mb-3">Noleggio</h3>
-            <p className="text-sm sm:text-base text-gray-700">
+            <h3 className="text-xl sm:text-2xl font-bold text-[#0E0E0E] mb-2 sm:mb-3">Noleggio</h3>
+            <p className="text-sm sm:text-base text-[#0E0E0E]">
               Noleggia la tua barca ideale per una giornata o una vacanza indimenticabile.
             </p>
           </div>
@@ -96,53 +116,61 @@ export default function Home({ onNavigate }: HomeProps) {
             onClick={() => onNavigate('ricambi')}
             className="bg-white rounded-lg p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-xl active:shadow-lg transition-shadow cursor-pointer touch-manipulation sm:col-span-2 lg:col-span-1"
           >
-            <div className="bg-[#9ACBD0] w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-3 sm:mb-4">
-              <Settings className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-[#006A71]" />
+            <div className="bg-[#00D9CC] w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-3 sm:mb-4">
+              <Settings className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-[#0E0E0E]" />
             </div>
-            <h3 className="text-xl sm:text-2xl font-bold text-[#006A71] mb-2 sm:mb-3">Ricambi</h3>
-            <p className="text-sm sm:text-base text-gray-700">
+            <h3 className="text-xl sm:text-2xl font-bold text-[#0E0E0E] mb-2 sm:mb-3">Ricambi</h3>
+            <p className="text-sm sm:text-base text-[#0E0E0E]">
               Ricambi originali e di qualità per la tua imbarcazione.
             </p>
           </div>
         </div>
       </div>
 
-      <div className="bg-white py-8 sm:py-12 md:py-16">
+      <div className="bg-white py-6 sm:py-8 md:py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
-            <div className="w-full order-2 md:order-1 flex items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
+            <div className="w-full order-1 md:order-1">
               <img 
                 ref={imageRef}
                 src="/jet-ski.jpg" 
                 alt="Sea Doo Moto d'acqua" 
-                className="w-full h-auto object-contain rounded-lg"
+                className="w-full h-auto object-contain rounded-lg shadow-md"
                 onError={(e) => {
                   e.currentTarget.src = 'https://images.pexels.com/photos/163236/luxury-yacht-boat-speed-water-163236.jpeg?auto=compress&cs=tinysrgb&w=800';
                 }}
               />
             </div>
-            <div ref={textContainerRef} className="order-1 md:order-2">
-              <p className="text-sm sm:text-base md:text-lg mb-4 sm:mb-6 leading-relaxed text-gray-700">
+            <div ref={textContainerRef} className="order-2 md:order-2 space-y-4 sm:space-y-5 md:space-y-6">
+              <p className="text-sm sm:text-base md:text-lg leading-relaxed text-[#0E0E0E]">
                 La Nautic Service nasce nel 2003 e ha come obiettivo principale la fornitura di servizi Nautici, riparazione e vendita di Natanti, accessori, ricambi delle migliori marche.
               </p>
-              <p className="text-sm sm:text-base md:text-lg mb-4 sm:mb-6 leading-relaxed text-gray-700">
-                La nostra azienda, dispone di una rilevante struttura operativa, un furgone come officina mobile per fare assistenza dovunque, con sedi dotate di attrezzature specifiche, si avvale di elevate risorse tecnico-strumentali e occupa un organico medio di 2 unità altamente specializzate che le consente di ottenere risultati di riparazione in ogni punto esso sia superiori alla media delle dirette concorrenti, con quotazioni competitive ed opera su tutto il territorio del Lago di Garda.
+              <p className="text-sm sm:text-base md:text-lg leading-relaxed text-[#0E0E0E]">
+                La nostra azienda dispone di una rilevante struttura operativa, un furgone come officina mobile per fare assistenza dovunque, con sedi dotate di attrezzature specifiche. Si avvale di elevate risorse tecnico-strumentali e occupa un organico medio di 2 unità altamente specializzate che le consente di ottenere risultati di riparazione superiori alla media delle dirette concorrenti, con quotazioni competitive ed opera su tutto il territorio del Lago di Garda.
               </p>
-              <p className="text-sm sm:text-base md:text-lg mb-4 sm:mb-6 leading-relaxed text-gray-700">
-                La caratteristica principale che ci contraddistingue è sicuramente l'affidabilità e la correttezza nello svolgere la nostra attività.
+              <p className="text-sm sm:text-base md:text-lg leading-relaxed text-[#0E0E0E]">
+                La caratteristica principale che ci contraddistingue è sicuramente l'affidabilità e la correttezza nello svolgere la nostra attività. La qualità è garantita con l'impiego di soluzioni e prodotti all'avanguardia che consentono di ottenere lavori sicuri e funzionali.
               </p>
-              <p className="text-sm sm:text-base md:text-lg mb-4 sm:mb-6 leading-relaxed text-gray-700">
-                La qualità è garantita con l'impiego di soluzioni e prodotti all'avanguardia che consentono di ottenere nello stesso tempo lavori sicuri e funzionali.
+              <p className="text-sm sm:text-base md:text-lg leading-relaxed text-[#0E0E0E]">
+                Alla competenza professionale si aggiunge un'adeguata conoscenza ed esperienza in tema normativo, garantendo i più elevati standard di qualità richiesti nella riparazione di ogni tipo di battello e motori.
               </p>
-              <p className="text-sm sm:text-base md:text-lg mb-4 sm:mb-6 leading-relaxed text-gray-700">
-                Alla competenza professionale si aggiunge un'adeguata conoscenza ed esperienza in tema normativo, garantendo i più elevati standard di qualità richiesti nella riparazione di ogni tipo di battello e motori, implementandoli con Sistemi di Qualità secondo le norme vigenti.
+              <p className="text-sm sm:text-base md:text-lg leading-relaxed text-[#0E0E0E] mb-6">
+                Rappresentiamo i marchi principali del settore: Evinrude, Selva, Sea Doo, Joker Boat e Saver.
               </p>
-              <p className="text-sm sm:text-base md:text-lg mb-4 sm:mb-6 leading-relaxed text-gray-700">
-                Il risultato è un'azienda che interviene con serietà e professionalità garantendo affidabilità per tutti i suoi prodotti e tutti i suoi servizi.
-              </p>
-              <p className="text-sm sm:text-base md:text-lg leading-relaxed text-gray-700">
-                Che sono allestimenti personalizzati per enti publici e privati, riparazione e vendita di natanti, motori, accessori, ricambi di tutte le marche. Rapresentiamo i marchi principali del settore: Evinrude, Selva, Sea Doo, Joker Boat e Saver
-              </p>
+              
+              {/* Loghi Partner */}
+              <div className="flex items-center justify-start gap-4 sm:gap-6 md:gap-8 mt-6 flex-wrap">
+                <img
+                  src="/loghi/logocanam.png"
+                  alt="Can-Am Logo"
+                  className="h-12 sm:h-16 md:h-20 w-auto object-contain"
+                />
+                <img
+                  src="/loghi/logoseadoo.jpg"
+                  alt="Sea-Doo Logo"
+                  className="h-12 sm:h-16 md:h-20 w-auto object-contain"
+                />
+              </div>
             </div>
           </div>
         </div>
