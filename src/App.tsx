@@ -1,14 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import CookieBanner from './components/CookieBanner';
 import Home from './pages/Home';
 import ChiSiamo from './pages/ChiSiamo';
 import Vendita from './pages/Vendita';
+import Usato from './pages/Usato';
 import Ricambi from './pages/Ricambi';
 import News from './pages/News';
 import Payment from './pages/Payment';
 import Checkout from './pages/Checkout';
 import Contatti from './pages/Contatti';
+import Privacy from './pages/Privacy';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -18,6 +21,18 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Gestione navigazione da eventi custom (es. link Privacy nel cookie banner)
+  useEffect(() => {
+    const handleNavigateEvent = (event: CustomEvent<string>) => {
+      handleNavigate(event.detail);
+    };
+
+    window.addEventListener('navigate' as any, handleNavigateEvent as EventListener);
+    return () => {
+      window.removeEventListener('navigate' as any, handleNavigateEvent as EventListener);
+    };
+  }, []);
+
   const renderPage = () => {
     switch (currentPage) {
       case 'home':
@@ -26,12 +41,16 @@ function App() {
         return <ChiSiamo />;
       case 'vendita':
         return <Vendita onNavigate={handleNavigate} />;
+      case 'usato':
+        return <Usato />;
       case 'ricambi':
         return <Ricambi />;
       case 'news':
         return <News />;
       case 'contatti':
         return <Contatti />;
+      case 'privacy':
+        return <Privacy />;
       case 'payment':
         return <Payment onNavigate={handleNavigate} />;
       case 'checkout':
@@ -45,7 +64,8 @@ function App() {
     <div className="min-h-screen flex flex-col bg-[#F4F7F6]">
       <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
       <main className="flex-grow">{renderPage()}</main>
-      <Footer />
+      <Footer onNavigate={handleNavigate} />
+      <CookieBanner />
     </div>
   );
 }

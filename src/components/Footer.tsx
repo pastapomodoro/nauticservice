@@ -1,6 +1,10 @@
 import { Mail, Phone, MapPin } from 'lucide-react';
 
-export default function Footer() {
+type FooterProps = {
+  onNavigate?: (page: string) => void;
+};
+
+export default function Footer({ onNavigate }: FooterProps) {
   return (
     <footer className="bg-[#0088AA] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -30,6 +34,9 @@ export default function Footer() {
                 <MapPin className="h-4 w-4 mr-2" />
                 <span>Via Venezia 9, Castelnuovo del Garda (VR)</span>
               </div>
+              <div className="flex items-center text-sm">
+                <span className="text-gray-300">P.IVA: 04616350239</span>
+              </div>
             </div>
           </div>
 
@@ -52,8 +59,24 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-[#00D9CC] mt-8 pt-8 text-center text-sm">
-          <p>&copy; 2025 Nautic Service. Tutti i diritti riservati.</p>
+        <div className="border-t border-[#00D9CC] mt-8 pt-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-sm text-gray-300">&copy; 2025 Nautic Service. Tutti i diritti riservati.</p>
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => onNavigate?.('privacy')}
+                className="text-sm text-gray-300 hover:text-[#00D9CC] transition-colors"
+              >
+                Privacy Policy
+              </button>
+              <button
+                onClick={() => window.dispatchEvent(new CustomEvent('cookie-settings-open'))}
+                className="text-sm text-gray-300 hover:text-[#00D9CC] transition-colors"
+              >
+                Impostazioni cookie
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

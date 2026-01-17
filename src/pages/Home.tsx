@@ -126,7 +126,7 @@ export default function Home({ onNavigate }: HomeProps) {
           </div>
 
           <div
-            onClick={() => onNavigate('vendita')}
+            onClick={() => onNavigate('usato')}
             className="group relative bg-gradient-to-br from-white to-gray-50 rounded-xl p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-2xl active:shadow-lg transition-all duration-300 cursor-pointer touch-manipulation overflow-hidden border-2 border-transparent hover:border-[#00D9CC]/30"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#00D9CC]/10 to-transparent rounded-full blur-2xl group-hover:from-[#00D9CC]/20 transition-all duration-300"></div>
