@@ -31,7 +31,7 @@ export default function ChiSiamo() {
             </p>
             <p className="text-lg text-[#0E0E0E] mb-4 leading-relaxed">
               Nel corso degli anni abbiamo ampliato la nostra offerta, includendo vendita,
-              noleggio, assistenza tecnica e una vasta gamma di accessori. Il nostro successo
+              assistenza tecnica e una vasta gamma di accessori. Il nostro successo
               si basa sulla fiducia che i nostri clienti ripongono in noi, anno dopo anno.
             </p>
             <p className="text-lg text-[#0E0E0E] leading-relaxed">

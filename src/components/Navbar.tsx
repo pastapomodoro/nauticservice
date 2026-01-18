@@ -13,7 +13,6 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
     { id: 'home', label: 'Home' },
     { id: 'vendita', label: 'Vendita' },
     { id: 'usato', label: 'Usato' },
-    { id: 'noleggio', label: 'Noleggio' },
     { id: 'ricambi', label: 'Ricambi' },
     { id: 'news', label: 'News' },
     { id: 'contatti', label: 'Contatti' },

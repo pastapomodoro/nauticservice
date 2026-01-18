@@ -1,4 +1,4 @@
-import { Ship, Settings, RotateCcw } from 'lucide-react';
+import { Ship, Settings, RotateCcw, Anchor } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 type HomeProps = {
@@ -94,7 +94,7 @@ export default function Home({ onNavigate }: HomeProps) {
           I Nostri Servizi
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
           <div
             onClick={() => onNavigate('vendita')}
             className="group relative bg-gradient-to-br from-white to-gray-50 rounded-xl p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-2xl active:shadow-lg transition-all duration-300 cursor-pointer touch-manipulation overflow-hidden border-2 border-transparent hover:border-[#00D9CC]/30"
@@ -136,6 +136,21 @@ export default function Home({ onNavigate }: HomeProps) {
             <h3 className="text-xl sm:text-2xl font-bold text-[#0E0E0E] mb-2 sm:mb-3 group-hover:text-[#00D9CC] transition-colors duration-300">Usato</h3>
             <p className="text-sm sm:text-base text-gray-700">
               Trattiamo anche barche e moto d'acqua usate, garantite e controllate.
+            </p>
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#00D9CC] via-[#1FA9A0] to-[#00D9CC] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+          </div>
+
+          <div
+            onClick={() => onNavigate('noleggio')}
+            className="group relative bg-gradient-to-br from-white to-gray-50 rounded-xl p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-2xl active:shadow-lg transition-all duration-300 cursor-pointer touch-manipulation overflow-hidden border-2 border-transparent hover:border-[#00D9CC]/30"
+          >
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#00D9CC]/10 to-transparent rounded-full blur-2xl group-hover:from-[#00D9CC]/20 transition-all duration-300"></div>
+            <div className="relative z-10 bg-gradient-to-br from-[#00D9CC] to-[#1FA9A0] w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center mb-3 sm:mb-4 shadow-lg group-hover:scale-110 group-hover:shadow-[#00D9CC]/50 transition-all duration-300">
+              <Anchor className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-white" />
+            </div>
+            <h3 className="text-xl sm:text-2xl font-bold text-[#0E0E0E] mb-2 sm:mb-3 group-hover:text-[#00D9CC] transition-colors duration-300">Noleggi</h3>
+            <p className="text-sm sm:text-base text-gray-700">
+              Noleggio di barche e moto d'acqua per vivere il lago di Garda.
             </p>
             <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#00D9CC] via-[#1FA9A0] to-[#00D9CC] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
           </div>

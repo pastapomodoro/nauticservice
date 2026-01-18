@@ -44,7 +44,6 @@ export default function Footer({ onNavigate }: FooterProps) {
             <h3 className="text-lg font-semibold mb-4">Servizi</h3>
             <ul className="space-y-2 text-sm">
               <li>Vendita Barche</li>
-              <li>Noleggio</li>
               <li>Ricambi</li>
               <li>Manutenzione</li>
             </ul>
