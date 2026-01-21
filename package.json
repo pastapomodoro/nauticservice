@@ -1,7 +1,10 @@
 {
-  "name": "vite-react-typescript-starter",
+  "name": "nautic-service-srl",
+  "description": "Nautic Service SRL - Riparazione Moto d'Acqua, Vendita Barche e Ricambi Nautici - Lago di Garda",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "author": "Nautic Service SRL",
+  "homepage": "https://www.nautic-service.it",
   "type": "module",
   "scripts": {
     "dev": "vite",
