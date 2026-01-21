@@ -138,7 +138,7 @@ export default function CookieBanner() {
         <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-lg border border-gray-200">
           <div className="p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
             <div className="flex items-start gap-3 flex-1">
-              <Cookie className="h-5 w-5 text-[#00D9CC] flex-shrink-0 mt-0.5" />
+              <Cookie className="h-5 w-5 text-[#2cd5c4] flex-shrink-0 mt-0.5" />
               <p className="text-sm text-gray-700">
                 Usiamo cookie tecnici e, con il tuo consenso, cookie di analisi/marketing.{' '}
                 <a
@@ -147,7 +147,7 @@ export default function CookieBanner() {
                     e.preventDefault();
                     window.dispatchEvent(new CustomEvent('navigate', { detail: 'privacy' }));
                   }}
-                  className="text-[#00D9CC] hover:underline"
+                  className="text-[#2cd5c4] hover:underline"
                 >
                   Privacy Policy
                 </a>
@@ -170,7 +170,7 @@ export default function CookieBanner() {
               </button>
               <button
                 onClick={handleAcceptAll}
-                className="px-3 py-2 bg-[#00D9CC] hover:bg-[#1FA9A0] text-white rounded-lg text-sm font-medium transition-colors"
+                className="px-3 py-2 bg-[#2cd5c4] hover:bg-[#00D9CC] text-white rounded-lg text-sm font-medium transition-colors"
               >
                 Accetta
               </button>
@@ -222,7 +222,7 @@ export default function CookieBanner() {
                   type="checkbox"
                   checked={prefs.analytics}
                   onChange={(e) => setPrefs((p) => ({ ...p, analytics: e.target.checked }))}
-                  className="h-4 w-4 accent-[#00D9CC]"
+                  className="h-4 w-4 accent-[#2cd5c4]"
                 />
               </div>
 
@@ -235,7 +235,7 @@ export default function CookieBanner() {
                   type="checkbox"
                   checked={prefs.marketing}
                   onChange={(e) => setPrefs((p) => ({ ...p, marketing: e.target.checked }))}
-                  className="h-4 w-4 accent-[#00D9CC]"
+                  className="h-4 w-4 accent-[#2cd5c4]"
                 />
               </div>
             </div>
@@ -249,7 +249,7 @@ export default function CookieBanner() {
               </button>
               <button
                 onClick={handleAcceptAll}
-                className="px-4 py-2 bg-[#00D9CC] hover:bg-[#1FA9A0] text-white rounded-lg text-sm font-medium transition-colors"
+                className="px-4 py-2 bg-[#2cd5c4] hover:bg-[#00D9CC] text-white rounded-lg text-sm font-medium transition-colors"
               >
                 Accetta tutti
               </button>

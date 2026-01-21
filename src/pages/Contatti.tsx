@@ -1,8 +1,19 @@
 import { MapPin, Phone, Mail, Clock, User, Facebook, Instagram } from 'lucide-react';
+import SEO from '../components/SEO';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Contatti() {
+  const { t } = useLanguage();
+  
   return (
-    <div className="bg-[#F4F7F6]">
+    <>
+      <SEO
+        title="Contatti e Dove Siamo | Nautic Service - Castelnuovo del Garda"
+        description="Contatta Nautic Service per riparazione moto d'acqua, preventivi e informazioni. Via Venezia 9, Castelnuovo del Garda (VR). Tel: +39 327.8992159. WhatsApp disponibile. Orari: Lun-Sab 8.30-12.30 e 14-18. Raggiungi facilmente da Peschiera, Lazise, Verona."
+        keywords="contatti Nautic Service, telefono officina nautica, dove siamo, come raggiungerci, WhatsApp Nautic Service, indirizzo Castelnuovo del Garda, orari apertura, preventivo riparazione moto d'acqua"
+        url="/contatti"
+      />
+      <div className="bg-[#F4F7F6]">
       <div
         className="relative h-[400px] bg-cover bg-center"
         style={{
@@ -13,8 +24,8 @@ export default function Contatti() {
         <div className="absolute inset-0 bg-black/70"></div>
         <div className="relative h-full flex items-center justify-center text-center text-white px-4">
           <div>
-            <h1 className="text-5xl md:text-6xl font-bold">Contatti</h1>
-            <p className="text-xl md:text-2xl mt-4">Siamo qui per aiutarti</p>
+            <h1 className="text-5xl md:text-6xl font-bold">{t('contatti_title')}</h1>
+            <p className="text-xl md:text-2xl mt-4">{t('contatti_subtitle')}</p>
           </div>
         </div>
       </div>
@@ -22,20 +33,18 @@ export default function Contatti() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           <div>
-            <h2 className="text-4xl font-bold text-[#0E0E0E] mb-6">Contattaci</h2>
+            <h2 className="text-4xl font-bold text-[#0E0E0E] mb-6">{t('contatti_contact_us')}</h2>
             <p className="text-lg text-[#0E0E0E] mb-8 leading-relaxed">
-              Hai domande sui nostri prodotti o servizi? Hai bisogno di assistenza tecnica?
-              Non esitare a contattarci. Il nostro team è sempre pronto ad aiutarti con
-              professionalità e competenza.
+              {t('contatti_contact_desc')}
             </p>
 
             <div className="space-y-6">
               <div className="flex items-start space-x-4">
-                <div className="bg-[#00D9CC] w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
+                <div className="bg-[#2cd5c4] w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
                   <MapPin className="h-6 w-6 text-[#0E0E0E]" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-[#0E0E0E] mb-2">Sede</h3>
+                  <h3 className="text-xl font-bold text-[#0E0E0E] mb-2">{t('contatti_sede')}</h3>
                   <p className="text-[#0E0E0E]">
                     Via Venezia 9<br />
                     Castelnuovo del Garda (Vr)
@@ -44,11 +53,11 @@ export default function Contatti() {
               </div>
 
               <div className="flex items-start space-x-4">
-                <div className="bg-[#00D9CC] w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
+                <div className="bg-[#2cd5c4] w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
                   <User className="h-6 w-6 text-[#0E0E0E]" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-[#0E0E0E] mb-2">Referente</h3>
+                  <h3 className="text-xl font-bold text-[#0E0E0E] mb-2">{t('contatti_referente')}</h3>
                   <p className="text-[#0E0E0E]">
                     <a href="mailto:manuel@nautic-service.it" className="hover:underline">manuel@nautic-service.it</a>
                   </p>
@@ -56,31 +65,31 @@ export default function Contatti() {
               </div>
 
               <div className="flex items-start space-x-4">
-                <div className="bg-[#00D9CC] w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
+                <div className="bg-[#2cd5c4] w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
                   <Mail className="h-6 w-6 text-[#0E0E0E]" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-[#0E0E0E] mb-2">Email</h3>
+                  <h3 className="text-xl font-bold text-[#0E0E0E] mb-2">{t('contatti_email')}</h3>
                   <p className="text-[#0E0E0E] mb-2">
                     <a href="mailto:info@nautic-service.it" className="hover:underline">info@nautic-service.it</a>
-                    <span className="text-[#6B6F72] text-sm block mt-1">Informazioni</span>
+                    <span className="text-[#6B6F72] text-sm block mt-1">{t('contatti_info')}</span>
                   </p>
                   <p className="text-[#0E0E0E]">
                     <a href="mailto:preventivo@nautic-service.it" className="hover:underline">preventivo@nautic-service.it</a>
-                    <span className="text-[#6B6F72] text-sm block mt-1">Richiedi Preventivo</span>
+                    <span className="text-[#6B6F72] text-sm block mt-1">{t('contatti_preventivo')}</span>
                   </p>
                 </div>
               </div>
 
               <div className="flex items-start space-x-4">
-                <div className="bg-[#00D9CC] w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
+                <div className="bg-[#2cd5c4] w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
                   <Phone className="h-6 w-6 text-[#0E0E0E]" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-[#0E0E0E] mb-2">Telefono</h3>
+                  <h3 className="text-xl font-bold text-[#0E0E0E] mb-2">{t('contatti_telefono')}</h3>
                   <p className="text-[#0E0E0E] mb-2">
                     <a href="tel:+390456450847" className="hover:underline">045 645 0847</a>
-                    <span className="text-[#6B6F72] text-sm block mt-1">Fisso</span>
+                    <span className="text-[#6B6F72] text-sm block mt-1">{t('contatti_fisso')}</span>
                   </p>
                   <p className="text-[#0E0E0E] mb-2">
                     <a href="tel:+393278992159" className="hover:underline">+39 327.8992159</a>
@@ -94,14 +103,14 @@ export default function Contatti() {
               </div>
 
               <div className="flex items-start space-x-4">
-                <div className="bg-[#00D9CC] w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
+                <div className="bg-[#2cd5c4] w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
                   <Clock className="h-6 w-6 text-[#0E0E0E]" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-[#0E0E0E] mb-2">Orari di Apertura</h3>
+                  <h3 className="text-xl font-bold text-[#0E0E0E] mb-2">{t('contatti_orari')}</h3>
                   <div className="text-[#0E0E0E] space-y-1">
-                    <p>Lunedì – Sabato: 8.30 – 12.30 e 14 – 18</p>
-                    <p>Domenica: Chiuso</p>
+                    <p>{t('contatti_orari_feriali')}</p>
+                    <p>{t('contatti_orari_domenica')}</p>
                   </div>
                 </div>
               </div>
@@ -110,9 +119,9 @@ export default function Contatti() {
 
           <div className="space-y-6">
             <div className="bg-white rounded-lg shadow-lg p-8 flex flex-col items-center justify-center min-h-[400px]">
-              <h3 className="text-2xl font-bold text-[#0E0E0E] mb-6 text-center">Contattaci su WhatsApp</h3>
+              <h3 className="text-2xl font-bold text-[#0E0E0E] mb-6 text-center">{t('contatti_whatsapp_title')}</h3>
               <p className="text-[#0E0E0E] mb-8 text-center">
-                Scrivici direttamente su WhatsApp per una risposta rapida
+                {t('contatti_whatsapp_desc')}
               </p>
               <a
                 href="https://wa.me/393278992159"
@@ -130,7 +139,7 @@ export default function Contatti() {
             </div>
 
             <div className="bg-white rounded-lg shadow-lg p-8 flex flex-col items-center justify-center">
-              <h3 className="text-2xl font-bold text-[#0E0E0E] mb-6 text-center">Seguici sui Social</h3>
+              <h3 className="text-2xl font-bold text-[#0E0E0E] mb-6 text-center">{t('contatti_social_title')}</h3>
               <div className="flex gap-6 items-center justify-center">
                 <a
                   href="https://www.facebook.com/nauticservicelagodigarda"
@@ -172,5 +181,6 @@ export default function Contatti() {
         </div>
       </div>
     </div>
+    </>
   );
 }

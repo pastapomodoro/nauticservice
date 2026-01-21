@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import CookieBanner from './components/CookieBanner';
+import MobileFloatingButtons from './components/MobileFloatingButtons';
 import Home from './pages/Home';
 import ChiSiamo from './pages/ChiSiamo';
 import Vendita from './pages/Vendita';
+// Kill switch: Usato - riattivare in features.ts
 import Usato from './pages/Usato';
 import Ricambi from './pages/Ricambi';
 import News from './pages/News';
@@ -12,6 +14,7 @@ import Payment from './pages/Payment';
 import Checkout from './pages/Checkout';
 import Contatti from './pages/Contatti';
 import Privacy from './pages/Privacy';
+import { FEATURES } from './config/features';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -41,8 +44,9 @@ function App() {
         return <ChiSiamo />;
       case 'vendita':
         return <Vendita onNavigate={handleNavigate} />;
+      // Kill switch: Usato - riattivare in features.ts
       case 'usato':
-        return <Usato />;
+        return FEATURES.USATO_ENABLED ? <Usato /> : <Home onNavigate={handleNavigate} />;
       case 'ricambi':
         return <Ricambi />;
       case 'news':
@@ -66,6 +70,7 @@ function App() {
       <main className="flex-grow">{renderPage()}</main>
       <Footer onNavigate={handleNavigate} />
       <CookieBanner />
+      <MobileFloatingButtons />
     </div>
   );
 }

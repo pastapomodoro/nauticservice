@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import ProductModal from '../components/ProductModal';
+import SEO from '../components/SEO';
+import { useLanguage } from '../contexts/LanguageContext';
+import { getProductTranslation, getCategoryTranslation, venditaCategoryLabels } from '../i18n/productTranslations';
 
 type Product = {
   id: string;
@@ -216,15 +219,16 @@ const products: Product[] = [
   }
 ];
 
-const venditaCategories = [
-  { id: 'divertimento', label: 'Divertimento' },
-  { id: 'turismo', label: 'Turismo' },
-  { id: 'prestazioni', label: 'Prestazioni' },
-  { id: 'sport-da-traino', label: 'Sport da traino' },
-  { id: 'pesca-sportiva', label: 'Pesca sportiva' },
-];
+const categoryIds = ['divertimento', 'turismo', 'prestazioni', 'sport-da-traino', 'pesca-sportiva'];
 
 export default function Vendita({ onNavigate }: VenditaProps) {
+  const { language, t } = useLanguage();
+  
+  // Categorie tradotte
+  const venditaCategories = categoryIds.map(id => ({
+    id,
+    label: venditaCategoryLabels[id]?.[language] || id
+  }));
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string>('divertimento');
@@ -265,7 +269,14 @@ export default function Vendita({ onNavigate }: VenditaProps) {
   }, []);
 
   return (
-    <div className="bg-[#F4F7F6] min-h-screen">
+    <>
+      <SEO
+        title="Vendita Moto d'Acqua Sea-Doo e Barche | Dealer Autorizzato Lago di Garda"
+        description="Dealer autorizzato Sea-Doo sul Lago di Garda. Vendita moto d'acqua nuove: Spark, GTI, GTX, GTR, RXP-X, RXT-X, Wake Pro, FishPro. Barche Joker Boat e Saver. Finanziamenti, permute e garanzia. Consegna a Peschiera, Desenzano, Sirmione, Lazise e tutto il lago."
+        keywords="vendita moto d'acqua Sea Doo, dealer Sea Doo Italia, comprare jet ski, Spark Sea Doo prezzo, GTI Sea Doo, GTX Limited, RXP-X 325, vendita barche nuove, Joker Boat, Saver, PWC vendita, moto d'acqua prezzi"
+        url="/vendita"
+      />
+      <div className="bg-[#F4F7F6] min-h-screen">
       <div
         className="relative h-[300px] bg-cover bg-center"
         style={{
@@ -276,9 +287,9 @@ export default function Vendita({ onNavigate }: VenditaProps) {
         <div className="absolute inset-0 bg-black/70"></div>
         <div className="relative h-full flex items-center justify-center text-center text-white px-4">
           <div>
-            <h1 className="text-5xl md:text-6xl font-bold">Vendita</h1>
+            <h1 className="text-5xl md:text-6xl font-bold">{t('vendita_title')}</h1>
             <p className="text-xl md:text-2xl mt-4">
-              Scopri la nostra selezione di barche e moto d'acqua
+              {t('vendita_subtitle')}
             </p>
           </div>
         </div>
@@ -294,13 +305,13 @@ export default function Vendita({ onNavigate }: VenditaProps) {
                 onClick={() => handleCategoryClick(category.id)}
                 className={`relative px-4 py-2 text-sm font-medium transition-all duration-200 whitespace-nowrap ${
                   activeCategory === category.id
-                    ? 'text-[#00D9CC]'
-                    : 'text-[#0E0E0E] hover:text-[#00D9CC]'
+                    ? 'text-[#2cd5c4]'
+                    : 'text-[#0E0E0E] hover:text-[#2cd5c4]'
                 }`}
               >
                 {category.label}
                 {activeCategory === category.id && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#00D9CC]"></div>
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#2cd5c4]"></div>
                 )}
               </button>
             ))}
@@ -309,79 +320,83 @@ export default function Vendita({ onNavigate }: VenditaProps) {
 
         {categories.map((category) => {
           const categoryProducts = getProductsByCategory(category.id);
+          const categoryTrans = getCategoryTranslation(category.id, language);
           
           return (
             <div key={category.id} id={`category-${category.id}`} className="mb-12 md:mb-16 scroll-mt-20">
               <div className="mb-6">
-                <h2 className="text-3xl md:text-4xl font-bold text-[#0E0E0E]">{category.name}</h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-[#0E0E0E]">{categoryTrans.name}</h2>
               </div>
               
               <p className="text-lg text-[#0E0E0E] mb-8 leading-relaxed max-w-4xl">
-                {category.description}
+                {categoryTrans.description}
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                {categoryProducts.map((product) => (
-                  <div
-                    key={product.id}
-                    className="bg-white rounded-lg shadow-md border-2 border-gray-200 overflow-hidden flex flex-col cursor-pointer hover:shadow-xl hover:border-[#00D9CC] transition-all duration-300"
-                    onClick={() => {
-                      const seaDooLink = getSeaDooLink(product.name);
-                      window.open(seaDooLink, '_blank', 'noopener,noreferrer');
-                    }}
-                  >
-                    <div className="h-64 bg-gray-100 overflow-hidden flex items-center justify-center">
-                      <img
-                        src={product.image}
-                        alt={`${product.name} ${product.year}`}
-                        className="w-full h-full object-contain transition-transform duration-300 hover:scale-105"
-                        onError={(e) => {
-                          e.currentTarget.src = 'https://images.pexels.com/photos/163236/luxury-yacht-boat-speed-water-163236.jpeg?auto=compress&cs=tinysrgb&w=800';
-                        }}
-                      />
-                    </div>
-                    <div className="p-6 flex flex-col flex-grow">
-                      <div className="mb-4">
-                        <div className="flex items-center justify-between mb-2">
-                          <h3 className="text-2xl font-bold text-[#0E0E0E]">{product.name}</h3>
-                          <span className="text-sm text-gray-500 font-medium">{product.year}</span>
-                        </div>
-                        <h4 className="text-xl font-semibold text-[#0E0E0E] mb-3">{product.name}</h4>
-                        <div className="flex items-center gap-2 mb-4">
-                          <span className="text-xl font-bold text-[#0E0E0E]">Da {product.price} €</span>
-                          <button 
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setSelectedProduct(product);
-                              setIsModalOpen(true);
-                            }}
-                            className="w-6 h-6 rounded-full border-2 border-[#00D9CC] flex items-center justify-center hover:bg-[#00D9CC] transition-colors"
-                            aria-label="Informazioni prodotto"
-                            title="Vedi dettagli"
-                          >
-                            <span className="text-xs text-[#00D9CC] hover:text-white font-bold">i</span>
-                          </button>
-                        </div>
+                {categoryProducts.map((product) => {
+                  const productTrans = getProductTranslation(product.id, language);
+                  
+                  return (
+                    <div
+                      key={product.id}
+                      className="bg-white rounded-lg shadow-md border-2 border-gray-200 overflow-hidden flex flex-col cursor-pointer hover:shadow-xl hover:border-[#2cd5c4] transition-all duration-300"
+                      onClick={() => {
+                        const seaDooLink = getSeaDooLink(product.name);
+                        window.open(seaDooLink, '_blank', 'noopener,noreferrer');
+                      }}
+                    >
+                      <div className="h-64 bg-gray-100 overflow-hidden flex items-center justify-center">
+                        <img
+                          src={product.image}
+                          alt={`${productTrans.name} ${product.year}`}
+                          className="w-full h-full object-contain transition-transform duration-300 hover:scale-105"
+                          onError={(e) => {
+                            e.currentTarget.src = 'https://images.pexels.com/photos/163236/luxury-yacht-boat-speed-water-163236.jpeg?auto=compress&cs=tinysrgb&w=800';
+                          }}
+                        />
                       </div>
-                      <p className="text-sm text-gray-700 leading-relaxed flex-grow line-clamp-3">
-                        {product.description}
-                      </p>
+                      <div className="p-6 flex flex-col flex-grow">
+                        <div className="mb-4">
+                          <div className="flex items-center justify-between mb-2">
+                            <h3 className="text-2xl font-bold text-[#0E0E0E]">{productTrans.name}</h3>
+                            <span className="text-sm text-gray-500 font-medium">{product.year}</span>
+                          </div>
+                          <div className="flex items-center gap-2 mb-4">
+                            <span className="text-xl font-bold text-[#0E0E0E]">{t('common_from')} {product.price} €</span>
+                            <button 
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setSelectedProduct(product);
+                                setIsModalOpen(true);
+                              }}
+                              className="w-6 h-6 rounded-full border-2 border-[#2cd5c4] flex items-center justify-center hover:bg-[#2cd5c4] transition-colors"
+                              aria-label="Informazioni prodotto"
+                              title={t('vendita_view_details')}
+                            >
+                              <span className="text-xs text-[#2cd5c4] hover:text-white font-bold">i</span>
+                            </button>
+                          </div>
+                        </div>
+                        <p className="text-sm text-gray-700 leading-relaxed flex-grow line-clamp-3">
+                          {productTrans.description}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           );
         })}
 
-        <div className="text-center bg-gradient-to-r from-[#00D9CC] to-[#9BE870] rounded-lg p-6 sm:p-8 text-white mt-12">
-          <h3 className="text-xl sm:text-2xl font-bold mb-2">Non Trovi Quello che Cerchi?</h3>
-          <p className="mb-4 sm:mb-6 text-sm sm:text-base">Contattaci per una consulenza personalizzata o per ordini speciali</p>
+        <div className="text-center bg-gradient-to-r from-[#2cd5c4] to-[#9BE870] rounded-lg p-6 sm:p-8 text-white mt-12">
+          <h3 className="text-xl sm:text-2xl font-bold mb-2">{t('vendita_not_found_title')}</h3>
+          <p className="mb-4 sm:mb-6 text-sm sm:text-base">{t('vendita_not_found_desc')}</p>
           <button
             onClick={() => onNavigate('contatti')}
             className="bg-white text-[#0E0E0E] px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg font-semibold hover:bg-[#F4F7F6] active:bg-[#9BE870]/20 transition-colors touch-manipulation"
           >
-            Contattaci
+            {t('nav_contatti')}
           </button>
         </div>
       </div>
@@ -405,5 +420,6 @@ export default function Vendita({ onNavigate }: VenditaProps) {
         />
       )}
     </div>
+    </>
   );
 }

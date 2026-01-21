@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import ShopifyBuyButton from '../components/ShopifyBuyButton';
+import SEO from '../components/SEO';
 
 type Accessory = {
   id: string;
@@ -52,7 +53,14 @@ export default function Accessori() {
   };
 
   return (
-    <div className="bg-[#F4F7F6] min-h-screen">
+    <>
+      <SEO
+        title="Accessori Nautici | Attrezzatura per Barche e Moto d'Acqua - Lago di Garda"
+        description="Accessori nautici per barche e moto d'acqua: giubbotti salvagente, corde da traino, teli copri moto d'acqua, borse stagne, GPS nautici, pompe di sentina. Marche: Sea-Doo, Jobe, O'Brien. Spedizione rapida o ritiro a Castelnuovo del Garda."
+        keywords="accessori nautici, accessori Sea Doo, giubbotto salvagente, corda da traino, telo copri moto d'acqua, borse stagne, GPS nautico, accessori jet ski, equipaggiamento barca"
+        url="/accessori"
+      />
+      <div className="bg-[#F4F7F6] min-h-screen">
       <div
         className="relative h-[300px] bg-cover bg-center"
         style={{
@@ -85,7 +93,7 @@ export default function Accessori() {
 
         {loading ? (
           <div className="text-center py-12">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#00D9CC]"></div>
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#2cd5c4]"></div>
           </div>
         ) : accessories.length === 0 ? (
           <div className="text-center py-12 bg-white rounded-lg shadow-lg">
@@ -134,7 +142,7 @@ export default function Accessori() {
                         className="w-full"
                       />
                     ) : (
-                      <button className="bg-[#00D9CC] hover:bg-[#1FA9A0] text-white px-3 py-2 rounded-lg flex items-center justify-center gap-1 transition-colors text-sm">
+                      <button className="bg-[#2cd5c4] hover:bg-[#00D9CC] text-white px-3 py-2 rounded-lg flex items-center justify-center gap-1 transition-colors text-sm">
                         Acquista
                       </button>
                     )}
@@ -150,19 +158,19 @@ export default function Accessori() {
             Categorie Principali
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="text-center p-4 bg-[#F4F7F6] rounded-lg hover:bg-[#1FA9A0] transition-colors cursor-pointer">
+            <div className="text-center p-4 bg-[#F4F7F6] rounded-lg hover:bg-[#00D9CC] transition-colors cursor-pointer">
               <h3 className="font-semibold text-[#0E0E0E]">Sicurezza</h3>
               <p className="text-sm text-[#6B6F72] mt-1">Salvagenti, estintori, razzi</p>
             </div>
-            <div className="text-center p-4 bg-[#F4F7F6] rounded-lg hover:bg-[#1FA9A0] transition-colors cursor-pointer">
+            <div className="text-center p-4 bg-[#F4F7F6] rounded-lg hover:bg-[#00D9CC] transition-colors cursor-pointer">
               <h3 className="font-semibold text-[#0E0E0E]">Elettronica</h3>
               <p className="text-sm text-[#6B6F72] mt-1">GPS, radar, radio</p>
             </div>
-            <div className="text-center p-4 bg-[#F4F7F6] rounded-lg hover:bg-[#1FA9A0] transition-colors cursor-pointer">
+            <div className="text-center p-4 bg-[#F4F7F6] rounded-lg hover:bg-[#00D9CC] transition-colors cursor-pointer">
               <h3 className="font-semibold text-[#0E0E0E]">Ormeggio</h3>
               <p className="text-sm text-[#6B6F72] mt-1">Cime, ancore, parabordi</p>
             </div>
-            <div className="text-center p-4 bg-[#F4F7F6] rounded-lg hover:bg-[#1FA9A0] transition-colors cursor-pointer">
+            <div className="text-center p-4 bg-[#F4F7F6] rounded-lg hover:bg-[#00D9CC] transition-colors cursor-pointer">
               <h3 className="font-semibold text-[#0E0E0E]">Comfort</h3>
               <p className="text-sm text-[#6B6F72] mt-1">Cuscineria, tende, tavoli</p>
             </div>
@@ -170,5 +178,6 @@ export default function Accessori() {
         </div>
       </div>
     </div>
+    </>
   );
 }

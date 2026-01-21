@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Calendar, ArrowRight } from 'lucide-react';
+import SEO from '../components/SEO';
 
 type NewsArticle = {
   id: string;
@@ -59,7 +60,7 @@ export default function News() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
           <button
             onClick={() => setSelectedArticle(null)}
-            className="mb-4 sm:mb-6 text-[#0E0E0E] hover:text-[#00D9CC] active:text-[#0E0E0E] font-semibold flex items-center gap-2 text-sm sm:text-base touch-manipulation"
+            className="mb-4 sm:mb-6 text-[#0E0E0E] hover:text-[#2cd5c4] active:text-[#0E0E0E] font-semibold flex items-center gap-2 text-sm sm:text-base touch-manipulation"
           >
             <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 rotate-180" />
             Torna alle News
@@ -89,7 +90,14 @@ export default function News() {
   }
 
   return (
-    <div className="bg-[#F4F7F6] min-h-screen">
+    <>
+      <SEO
+        title="News Nautiche | Novità Sea-Doo, Promozioni e Eventi - Lago di Garda"
+        description="Ultime novità dal mondo Sea-Doo e della nautica. Nuovi modelli moto d'acqua 2026, promozioni stagionali, eventi sul Lago di Garda. Segui il blog di Nautic Service per restare aggiornato."
+        keywords="news Sea Doo, nuovi modelli moto d'acqua 2026, promozioni barche, eventi nautici Lago di Garda, novità PWC, Sea Doo 2026"
+        url="/news"
+      />
+      <div className="bg-[#F4F7F6] min-h-screen">
       <div
         className="relative h-[250px] sm:h-[300px] md:h-[350px] bg-cover bg-center"
         style={{
@@ -111,7 +119,7 @@ export default function News() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
         {loading ? (
           <div className="text-center py-12">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#00D9CC]"></div>
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#2cd5c4]"></div>
           </div>
         ) : articles.length === 0 ? (
           <div className="text-center py-12 bg-white rounded-lg shadow-lg">
@@ -145,7 +153,7 @@ export default function News() {
                     <p className="text-sm sm:text-base md:text-lg text-[#0E0E0E] mb-4 sm:mb-6 leading-relaxed">
                       {articles[0].excerpt}
                     </p>
-                    <div className="flex items-center text-[#0E0E0E] hover:text-[#00D9CC] active:text-[#0E0E0E] font-semibold text-sm sm:text-base">
+                    <div className="flex items-center text-[#0E0E0E] hover:text-[#2cd5c4] active:text-[#0E0E0E] font-semibold text-sm sm:text-base">
                       Leggi di più
                       <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 ml-2" />
                     </div>
@@ -179,7 +187,7 @@ export default function News() {
                     <p className="text-sm sm:text-base text-[#0E0E0E] mb-3 sm:mb-4 line-clamp-3 flex-grow">
                       {article.excerpt}
                     </p>
-                    <div className="flex items-center text-[#0E0E0E] hover:text-[#00D9CC] active:text-[#0E0E0E] font-semibold text-xs sm:text-sm">
+                    <div className="flex items-center text-[#0E0E0E] hover:text-[#2cd5c4] active:text-[#0E0E0E] font-semibold text-xs sm:text-sm">
                       Leggi di più
                       <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 ml-2" />
                     </div>
@@ -191,5 +199,6 @@ export default function News() {
         )}
       </div>
     </div>
+    </>
   );
 }

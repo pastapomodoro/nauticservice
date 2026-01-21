@@ -3,6 +3,7 @@ import React from 'react';
 import ProductModal from '../components/ProductModal';
 import RicambiFilterMenu from '../components/RicambiFilterMenu';
 import { Search } from 'lucide-react';
+import SEO from '../components/SEO';
 
 type Product = {
   id: string;
@@ -259,7 +260,14 @@ export default function Ricambi() {
   }, [products, menuCategory, menuBrand, searchTerm, filteredProducts.length]);
 
   return (
-    <div className="bg-[#F4F7F6] min-h-screen">
+    <>
+      <SEO
+        title="Ricambi Nautici Originali | Sea-Doo, Evinrude, Rotax - Lago di Garda"
+        description="Ricambi originali per moto d'acqua e barche: Sea-Doo, Evinrude, Rotax, Selva, Yamaha. Ampio magazzino con spedizione rapida in tutta Italia. Filtri, candele, eliche, guarnizioni, olio, batterie. Ritiro anche a Castelnuovo del Garda."
+        keywords="ricambi Sea Doo originali, ricambi moto d'acqua, pezzi di ricambio nautici, ricambi Evinrude, ricambi Rotax, filtri motore marino, candele barche, eliche fuoribordo, olio motore nautico, batterie marine, ricambi jet ski"
+        url="/ricambi"
+      />
+      <div className="bg-[#F4F7F6] min-h-screen">
       <div
         className="relative h-[300px] bg-cover bg-center"
         style={{
@@ -301,7 +309,7 @@ export default function Ricambi() {
                   placeholder="Cerca ricambi..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-12 py-3 rounded-lg border-2 border-gray-300 focus:border-[#00D9CC] focus:outline-none text-base bg-white"
+                  className="w-full pl-12 pr-12 py-3 rounded-lg border-2 border-gray-300 focus:border-[#2cd5c4] focus:outline-none text-base bg-white"
                 />
                 {searchTerm && (
                   <button
@@ -326,12 +334,12 @@ export default function Ricambi() {
                 <div className="flex flex-wrap gap-2 items-center">
                   <span className="text-sm font-semibold text-gray-700">Filtri attivi:</span>
                   {menuCategory && (
-                    <span className="px-3 py-1 rounded-full bg-[#00D9CC] text-white text-sm font-semibold">
+                    <span className="px-3 py-1 rounded-full bg-[#2cd5c4] text-white text-sm font-semibold">
                       {getDisplayCategory(menuCategory)}
                     </span>
                   )}
                   {menuBrand && (
-                    <span className="px-3 py-1 rounded-full bg-[#00D9CC] text-white text-sm font-semibold">
+                    <span className="px-3 py-1 rounded-full bg-[#2cd5c4] text-white text-sm font-semibold">
                       {menuBrand}
                     </span>
                   )}
@@ -342,7 +350,7 @@ export default function Ricambi() {
             {/* Risultati */}
             {loading ? (
               <div className="text-center py-12">
-                <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#00D9CC]"></div>
+                <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#2cd5c4]"></div>
               </div>
             ) : filteredProducts.length === 0 ? (
               <div className="text-center py-12 bg-white rounded-lg shadow-lg">
@@ -368,7 +376,7 @@ export default function Ricambi() {
                     return (
                       <div
                         key={product.id}
-                        className="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col cursor-pointer hover:shadow-xl transition-all duration-300 border border-gray-200 hover:border-[#00D9CC]"
+                        className="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col cursor-pointer hover:shadow-xl transition-all duration-300 border border-gray-200 hover:border-[#2cd5c4]"
                         onClick={() => {
                           setSelectedProduct(product);
                           setIsModalOpen(true);
@@ -420,7 +428,7 @@ export default function Ricambi() {
                                 setSelectedProduct(product);
                                 setIsModalOpen(true);
                               }}
-                              className="w-full bg-[#00D9CC] hover:bg-[#1FA9A0] text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+                              className="w-full bg-[#2cd5c4] hover:bg-[#00D9CC] text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
                             >
                               Acquista
                             </button>
@@ -432,7 +440,7 @@ export default function Ricambi() {
                 </div>
 
                 {/* CTA Footer */}
-                <div className="text-center bg-gradient-to-r from-[#00D9CC] to-[#9BE870] rounded-lg p-6 sm:p-8 text-white">
+                <div className="text-center bg-gradient-to-r from-[#2cd5c4] to-[#9BE870] rounded-lg p-6 sm:p-8 text-white">
                   <h3 className="text-xl sm:text-2xl font-bold mb-2">Non Trovi il Ricambio che Cerchi?</h3>
                   <p className="mb-4 sm:mb-6 text-sm sm:text-base">Contattaci per una consulenza personalizzata o per ordini speciali</p>
                   <button
@@ -456,6 +464,7 @@ export default function Ricambi() {
         }}
       />
     </div>
+    </>
   );
 }
 

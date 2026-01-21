@@ -116,7 +116,7 @@ export default function Privacy() {
               <li><strong>Reclamo:</strong> proporre reclamo all'Autorità Garante per la protezione dei dati personali</li>
             </ul>
             <p className="text-gray-700 leading-relaxed mt-4">
-              Per esercitare i propri diritti, l'interessato può contattare il Titolare all'indirizzo email: <a href="mailto:info@nautic-service.it" className="text-[#00D9CC] hover:underline">info@nautic-service.it</a>
+              Per esercitare i propri diritti, l'interessato può contattare il Titolare all'indirizzo email: <a href="mailto:info@nautic-service.it" className="text-[#2cd5c4] hover:underline">info@nautic-service.it</a>
             </p>
           </section>
 
@@ -150,8 +150,8 @@ export default function Privacy() {
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="font-semibold text-[#0E0E0E]">Nautic Service</p>
               <p className="text-gray-700">P.IVA: 04616350239</p>
-              <p className="text-gray-700">Email: <a href="mailto:info@nautic-service.it" className="text-[#00D9CC] hover:underline">info@nautic-service.it</a></p>
-              <p className="text-gray-700">Tel: <a href="tel:+393278992159" className="text-[#00D9CC] hover:underline">+39 327.8992159</a></p>
+              <p className="text-gray-700">Email: <a href="mailto:info@nautic-service.it" className="text-[#2cd5c4] hover:underline">info@nautic-service.it</a></p>
+              <p className="text-gray-700">Tel: <a href="tel:+393278992159" className="text-[#2cd5c4] hover:underline">+39 327.8992159</a></p>
             </div>
           </section>
         </div>

@@ -152,7 +152,7 @@ export default function Checkout({ onNavigate }: CheckoutProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <button
             onClick={() => onNavigate('home')}
-            className="mb-6 text-[#0E0E0E] hover:text-[#00D9CC] font-semibold flex items-center gap-2"
+            className="mb-6 text-[#0E0E0E] hover:text-[#2cd5c4] font-semibold flex items-center gap-2"
           >
             <ArrowLeft className="h-4 w-4" /> Torna alla Home
           </button>
@@ -166,7 +166,7 @@ export default function Checkout({ onNavigate }: CheckoutProps) {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => onNavigate('ricambi')}
-              className="bg-[#00D9CC] hover:bg-[#1FA9A0] text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+              className="bg-[#2cd5c4] hover:bg-[#00D9CC] text-white px-8 py-3 rounded-lg font-semibold transition-colors"
             >
               Vai allo Shopping
             </motion.button>
@@ -181,7 +181,7 @@ export default function Checkout({ onNavigate }: CheckoutProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <button
           onClick={() => onNavigate('home')}
-          className="mb-6 text-[#0E0E0E] hover:text-[#00D9CC] font-semibold flex items-center gap-2"
+          className="mb-6 text-[#0E0E0E] hover:text-[#2cd5c4] font-semibold flex items-center gap-2"
         >
           <ArrowLeft className="h-4 w-4" /> Torna alla Home
         </button>
@@ -282,7 +282,7 @@ export default function Checkout({ onNavigate }: CheckoutProps) {
                 whileTap={{ scale: 0.98 }}
                 onClick={handleCheckout}
                 disabled={isLoading || items.length === 0}
-                className="w-full bg-[#00D9CC] hover:bg-[#1FA9A0] disabled:bg-gray-400 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
+                className="w-full bg-[#2cd5c4] hover:bg-[#00D9CC] disabled:bg-gray-400 text-white px-6 py-3 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
               >
                 {isLoading ? (
                   <>

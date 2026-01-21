@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight, X, MessageCircle } from 'lucide-react';
+import SEO from '../components/SEO';
 
 type UsatoProduct = {
   id: string;
@@ -170,7 +171,7 @@ function UsatoProductCard({ product }: { product: UsatoProduct }) {
     <>
       {/* Card Prodotto */}
       <div
-        className="bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-300 border border-gray-200 hover:border-[#00D9CC] group"
+        className="bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-300 border border-gray-200 hover:border-[#2cd5c4] group"
         onClick={() => setIsModalOpen(true)}
       >
         {/* Immagine principale */}
@@ -184,7 +185,7 @@ function UsatoProductCard({ product }: { product: UsatoProduct }) {
             }}
           />
           {/* Badge anno */}
-          <div className="absolute top-3 left-3 bg-[#00D9CC] text-white px-3 py-1 rounded-full text-xs font-bold">
+          <div className="absolute top-3 left-3 bg-[#2cd5c4] text-white px-3 py-1 rounded-full text-xs font-bold">
             {product.year}
           </div>
           {/* Badge condizione */}
@@ -204,7 +205,7 @@ function UsatoProductCard({ product }: { product: UsatoProduct }) {
           <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2">{product.name}</h3>
           <p className="text-sm text-gray-600 mb-4 line-clamp-2">{product.description}</p>
           <div className="flex items-center justify-between">
-            <span className="text-2xl font-bold text-[#00D9CC]">
+            <span className="text-2xl font-bold text-[#2cd5c4]">
               €{product.price.toLocaleString()}
             </span>
             <button
@@ -212,7 +213,7 @@ function UsatoProductCard({ product }: { product: UsatoProduct }) {
                 e.stopPropagation();
                 setIsModalOpen(true);
               }}
-              className="px-4 py-2 bg-[#00D9CC] hover:bg-[#1FA9A0] text-white rounded-lg text-sm font-semibold transition-colors"
+              className="px-4 py-2 bg-[#2cd5c4] hover:bg-[#00D9CC] text-white rounded-lg text-sm font-semibold transition-colors"
             >
               Dettagli
             </button>
@@ -294,7 +295,7 @@ function UsatoProductCard({ product }: { product: UsatoProduct }) {
                           onClick={() => goToImage(index)}
                           className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
                             index === currentImageIndex
-                              ? 'border-[#00D9CC]'
+                              ? 'border-[#2cd5c4]'
                               : 'border-transparent hover:border-gray-300'
                           }`}
                         >
@@ -316,7 +317,7 @@ function UsatoProductCard({ product }: { product: UsatoProduct }) {
                 <div className="space-y-4">
                   <div>
                     <div className="flex items-center gap-3 mb-3">
-                      <span className="bg-[#00D9CC] text-white px-3 py-1 rounded-full text-sm font-bold">
+                      <span className="bg-[#2cd5c4] text-white px-3 py-1 rounded-full text-sm font-bold">
                         {product.year}
                       </span>
                       <span className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-semibold">
@@ -329,7 +330,7 @@ function UsatoProductCard({ product }: { product: UsatoProduct }) {
 
                   <div className="border-t border-gray-200 pt-4">
                     <div className="flex items-baseline gap-2 mb-4">
-                      <span className="text-3xl font-bold text-[#00D9CC]">
+                      <span className="text-3xl font-bold text-[#2cd5c4]">
                         €{product.price.toLocaleString()}
                       </span>
                     </div>
@@ -344,7 +345,7 @@ function UsatoProductCard({ product }: { product: UsatoProduct }) {
 
                     <button
                       onClick={handleWhatsAppClick}
-                      className="w-full mt-3 bg-[#00D9CC] hover:bg-[#1FA9A0] text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200"
+                      className="w-full mt-3 bg-[#2cd5c4] hover:bg-[#00D9CC] text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200"
                     >
                       Più Informazioni
                     </button>
@@ -361,7 +362,14 @@ function UsatoProductCard({ product }: { product: UsatoProduct }) {
 
 export default function Usato() {
   return (
-    <div className="bg-[#F4F7F6] min-h-screen">
+    <>
+      <SEO
+        title="Moto d'Acqua e Barche Usate Garantite | Lago di Garda"
+        description="Moto d'acqua Sea-Doo usate garantite e revisionate. Barche usate controllate con storico manutenzione. Permute accettate, finanziamenti disponibili. Ampia scelta a Castelnuovo del Garda. Consegna su tutto il Lago di Garda."
+        keywords="moto d'acqua usate, Sea Doo usato prezzo, jet ski usati, barche usate Lago di Garda, PWC seconda mano, GTX usato, Spark usato, barche usate Verona, barche usate Brescia"
+        url="/usato"
+      />
+      <div className="bg-[#F4F7F6] min-h-screen">
       {/* Hero Section */}
       <div
         className="relative h-[300px] bg-cover bg-center"
@@ -398,5 +406,6 @@ export default function Usato() {
         </div>
       </div>
     </div>
+    </>
   );
 }

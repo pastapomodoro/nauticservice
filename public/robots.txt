@@ -1,0 +1,41 @@
+# Nautic Service SRL - Servizi Nautici Lago di Garda
+# https://www.nautic-service.it
+
+User-agent: *
+Allow: /
+
+# Crawl-delay per essere gentili con i server
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://www.nautic-service.it/sitemap.xml
+
+# Disallow pagine di checkout e pagamento (non rilevanti per SEO)
+Disallow: /checkout
+Disallow: /payment
+
+# Disallow risorse statiche non necessarie per l'indicizzazione
+Disallow: /assets/
+Disallow: /*.js$
+Disallow: /*.css$
+
+# Allow important resources for rendering
+Allow: /nautic.png
+Allow: /jet-ski.jpg
+Allow: /landing.mp4
+Allow: /moto/
+Allow: /loghi/
+Allow: /news/
+
+# Google specific
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Google Images
+User-agent: Googlebot-Image
+Allow: /moto/
+Allow: /loghi/
+Allow: /news/
+Allow: /nautic.png
+Allow: /jet-ski.jpg

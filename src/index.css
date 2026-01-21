@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Palette colori Nautic Service */
+:root {
+  /* Colori primari - Ciano/Turchese */
+  --color-primary: #2cd5c4;
+  --color-primary-light: #00D9CC;
+  --color-primary-dark: #1A5F7A;
+  
+  /* Colori accento - Verde lime */
+  --color-accent: #9BE870;
+  --color-accent-light: #B5F090;
+  --color-accent-dark: #7AC050;
+  
+  /* Gradienti */
+  --gradient-cta: linear-gradient(135deg, #2cd5c4 0%, #00D9CC 50%, #9BE870 100%);
+  --gradient-button: linear-gradient(135deg, #00D9CC 0%, #1FA9A0 50%, #9BE870 100%);
+  
+  /* Background */
+  --color-bg: #F4F7F6;
+  --color-text: #0E0E0E;
+  
+  /* Footer */
+  --color-footer: #1A5F7A;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -18,10 +42,45 @@ body {
 /* Ottimizzazioni per mobile */
 * {
   -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
 }
 
-button, a {
+/* Touch targets minimi 44px per accessibilità */
+button, a, [role="button"] {
   touch-action: manipulation;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Eccezioni per link inline e piccoli elementi */
+a:not(.btn):not([class*="button"]):not([class*="py-"]) {
+  min-height: auto;
+  min-width: auto;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Previene zoom su input in iOS */
+input, select, textarea {
+  font-size: 16px !important;
+}
+
+/* Active state per touch */
+button:active, a:active, [role="button"]:active {
+  transform: scale(0.98);
+}
+
+/* Safe area per notch/home indicator */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 20px);
+}
+
+.safe-area-top {
+  padding-top: env(safe-area-inset-top, 0px);
 }
 
 /* Migliora le performance delle animazioni */

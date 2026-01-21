@@ -141,14 +141,14 @@ export default function RicambiFilterMenu({ products, onFilterChange, onCategory
   return (
     <div className="w-full md:w-64 lg:w-72 bg-white rounded-lg shadow-md border-2 border-gray-200 h-fit sticky top-24">
       {/* Header */}
-      <div className="bg-[#00D9CC] text-[#0E0E0E] p-4 rounded-t-lg">
+      <div className="bg-[#2cd5c4] text-[#0E0E0E] p-4 rounded-t-lg">
         <div className="flex items-center justify-between">
           {showBrands ? (
             <>
               <div className="flex items-center gap-2">
                 <button
                   onClick={handleBack}
-                  className="p-1 hover:bg-[#00D9CC]/20 rounded transition-colors"
+                  className="p-1 hover:bg-[#2cd5c4]/20 rounded transition-colors"
                   aria-label="Torna indietro"
                 >
                   <ChevronRight className="h-5 w-5 rotate-180" />
@@ -198,7 +198,7 @@ export default function RicambiFilterMenu({ products, onFilterChange, onCategory
                     <button
                       key={brand}
                       onClick={() => handleBrandSelect(brand)}
-                      className="w-full text-left px-3 py-2 rounded-lg transition-all text-sm bg-gray-50 hover:bg-[#00D9CC]/30 text-[#0E0E0E] hover:font-semibold"
+                      className="w-full text-left px-3 py-2 rounded-lg transition-all text-sm bg-gray-50 hover:bg-[#2cd5c4]/30 text-[#0E0E0E] hover:font-semibold"
                     >
                       {brand}
                     </button>
@@ -225,7 +225,7 @@ export default function RicambiFilterMenu({ products, onFilterChange, onCategory
                   <button
                     key={category}
                     onClick={() => handleCategorySelect(category)}
-                    className="w-full text-left px-3 py-2 rounded-lg transition-all flex items-center justify-between text-sm bg-gray-50 hover:bg-[#00D9CC]/30 text-[#0E0E0E]"
+                    className="w-full text-left px-3 py-2 rounded-lg transition-all flex items-center justify-between text-sm bg-gray-50 hover:bg-[#2cd5c4]/30 text-[#0E0E0E]"
                   >
                     <span>{category}</span>
                     <ChevronRight className="h-4 w-4" />

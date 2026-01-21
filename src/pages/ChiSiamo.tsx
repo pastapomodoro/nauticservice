@@ -1,8 +1,16 @@
 import { Award, Users, Target, Heart } from 'lucide-react';
+import SEO from '../components/SEO';
 
 export default function ChiSiamo() {
   return (
-    <div className="bg-[#F4F7F6]">
+    <>
+      <SEO
+        title="Chi Siamo | Nautic Service - Dal 2003 sul Lago di Garda"
+        description="Nautic Service: oltre 20 anni di esperienza nella riparazione moto d'acqua e assistenza nautica sul Lago di Garda. Officina specializzata con tecnici certificati Sea-Doo. Affidabilità, competenza e passione per la nautica. Castelnuovo del Garda."
+        keywords="Nautic Service storia, officina nautica Lago di Garda, tecnici Sea Doo certificati, assistenza barche Verona, chi siamo, esperienza nautica"
+        url="/chi-siamo"
+      />
+      <div className="bg-[#F4F7F6]">
       <div
         className="relative h-[400px] bg-cover bg-center"
         style={{
@@ -56,7 +64,7 @@ export default function ChiSiamo() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="bg-white rounded-lg p-8 shadow-lg text-center">
-              <div className="bg-[#00D9CC] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="bg-[#2cd5c4] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Award className="h-8 w-8 text-[#0E0E0E]" />
               </div>
               <h3 className="text-xl font-bold text-[#0E0E0E] mb-3">Qualità</h3>
@@ -66,7 +74,7 @@ export default function ChiSiamo() {
             </div>
 
             <div className="bg-white rounded-lg p-8 shadow-lg text-center">
-              <div className="bg-[#00D9CC] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="bg-[#2cd5c4] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Users className="h-8 w-8 text-[#0E0E0E]" />
               </div>
               <h3 className="text-xl font-bold text-[#0E0E0E] mb-3">Professionalità</h3>
@@ -76,7 +84,7 @@ export default function ChiSiamo() {
             </div>
 
             <div className="bg-white rounded-lg p-8 shadow-lg text-center">
-              <div className="bg-[#00D9CC] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="bg-[#2cd5c4] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Target className="h-8 w-8 text-[#0E0E0E]" />
               </div>
               <h3 className="text-xl font-bold text-[#0E0E0E] mb-3">Trasparenza</h3>
@@ -86,7 +94,7 @@ export default function ChiSiamo() {
             </div>
 
             <div className="bg-white rounded-lg p-8 shadow-lg text-center">
-              <div className="bg-[#00D9CC] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="bg-[#2cd5c4] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Heart className="h-8 w-8 text-[#0E0E0E]" />
               </div>
               <h3 className="text-xl font-bold text-[#0E0E0E] mb-3">Passione</h3>
@@ -146,5 +154,6 @@ export default function ChiSiamo() {
         </div>
       </div>
     </div>
+    </>
   );
 }

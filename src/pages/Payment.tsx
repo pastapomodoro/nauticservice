@@ -78,7 +78,7 @@ export default function Payment({ onNavigate }: PaymentProps) {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => onNavigate('home')}
-            className="w-full bg-[#00D9CC] hover:bg-[#1FA9A0] text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+            className="w-full bg-[#2cd5c4] hover:bg-[#00D9CC] text-white px-6 py-3 rounded-lg font-semibold transition-colors"
           >
             Torna alla Home
           </motion.button>
@@ -97,7 +97,7 @@ export default function Payment({ onNavigate }: PaymentProps) {
         >
           <button
             onClick={() => onNavigate('vendita')}
-            className="flex items-center gap-2 text-[#0E0E0E] hover:text-[#00D9CC] font-semibold mb-6"
+            className="flex items-center gap-2 text-[#0E0E0E] hover:text-[#2cd5c4] font-semibold mb-6"
           >
             <ChevronLeft className="h-5 w-5" />
             Torna ai Prodotti
@@ -119,7 +119,7 @@ export default function Payment({ onNavigate }: PaymentProps) {
                       onClick={() => s <= step && setStep(s)}
                       className={`w-full py-3 rounded-lg font-semibold transition-colors ${
                         step === s
-                          ? 'bg-[#00D9CC] text-white'
+                          ? 'bg-[#2cd5c4] text-white'
                           : s < step
                             ? 'bg-green-100 text-green-700'
                             : 'bg-gray-100 text-gray-400'
@@ -147,7 +147,7 @@ export default function Payment({ onNavigate }: PaymentProps) {
                         placeholder="Nome"
                         value={formData.firstName}
                         onChange={handleInputChange}
-                        className="col-span-2 sm:col-span-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#00D9CC] outline-none"
+                        className="col-span-2 sm:col-span-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#2cd5c4] outline-none"
                       />
                       <input
                         type="text"
@@ -155,7 +155,7 @@ export default function Payment({ onNavigate }: PaymentProps) {
                         placeholder="Cognome"
                         value={formData.lastName}
                         onChange={handleInputChange}
-                        className="col-span-2 sm:col-span-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#00D9CC] outline-none"
+                        className="col-span-2 sm:col-span-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#2cd5c4] outline-none"
                       />
                     </div>
                     <input
@@ -164,7 +164,7 @@ export default function Payment({ onNavigate }: PaymentProps) {
                       placeholder="Email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#00D9CC] outline-none"
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#2cd5c4] outline-none"
                     />
                     <input
                       type="tel"
@@ -172,7 +172,7 @@ export default function Payment({ onNavigate }: PaymentProps) {
                       placeholder="Telefono"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#00D9CC] outline-none"
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#2cd5c4] outline-none"
                     />
                   </div>
                 )}
@@ -186,7 +186,7 @@ export default function Payment({ onNavigate }: PaymentProps) {
                       placeholder="Indirizzo"
                       value={formData.address}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#00D9CC] outline-none"
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#2cd5c4] outline-none"
                     />
                     <div className="grid grid-cols-2 gap-4">
                       <input
@@ -195,7 +195,7 @@ export default function Payment({ onNavigate }: PaymentProps) {
                         placeholder="Città"
                         value={formData.city}
                         onChange={handleInputChange}
-                        className="col-span-2 sm:col-span-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#00D9CC] outline-none"
+                        className="col-span-2 sm:col-span-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#2cd5c4] outline-none"
                       />
                       <input
                         type="text"
@@ -203,7 +203,7 @@ export default function Payment({ onNavigate }: PaymentProps) {
                         placeholder="CAP"
                         value={formData.postalCode}
                         onChange={handleInputChange}
-                        className="col-span-2 sm:col-span-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#00D9CC] outline-none"
+                        className="col-span-2 sm:col-span-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#2cd5c4] outline-none"
                       />
                     </div>
                     <input
@@ -212,7 +212,7 @@ export default function Payment({ onNavigate }: PaymentProps) {
                       placeholder="Paese"
                       value={formData.country}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#00D9CC] outline-none"
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#2cd5c4] outline-none"
                     />
                   </div>
                 )}
@@ -220,7 +220,7 @@ export default function Payment({ onNavigate }: PaymentProps) {
                 {step === 3 && (
                   <div className="space-y-4">
                     <h2 className="text-2xl font-bold text-[#0E0E0E] mb-6">Pagamento</h2>
-                    <div className="bg-gradient-to-r from-[#00D9CC] to-[#9BE870] rounded-lg p-6 text-white mb-6">
+                    <div className="bg-gradient-to-r from-[#2cd5c4] to-[#9BE870] rounded-lg p-6 text-white mb-6">
                       <div className="flex items-center gap-2 mb-4">
                         <CreditCard className="h-6 w-6" />
                         <span>Carta di Credito</span>
@@ -276,7 +276,7 @@ export default function Payment({ onNavigate }: PaymentProps) {
                 <button
                   onClick={handlePrevStep}
                   disabled={step === 1}
-                  className="px-6 py-3 border-2 border-[#00D9CC] text-[#0E0E0E] rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#F4F7F6]"
+                  className="px-6 py-3 border-2 border-[#2cd5c4] text-[#0E0E0E] rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[#F4F7F6]"
                 >
                   Indietro
                 </button>
@@ -285,7 +285,7 @@ export default function Payment({ onNavigate }: PaymentProps) {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={handleNextStep}
-                    className="flex-1 bg-[#00D9CC] hover:bg-[#1FA9A0] text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+                    className="flex-1 bg-[#2cd5c4] hover:bg-[#00D9CC] text-white px-6 py-3 rounded-lg font-semibold transition-colors"
                   >
                     Avanti
                   </motion.button>

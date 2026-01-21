@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  
+  <!-- Homepage - Nautic Service Lago di Garda -->
+  <url>
+    <loc>https://www.nautic-service.it/</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.nautic-service.it/nautic.png</image:loc>
+      <image:title>Nautic Service SRL - Logo Servizi Nautici Lago di Garda</image:title>
+      <image:caption>Nautic Service SRL - Riparazione moto d'acqua, vendita barche e ricambi nautici sul Lago di Garda</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Vendita Barche e Moto d'Acqua Sea-Doo -->
+  <url>
+    <loc>https://www.nautic-service.it/vendita</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://www.nautic-service.it/jet-ski.jpg</image:loc>
+      <image:title>Moto d'acqua Sea-Doo in vendita</image:title>
+      <image:caption>Gamma completa moto d'acqua Sea-Doo: Spark, GTI, GTX, GTR, RXP-X, RXT-X</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Ricambi Nautici Originali -->
+  <url>
+    <loc>https://www.nautic-service.it/ricambi</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  
+  <!-- Kill switch: Usato - riattivare quando features.ts USATO_ENABLED = true -->
+  <!-- <url>
+    <loc>https://www.nautic-service.it/usato</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url> -->
+  
+  <!-- Noleggio Barche e Moto d'Acqua -->
+  <url>
+    <loc>https://www.nautic-service.it/noleggio</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  
+  <!-- Accessori Nautici -->
+  <url>
+    <loc>https://www.nautic-service.it/accessori</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  
+  <!-- News e Novità -->
+  <url>
+    <loc>https://www.nautic-service.it/news</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  
+  <!-- Chi Siamo -->
+  <url>
+    <loc>https://www.nautic-service.it/chi-siamo</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  
+  <!-- Contatti -->
+  <url>
+    <loc>https://www.nautic-service.it/contatti</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://www.nautic-service.it/privacy</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.30</priority>
+  </url>
+  
+</urlset>
