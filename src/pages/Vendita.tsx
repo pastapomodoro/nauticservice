@@ -296,25 +296,26 @@ export default function Vendita({ onNavigate }: VenditaProps) {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
-        {/* Menu delle categorie */}
-        <div className="sticky top-20 z-40 mb-8 bg-white rounded-lg shadow-md border-2 border-gray-200 p-4 overflow-x-auto">
-          <div className="flex gap-3 md:gap-4 justify-center md:justify-start">
-            {venditaCategories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => handleCategoryClick(category.id)}
-                className={`relative px-4 py-2 text-sm font-medium transition-all duration-200 whitespace-nowrap ${
-                  activeCategory === category.id
-                    ? 'text-[#2cd5c4]'
-                    : 'text-[#0E0E0E] hover:text-[#2cd5c4]'
-                }`}
-              >
-                {category.label}
-                {activeCategory === category.id && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#2cd5c4]"></div>
-                )}
-              </button>
-            ))}
+        {/* Menu delle categorie - scrollabile su mobile */}
+        <div className="sticky top-16 sm:top-20 z-40 mb-6 sm:mb-8 -mx-4 sm:mx-0">
+          <div className="bg-white shadow-md border-b sm:border-2 sm:border-gray-200 sm:rounded-lg">
+            <div className="overflow-x-auto scrollbar-hide">
+              <div className="flex px-4 py-3 sm:p-4 gap-1 sm:gap-3 min-w-max sm:min-w-0 sm:justify-center">
+                {venditaCategories.map((category) => (
+                  <button
+                    key={category.id}
+                    onClick={() => handleCategoryClick(category.id)}
+                    className={`relative px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium transition-all duration-200 whitespace-nowrap rounded-full ${
+                      activeCategory === category.id
+                        ? 'bg-[#2cd5c4] text-white'
+                        : 'bg-gray-100 text-[#0E0E0E] hover:bg-gray-200 active:bg-gray-300'
+                    }`}
+                  >
+                    {category.label}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
@@ -323,7 +324,7 @@ export default function Vendita({ onNavigate }: VenditaProps) {
           const categoryTrans = getCategoryTranslation(category.id, language);
           
           return (
-            <div key={category.id} id={`category-${category.id}`} className="mb-12 md:mb-16 scroll-mt-20">
+            <div key={category.id} id={`category-${category.id}`} className="mb-12 md:mb-16 scroll-mt-32 sm:scroll-mt-36">
               <div className="mb-6">
                 <h2 className="text-3xl md:text-4xl font-bold text-[#0E0E0E]">{categoryTrans.name}</h2>
               </div>

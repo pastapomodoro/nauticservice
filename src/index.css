@@ -83,6 +83,16 @@ button:active, a:active, [role="button"]:active {
   padding-top: env(safe-area-inset-top, 0px);
 }
 
+/* Nasconde scrollbar mantenendo scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 /* Migliora le performance delle animazioni */
 @media (prefers-reduced-motion: reduce) {
   * {
