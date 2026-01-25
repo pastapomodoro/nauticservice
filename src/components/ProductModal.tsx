@@ -244,7 +244,7 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
-                            window.location.href = `mailto:preventivo@nautic-service.it?subject=Richiesta Preventivo - ${displayName}&body=Salve,%0D%0A%0D%0AVorrei ricevere un preventivo per: ${displayName}%0D%0APrezzo indicativo: €${product.price.toLocaleString()}%0D%0A%0D%0ACordiali saluti`;
+                            window.location.href = `mailto:manuel@nautic-service.it?subject=Richiesta Preventivo - ${displayName}&body=Salve,%0D%0A%0D%0AVorrei ricevere un preventivo per: ${displayName}%0D%0APrezzo indicativo: €${product.price.toLocaleString()}%0D%0A%0D%0ACordiali saluti`;
                           }}
                           className="w-full bg-[#2cd5c4] hover:bg-[#00D9CC] active:bg-[#00D9CC] text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base font-semibold transition-colors touch-manipulation"
                         >

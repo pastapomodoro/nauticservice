@@ -75,7 +75,7 @@ export default function Contatti() {
                     <span className="text-[#6B6F72] text-sm block mt-1">{t('contatti_info')}</span>
                   </p>
                   <p className="text-[#0E0E0E]">
-                    <a href="mailto:preventivo@nautic-service.it" className="hover:underline">preventivo@nautic-service.it</a>
+                    <a href="mailto:manuel@nautic-service.it" className="hover:underline">manuel@nautic-service.it</a>
                     <span className="text-[#6B6F72] text-sm block mt-1">{t('contatti_preventivo')}</span>
                   </p>
                 </div>
