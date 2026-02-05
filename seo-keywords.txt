@@ -1,0 +1,133 @@
+SEO NAUTIC SERVICE SRL - PANORAMICA
+===================================
+
+Questo file riepiloga i principali contenuti SEO e le parole chiave usate nel sito.
+
+1) SEO GENERALE (index.html)
+---------------------------
+Title:
+Nautic Service SRL | Riparazione Moto d'Acqua, Vendita Barche e Ricambi Nautici - Lago di Garda
+
+Meta description:
+Nautic Service SRL: riparazione e assistenza moto d'acqua Sea Doo, vendita barche nuove e usate, ricambi originali, accessori nautici. Officina mobile su tutto il lago. Peschiera, Desenzano, Sirmione, Lazise, Bardolino, Salò, Riva del Garda. Dal 2003.
+
+Meta keywords:
+riparazione moto d'acqua Lago di Garda, assistenza Sea Doo Verona, vendita barche Lago di Garda, ricambi nautici Peschiera, officina nautica Desenzano, moto d'acqua Sirmione, jet ski Lazise, barche usate Bardolino, accessori nautici Garda, noleggio moto d'acqua, riparazione motori marini, assistenza nautica Salò, meccanico barche Riva del Garda, Sea Doo dealer Italia, PWC service, manutenzione barche, rimessaggio barche Garda, Castelnuovo del Garda, nautica Verona, nautica Brescia, nautica Trento
+
+Structured data (principali concetti):
+- BoatDealer, AutoRepair, Store
+- Riparazione moto d'acqua, assistenza motori marini, vendita barche, vendita moto d'acqua Sea-Doo, ricambi nautici originali, officina mobile, noleggio moto d'acqua e barche
+- Area servita: Lago di Garda + principali località (Peschiera, Desenzano, Sirmione, Lazise, Bardolino, Salò, Riva del Garda, ecc.)
+
+2) COMPONENTE SEO (src/components/SEO.tsx)
+-----------------------------------------
+Default title:
+Nautic Service SRL | Riparazione Moto d'Acqua, Vendita Barche e Ricambi Nautici - Lago di Garda
+
+Default description:
+Nautic Service SRL: riparazione e assistenza moto d'acqua Sea Doo, vendita barche nuove e usate, ricambi originali, accessori nautici. Officina mobile su tutto il lago. Dal 2003.
+
+Default keywords:
+riparazione moto d'acqua, assistenza Sea Doo, vendita barche, ricambi nautici, officina nautica, jet ski, noleggio moto d'acqua, manutenzione barche
+
+BASE_KEYWORDS aggiunte automaticamente a tutte le pagine:
+Lago di Garda, Peschiera del Garda, Desenzano, Sirmione, Lazise, Bardolino, Garda, Salò, Riva del Garda, Castelnuovo del Garda, Verona, Brescia
+
+3) HOME (src/pages/Home.tsx)
+----------------------------
+Title:
+Nautic Service SRL | Riparazione Moto d'Acqua, Vendita Barche e Ricambi - Lago di Garda
+
+Description:
+Nautic Service SRL: il tuo punto di riferimento per riparazione moto d'acqua Sea Doo, vendita barche nuove e usate, ricambi originali e accessori nautici. Officina mobile su tutto il lago. Serviamo Peschiera, Desenzano, Sirmione, Lazise, Bardolino, Salò e Riva del Garda. Dal 2003.
+
+Keywords:
+riparazione moto d'acqua, assistenza Sea Doo, vendita barche, ricambi nautici, officina nautica, jet ski, meccanico barche, manutenzione motori marini, noleggio moto d'acqua, accessori nautici, barche usate, PWC service
+
+4) VENDITA (src/pages/Vendita.tsx)
+----------------------------------
+Title:
+Vendita Moto d'Acqua Sea-Doo e Barche | Dealer Autorizzato Lago di Garda
+
+Description:
+Dealer autorizzato Sea-Doo sul Lago di Garda. Vendita moto d'acqua nuove: Spark, GTI, GTX, GTR, RXP-X, RXT-X, Wake Pro, FishPro. Barche Joker Boat e Saver. Finanziamenti, permute e garanzia. Consegna a Peschiera, Desenzano, Sirmione, Lazise e tutto il lago.
+
+Keywords:
+vendita moto d'acqua Sea Doo, dealer Sea Doo Italia, comprare jet ski, Spark Sea Doo prezzo, GTI Sea Doo, GTX Limited, RXP-X 325, vendita barche nuove, Joker Boat, Saver, PWC vendita, moto d'acqua prezzi
+
+5) RICAMBI (src/pages/Ricambi.tsx)
+----------------------------------
+Title:
+Ricambi Nautici Originali | Sea-Doo, Evinrude, Rotax - Lago di Garda
+
+Description:
+Ricambi originali per moto d'acqua e barche: Sea-Doo, Evinrude, Rotax, Selva, Yamaha. Ampio magazzino con spedizione rapida in tutta Italia. Filtri, candele, eliche, guarnizioni, olio, batterie. Ritiro anche a Castelnuovo del Garda.
+
+Keywords:
+ricambi Sea Doo originali, ricambi moto d'acqua, pezzi di ricambio nautici, ricambi Evinrude, ricambi Rotax, filtri motore marino, candele barche, eliche fuoribordo, olio motore nautico, batterie marine, ricambi jet ski
+
+6) NOLEGGIO (src/pages/Noleggio.tsx)
+------------------------------------
+Title:
+Noleggio Moto d'Acqua e Barche | Lago di Garda per Turisti e Residenti
+
+Description:
+Noleggio moto d'acqua Sea-Doo e barche sul Lago di Garda. Ideale per turisti e residenti. Noleggio giornaliero o settimanale. Partenze da Peschiera, Lazise, Bardolino. Prenota su WhatsApp!
+
+Keywords:
+noleggio moto d'acqua Lago di Garda, affitto jet ski, noleggio barche Peschiera, noleggio barche Desenzano, noleggio moto d'acqua Sirmione, rent jet ski Garda, boat rental Lake Garda
+
+7) ACCESSORI (src/pages/Accessori.tsx)
+--------------------------------------
+Title:
+Accessori Nautici | Attrezzatura per Barche e Moto d'Acqua - Lago di Garda
+
+Description:
+Accessori nautici per barche e moto d'acqua: giubbotti salvagente, corde da traino, teli copri moto d'acqua, borse stagne, GPS nautici, pompe di sentina. Marche: Sea-Doo, Jobe, O'Brien. Spedizione rapida o ritiro a Castelnuovo del Garda.
+
+Keywords:
+accessori nautici, accessori Sea Doo, giubbotto salvagente, corda da traino, telo copri moto d'acqua, borse stagne, GPS nautico, accessori jet ski, equipaggiamento barca
+
+8) USATO (src/pages/Usato.tsx)
+------------------------------
+Title:
+Moto d'Acqua e Barche Usate Garantite | Lago di Garda
+
+Description:
+Moto d'acqua Sea-Doo usate garantite e revisionate. Barche usate controllate con storico manutenzione. Permute accettate, finanziamenti disponibili. Ampia scelta a Castelnuovo del Garda. Consegna su tutto il Lago di Garda.
+
+Keywords:
+moto d'acqua usate, Sea Doo usato prezzo, jet ski usati, barche usate Lago di Garda, PWC seconda mano, GTX usato, Spark usato, barche usate Verona, barche usate Brescia
+
+9) NEWS (src/pages/News.tsx)
+----------------------------
+Title:
+News Nautiche | Novità Sea-Doo, Promozioni e Eventi - Lago di Garda
+
+Description:
+Ultime novità dal mondo Sea-Doo e della nautica. Nuovi modelli moto d'acqua 2026, promozioni stagionali, eventi sul Lago di Garda. Segui il blog di Nautic Service per restare aggiornato.
+
+Keywords:
+news Sea Doo, nuovi modelli moto d'acqua 2026, promozioni barche, eventi nautici Lago di Garda, novità PWC, Sea Doo 2026
+
+10) CHI SIAMO (src/pages/ChiSiamo.tsx)
+-------------------------------------
+Title:
+Chi Siamo | Nautic Service - Dal 2003 sul Lago di Garda
+
+Description:
+Nautic Service: oltre 20 anni di esperienza nella riparazione moto d'acqua e assistenza nautica sul Lago di Garda. Officina specializzata con tecnici certificati Sea-Doo. Affidabilità, competenza e passione per la nautica. Castelnuovo del Garda.
+
+Keywords:
+Nautic Service storia, officina nautica Lago di Garda, tecnici Sea Doo certificati, assistenza barche Verona, chi siamo, esperienza nautica
+
+11) CONTATTI (src/pages/Contatti.tsx)
+------------------------------------
+SEO usa i valori di default del componente SEO:
+- Title e description generiche su riparazione moto d'acqua, vendita barche e ricambi
+- Keywords generiche + BASE_KEYWORDS
+
+12) ALTRE INFORMAZIONI RILEVANTI
+--------------------------------
+- FAQ in index.html: rispondono a domande su riparazione moto d'acqua sul Lago di Garda, vendita Sea-Doo, officina mobile, ricambi originali, noleggio moto d'acqua e aree servite.
+- Privacy e altre pagine legali non hanno meta keywords dedicate ma contribuiscono al contenuto testuale indicizzabile.

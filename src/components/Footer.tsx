@@ -31,7 +31,7 @@ export default function Footer({ onNavigate }: FooterProps) {
               </div>
               <div className="flex items-center text-sm">
                 <Mail className="h-4 w-4 mr-2" />
-                <a href="mailto:info@nautic-service.it" className="hover:underline">info@nautic-service.it</a>
+                <a href="mailto:manuel@nautic-service.it" className="hover:underline">manuel@nautic-service.it</a>
               </div>
               <div className="flex items-center text-sm">
                 <MapPin className="h-4 w-4 mr-2" />

@@ -71,7 +71,7 @@ export default function Contatti() {
                 <div>
                   <h3 className="text-xl font-bold text-[#0E0E0E] mb-2">{t('contatti_email')}</h3>
                   <p className="text-[#0E0E0E] mb-2">
-                    <a href="mailto:info@nautic-service.it" className="hover:underline">info@nautic-service.it</a>
+                    <a href="mailto:manuel@nautic-service.it" className="hover:underline">manuel@nautic-service.it</a>
                     <span className="text-[#6B6F72] text-sm block mt-1">{t('contatti_info')}</span>
                   </p>
                   <p className="text-[#0E0E0E]">

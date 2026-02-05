@@ -16,7 +16,7 @@ export default function Privacy() {
               <p className="text-gray-700">Via Venezia 9</p>
               <p className="text-gray-700">Castelnuovo del Garda (VR)</p>
               <p className="text-gray-700">P.IVA: 04616350239</p>
-              <p className="text-gray-700">Email: info@nautic-service.it</p>
+              <p className="text-gray-700">Email: manuel@nautic-service.it</p>
               <p className="text-gray-700">Tel: +39 327.8992159</p>
             </div>
           </section>
@@ -116,7 +116,7 @@ export default function Privacy() {
               <li><strong>Reclamo:</strong> proporre reclamo all'Autorità Garante per la protezione dei dati personali</li>
             </ul>
             <p className="text-gray-700 leading-relaxed mt-4">
-              Per esercitare i propri diritti, l'interessato può contattare il Titolare all'indirizzo email: <a href="mailto:info@nautic-service.it" className="text-[#2cd5c4] hover:underline">info@nautic-service.it</a>
+              Per esercitare i propri diritti, l'interessato può contattare il Titolare all'indirizzo email: <a href="mailto:manuel@nautic-service.it" className="text-[#2cd5c4] hover:underline">manuel@nautic-service.it</a>
             </p>
           </section>
 
@@ -150,7 +150,7 @@ export default function Privacy() {
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="font-semibold text-[#0E0E0E]">Nautic Service</p>
               <p className="text-gray-700">P.IVA: 04616350239</p>
-              <p className="text-gray-700">Email: <a href="mailto:info@nautic-service.it" className="text-[#2cd5c4] hover:underline">info@nautic-service.it</a></p>
+              <p className="text-gray-700">Email: <a href="mailto:manuel@nautic-service.it" className="text-[#2cd5c4] hover:underline">manuel@nautic-service.it</a></p>
               <p className="text-gray-700">Tel: <a href="tel:+393278992159" className="text-[#2cd5c4] hover:underline">+39 327.8992159</a></p>
             </div>
           </section>
