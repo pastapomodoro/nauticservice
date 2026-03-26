@@ -31,8 +31,13 @@ body {
   padding: 0;
   background-color: #F4F7F6;
   min-height: 100vh;
+  font-family: 'Nunito Sans', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Rubik', system-ui, -apple-system, sans-serif;
 }
 
 #root {
@@ -72,6 +77,13 @@ input, select, textarea {
 /* Active state per touch */
 button:active, a:active, [role="button"]:active {
   transform: scale(0.98);
+}
+
+/* Focus ring per accessibilità tastiera */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 /* Safe area per notch/home indicator */
@@ -215,14 +227,5 @@ div:has(> img[src^="/ricambi-images/"]) {
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
   }
 }

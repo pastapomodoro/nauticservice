@@ -13,6 +13,12 @@ export const FEATURES = {
   USATO_ENABLED: false,
   
   /**
+   * Sezione RICAMBI - Ricambi e accessori
+   * Impostare a true per riattivare la sezione
+   */
+  RICAMBI_ENABLED: false,
+
+  /**
    * Sezione NOLEGGIO
    */
   NOLEGGIO_ENABLED: true,

@@ -1,4 +1,4 @@
-import { Menu, X, ChevronRight } from 'lucide-react';
+import { Menu, X, ChevronRight, Home, Ship, RotateCcw, Settings, Newspaper, Phone, MessageCircle, Globe } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Language } from '../i18n/translations';
@@ -33,12 +33,12 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
   }, [isMenuOpen]);
 
   const navItems = [
-    { id: 'home', label: t('nav_home'), icon: '🏠' },
-    { id: 'vendita', label: t('nav_vendita'), icon: '🚤' },
-    ...(FEATURES.USATO_ENABLED ? [{ id: 'usato', label: t('nav_usato'), icon: '🔄' }] : []),
-    { id: 'ricambi', label: t('nav_ricambi'), icon: '⚙️' },
-    { id: 'news', label: t('nav_news'), icon: '📰' },
-    { id: 'contatti', label: t('nav_contatti'), icon: '📞' },
+    { id: 'home', label: t('nav_home'), icon: Home },
+    { id: 'vendita', label: t('nav_vendita'), icon: Ship },
+    ...(FEATURES.USATO_ENABLED ? [{ id: 'usato', label: t('nav_usato'), icon: RotateCcw }] : []),
+    ...(FEATURES.RICAMBI_ENABLED ? [{ id: 'ricambi', label: t('nav_ricambi'), icon: Settings }] : []),
+    { id: 'news', label: t('nav_news'), icon: Newspaper },
+    { id: 'contatti', label: t('nav_contatti'), icon: Phone },
   ];
 
   const handleLanguageChange = (lang: Language) => {
@@ -176,7 +176,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
                 }}
               >
                 <div className="flex items-center gap-4">
-                  <span className="text-2xl">{item.icon}</span>
+                  <item.icon className="w-6 h-6 text-current" />
                   <span>{item.label}</span>
                 </div>
                 <ChevronRight className={`w-5 h-5 transition-colors ${
@@ -222,7 +222,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
                 href="tel:+393278992159"
                 className="flex items-center gap-4 py-4 px-4 bg-[#2cd5c4] text-white rounded-xl active:scale-98 transition-transform shadow-lg"
               >
-                <span className="text-2xl">📞</span>
+                <Phone className="w-6 h-6 flex-shrink-0" />
                 <div>
                   <p className="font-semibold">Chiamaci</p>
                   <p className="text-sm opacity-90">+39 327.8992159</p>
@@ -234,7 +234,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 py-4 px-4 bg-[#25D366] text-white rounded-xl active:scale-98 transition-transform shadow-lg"
               >
-                <span className="text-2xl">💬</span>
+                <MessageCircle className="w-6 h-6 flex-shrink-0" />
                 <div>
                   <p className="font-semibold">WhatsApp</p>
                   <p className="text-sm opacity-90">Scrivici ora</p>

@@ -11,7 +11,7 @@ export default function Footer({ onNavigate }: FooterProps) {
   return (
     <footer className="bg-[#1A5F7A] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <p className="text-sm text-gray-200">
               {t('footer_desc')}
@@ -63,7 +63,7 @@ export default function Footer({ onNavigate }: FooterProps) {
 
         <div className="border-t border-[#2cd5c4]/30 mt-8 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-gray-300">&copy; 2025 Nautic Service SRL. {t('footer_rights')}</p>
+            <p className="text-sm text-gray-300">&copy; {new Date().getFullYear()} Nautic Service SRL. {t('footer_rights')}</p>
             <div className="flex items-center gap-4">
               <button
                 onClick={() => onNavigate?.('privacy')}

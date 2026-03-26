@@ -29,7 +29,8 @@ export type TranslationKeys = {
   home_about_3: string;
   home_about_4: string;
   home_about_5: string;
-  
+  home_learn_more: string;
+
   // Vendita
   vendita_title: string;
   vendita_subtitle: string;
@@ -68,7 +69,10 @@ export type TranslationKeys = {
   ricambi_out_of_stock: string;
   ricambi_add_to_cart: string;
   ricambi_no_results: string;
-  
+  ricambi_maintenance_title: string;
+  ricambi_maintenance_desc: string;
+  ricambi_maintenance_contact: string;
+
   // News
   news_title: string;
   news_subtitle: string;
@@ -174,7 +178,8 @@ export const translations: Record<Language, TranslationKeys> = {
     home_about_3: 'La caratteristica principale che ci contraddistingue è sicuramente l\'affidabilità e la correttezza nello svolgere la nostra attività. La qualità è garantita con l\'impiego di soluzioni e prodotti all\'avanguardia che consentono di ottenere lavori sicuri e funzionali.',
     home_about_4: 'Alla competenza professionale si aggiunge un\'adeguata conoscenza ed esperienza in tema normativo, garantendo i più elevati standard di qualità richiesti nella riparazione di ogni tipo di battello e motori.',
     home_about_5: 'Rappresentiamo i marchi principali del settore: Evinrude, Selva, Sea Doo, Joker Boat e Saver.',
-    
+    home_learn_more: 'Scopri di più',
+
     // Vendita
     vendita_title: 'Vendita',
     vendita_subtitle: 'Scopri la nostra gamma di moto d\'acqua Sea-Doo',
@@ -213,7 +218,10 @@ export const translations: Record<Language, TranslationKeys> = {
     ricambi_out_of_stock: 'Non disponibile',
     ricambi_add_to_cart: 'Aggiungi al carrello',
     ricambi_no_results: 'Nessun risultato trovato',
-    
+    ricambi_maintenance_title: 'Sezione in manutenzione',
+    ricambi_maintenance_desc: 'Stiamo aggiornando il nostro catalogo ricambi per offrirti un servizio migliore. La sezione sarà disponibile a breve.',
+    ricambi_maintenance_contact: 'Nel frattempo, per qualsiasi necessità di ricambi contattaci direttamente:',
+
     // News
     news_title: 'News',
     news_subtitle: 'Le ultime novità dal mondo nautico',
@@ -318,7 +326,8 @@ export const translations: Record<Language, TranslationKeys> = {
     home_about_3: 'The main characteristic that distinguishes us is certainly reliability and fairness in carrying out our business. Quality is guaranteed with the use of cutting-edge solutions and products that allow us to obtain safe and functional work.',
     home_about_4: 'In addition to professional competence, there is adequate knowledge and experience in regulatory matters, guaranteeing the highest quality standards required in the repair of all types of boats and engines.',
     home_about_5: 'We represent the main brands in the sector: Evinrude, Selva, Sea Doo, Joker Boat and Saver.',
-    
+    home_learn_more: 'Learn more',
+
     // Vendita
     vendita_title: 'Sales',
     vendita_subtitle: 'Discover our range of Sea-Doo jet skis',
@@ -357,7 +366,10 @@ export const translations: Record<Language, TranslationKeys> = {
     ricambi_out_of_stock: 'Out of Stock',
     ricambi_add_to_cart: 'Add to Cart',
     ricambi_no_results: 'No results found',
-    
+    ricambi_maintenance_title: 'Section under maintenance',
+    ricambi_maintenance_desc: 'We are updating our spare parts catalogue to offer you a better service. This section will be available again shortly.',
+    ricambi_maintenance_contact: 'In the meantime, for any spare parts needs please contact us directly:',
+
     // News
     news_title: 'News',
     news_subtitle: 'Latest news from the nautical world',
@@ -462,7 +474,8 @@ export const translations: Record<Language, TranslationKeys> = {
     home_about_3: 'Das Hauptmerkmal, das uns auszeichnet, ist sicherlich Zuverlässigkeit und Fairness bei der Ausübung unserer Geschäftstätigkeit. Qualität wird durch den Einsatz modernster Lösungen und Produkte garantiert, die sichere und funktionale Arbeit ermöglichen.',
     home_about_4: 'Neben der fachlichen Kompetenz gibt es angemessene Kenntnisse und Erfahrungen in regulatorischen Fragen, die die höchsten Qualitätsstandards bei der Reparatur aller Arten von Booten und Motoren garantieren.',
     home_about_5: 'Wir vertreten die wichtigsten Marken der Branche: Evinrude, Selva, Sea Doo, Joker Boat und Saver.',
-    
+    home_learn_more: 'Mehr erfahren',
+
     // Vendita
     vendita_title: 'Verkauf',
     vendita_subtitle: 'Entdecken Sie unser Sortiment an Sea-Doo Jetskis',
@@ -501,7 +514,10 @@ export const translations: Record<Language, TranslationKeys> = {
     ricambi_out_of_stock: 'Nicht verfügbar',
     ricambi_add_to_cart: 'In den Warenkorb',
     ricambi_no_results: 'Keine Ergebnisse gefunden',
-    
+    ricambi_maintenance_title: 'Bereich in Wartung',
+    ricambi_maintenance_desc: 'Wir aktualisieren unseren Ersatzteilkatalog, um Ihnen einen besseren Service zu bieten. Dieser Bereich wird in Kürze wieder verfügbar sein.',
+    ricambi_maintenance_contact: 'In der Zwischenzeit kontaktieren Sie uns bitte direkt für Ersatzteilanfragen:',
+
     // News
     news_title: 'Neuigkeiten',
     news_subtitle: 'Aktuelle Nachrichten aus der Nautikwelt',

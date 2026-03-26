@@ -8,7 +8,9 @@ import ChiSiamo from './pages/ChiSiamo';
 import Vendita from './pages/Vendita';
 // Kill switch: Usato - riattivare in features.ts
 import Usato from './pages/Usato';
+// Kill switch: Ricambi - riattivare in features.ts
 import Ricambi from './pages/Ricambi';
+import RicambiMaintenance from './pages/RicambiMaintenance';
 import News from './pages/News';
 import Payment from './pages/Payment';
 import Checkout from './pages/Checkout';
@@ -47,8 +49,9 @@ function App() {
       // Kill switch: Usato - riattivare in features.ts
       case 'usato':
         return FEATURES.USATO_ENABLED ? <Usato /> : <Home onNavigate={handleNavigate} />;
+      // Kill switch: Ricambi - riattivare in features.ts
       case 'ricambi':
-        return <Ricambi />;
+        return FEATURES.RICAMBI_ENABLED ? <Ricambi /> : <RicambiMaintenance />;
       case 'news':
         return <News />;
       case 'contatti':

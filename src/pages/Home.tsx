@@ -99,14 +99,18 @@ export default function Home({ onNavigate }: HomeProps) {
         
         {/* Contenuto */}
         <div className="relative h-full flex flex-col items-center justify-center text-center text-white px-4 z-10">
+          <h1 className="sr-only">Nautic Service SRL - Riparazione Moto d'Acqua, Vendita Barche e Ricambi - Lago di Garda</h1>
           {/* Logo */}
-          <div className="flex items-center justify-center mb-8 animate-[fadeIn_1.5s_ease-out_forwards] opacity-0 px-4" style={{ animationDelay: '0.3s' }}>
+          <div className="flex items-center justify-center mb-4 animate-[fadeIn_1.5s_ease-out_forwards] opacity-0 px-4" style={{ animationDelay: '0.3s' }}>
             <img
               src="/nautic.png"
               alt="Nautic Service Logo"
               className="w-full max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl h-auto object-contain"
             />
           </div>
+          <p className="text-base sm:text-lg md:text-xl text-white/90 font-medium tracking-wide animate-[fadeIn_1.5s_ease-out_forwards] opacity-0" style={{ animationDelay: '0.6s' }}>
+            {t('home_about_1').split('.')[0]}.
+          </p>
         </div>
         
         {/* Bottone in basso */}
@@ -160,7 +164,7 @@ export default function Home({ onNavigate }: HomeProps) {
                 {t('home_vendita_desc')}
               </p>
               <div className="flex items-center text-[#2cd5c4] font-semibold group-hover:translate-x-2 transition-transform duration-300">
-                <span className="text-sm sm:text-base">Scopri di più</span>
+                <span className="text-sm sm:text-base">{t('home_learn_more')}</span>
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
@@ -169,28 +173,31 @@ export default function Home({ onNavigate }: HomeProps) {
             <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-[#2cd5c4] via-[#00D9CC] to-[#9BE870] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
           </div>
 
-          <div
-            onClick={() => onNavigate('ricambi')}
-            className="group relative bg-white rounded-2xl p-5 sm:p-6 md:p-8 shadow-xl hover:shadow-2xl active:shadow-lg active:scale-[0.98] transition-all duration-200 cursor-pointer touch-manipulation overflow-hidden border-2 border-[#2cd5c4]/20 hover:border-[#2cd5c4] hover:-translate-y-1 transform"
-          >
-            <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#2cd5c4]/20 to-transparent rounded-full blur-3xl group-hover:from-[#2cd5c4]/40 transition-all duration-500"></div>
-            <div className="relative z-10">
-              <div className="bg-gradient-to-br from-[#2cd5c4] to-[#00D9CC] w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-4 shadow-xl group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-[#2cd5c4]/60 transition-all duration-300">
-                <Settings className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 text-white" />
+          {/* Kill switch: Ricambi - riattivare in features.ts */}
+          {FEATURES.RICAMBI_ENABLED && (
+            <div
+              onClick={() => onNavigate('ricambi')}
+              className="group relative bg-white rounded-2xl p-5 sm:p-6 md:p-8 shadow-xl hover:shadow-2xl active:shadow-lg active:scale-[0.98] transition-all duration-200 cursor-pointer touch-manipulation overflow-hidden border-2 border-[#2cd5c4]/20 hover:border-[#2cd5c4] hover:-translate-y-1 transform"
+            >
+              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#2cd5c4]/20 to-transparent rounded-full blur-3xl group-hover:from-[#2cd5c4]/40 transition-all duration-500"></div>
+              <div className="relative z-10">
+                <div className="bg-gradient-to-br from-[#2cd5c4] to-[#00D9CC] w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-4 shadow-xl group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-[#2cd5c4]/60 transition-all duration-300">
+                  <Settings className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 text-white" />
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-bold text-[#0E0E0E] mb-3 group-hover:text-[#2cd5c4] transition-colors duration-300">{t('home_ricambi_title')}</h3>
+                <p className="text-sm sm:text-base text-gray-600 mb-4 leading-relaxed">
+                  {t('home_ricambi_desc')}
+                </p>
+                <div className="flex items-center text-[#2cd5c4] font-semibold group-hover:translate-x-2 transition-transform duration-300">
+                  <span className="text-sm sm:text-base">{t('home_learn_more')}</span>
+                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </div>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-[#0E0E0E] mb-3 group-hover:text-[#2cd5c4] transition-colors duration-300">{t('home_ricambi_title')}</h3>
-              <p className="text-sm sm:text-base text-gray-600 mb-4 leading-relaxed">
-                {t('home_ricambi_desc')}
-              </p>
-              <div className="flex items-center text-[#2cd5c4] font-semibold group-hover:translate-x-2 transition-transform duration-300">
-                <span className="text-sm sm:text-base">Scopri di più</span>
-                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </div>
+              <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-[#2cd5c4] via-[#00D9CC] to-[#9BE870] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
             </div>
-            <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-[#2cd5c4] via-[#00D9CC] to-[#9BE870] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-          </div>
+          )}
 
           {/* Kill switch: Usato - riattivare in features.ts */}
           {FEATURES.USATO_ENABLED && (
@@ -208,7 +215,7 @@ export default function Home({ onNavigate }: HomeProps) {
                   {t('home_usato_desc')}
                 </p>
                 <div className="flex items-center text-[#2cd5c4] font-semibold group-hover:translate-x-2 transition-transform duration-300">
-                  <span className="text-sm sm:text-base">Scopri di più</span>
+                  <span className="text-sm sm:text-base">{t('home_learn_more')}</span>
                   <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
@@ -232,7 +239,7 @@ export default function Home({ onNavigate }: HomeProps) {
                 {t('home_noleggio_desc')}
               </p>
               <div className="flex items-center text-[#2cd5c4] font-semibold group-hover:translate-x-2 transition-transform duration-300">
-                <span className="text-sm sm:text-base">Scopri di più</span>
+                <span className="text-sm sm:text-base">{t('home_learn_more')}</span>
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
