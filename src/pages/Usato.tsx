@@ -171,7 +171,7 @@ function UsatoProductCard({ product }: { product: UsatoProduct }) {
     <>
       {/* Card Prodotto */}
       <div
-        className="bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-300 border border-gray-200 hover:border-[#2cd5c4] group"
+        className="bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer hover:shadow-2xl transition duration-300 border border-gray-200 hover:border-[#2cd5c4] group"
         onClick={() => setIsModalOpen(true)}
       >
         {/* Immagine principale */}
@@ -179,7 +179,7 @@ function UsatoProductCard({ product }: { product: UsatoProduct }) {
           <img
             src={product.images[0]}
             alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             onError={(e) => {
               e.currentTarget.src = 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop';
             }}
@@ -255,13 +255,13 @@ function UsatoProductCard({ product }: { product: UsatoProduct }) {
                       <>
                         <button
                           onClick={prevImage}
-                          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg transition-all"
+                          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg transition"
                         >
                           <ChevronLeft className="h-5 w-5" />
                         </button>
                         <button
                           onClick={nextImage}
-                          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg transition-all"
+                          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-lg transition"
                         >
                           <ChevronRight className="h-5 w-5" />
                         </button>
@@ -275,7 +275,7 @@ function UsatoProductCard({ product }: { product: UsatoProduct }) {
                           <button
                             key={index}
                             onClick={() => goToImage(index)}
-                            className={`h-2 rounded-full transition-all ${
+                            className={`h-2 rounded-full transition ${
                               index === currentImageIndex
                                 ? 'bg-white w-8'
                                 : 'bg-white/50 w-2 hover:bg-white/75'
@@ -293,7 +293,7 @@ function UsatoProductCard({ product }: { product: UsatoProduct }) {
                         <button
                           key={index}
                           onClick={() => goToImage(index)}
-                          className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${
+                          className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition ${
                             index === currentImageIndex
                               ? 'border-[#2cd5c4]'
                               : 'border-transparent hover:border-gray-300'
@@ -337,7 +337,7 @@ function UsatoProductCard({ product }: { product: UsatoProduct }) {
 
                     <button
                       onClick={handleWhatsAppClick}
-                      className="w-full bg-[#25D366] hover:bg-[#20BA5A] text-white px-6 py-3 rounded-xl font-bold transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                      className="w-full bg-[#25D366] hover:bg-[#20BA5A] text-white px-6 py-3 rounded-xl font-bold transition duration-200 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                     >
                       <MessageCircle className="h-5 w-5" />
                       Contatta su WhatsApp
@@ -345,7 +345,7 @@ function UsatoProductCard({ product }: { product: UsatoProduct }) {
 
                     <button
                       onClick={handleWhatsAppClick}
-                      className="w-full mt-3 bg-[#2cd5c4] hover:bg-[#00D9CC] text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200"
+                      className="w-full mt-3 bg-[#2cd5c4] hover:bg-[#00D9CC] text-white px-6 py-3 rounded-xl font-semibold transition duration-200"
                     >
                       Più Informazioni
                     </button>

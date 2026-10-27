@@ -376,7 +376,7 @@ export default function Ricambi() {
                     return (
                       <div
                         key={product.id}
-                        className="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col cursor-pointer hover:shadow-xl transition-all duration-300 border border-gray-200 hover:border-[#2cd5c4]"
+                        className="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col cursor-pointer hover:shadow-xl transition duration-300 border border-gray-200 hover:border-[#2cd5c4]"
                         onClick={() => {
                           setSelectedProduct(product);
                           setIsModalOpen(true);

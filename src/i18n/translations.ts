@@ -30,6 +30,17 @@ export type TranslationKeys = {
   home_about_4: string;
   home_about_5: string;
   home_learn_more: string;
+  home_hero_eyebrow: string;
+  home_hero_title: string;
+  home_hero_subtitle: string;
+  home_contact_us: string;
+  home_services_eyebrow: string;
+  home_about_eyebrow: string;
+  home_about_title: string;
+  home_cta_title: string;
+  home_cta_desc: string;
+  common_call: string;
+  footer_nav: string;
 
   // Vendita
   vendita_title: string;
@@ -179,6 +190,17 @@ export const translations: Record<Language, TranslationKeys> = {
     home_about_4: 'Alla competenza professionale si aggiunge un\'adeguata conoscenza ed esperienza in tema normativo, garantendo i più elevati standard di qualità richiesti nella riparazione di ogni tipo di battello e motori.',
     home_about_5: 'Rappresentiamo i marchi principali del settore: Evinrude, Selva, Sea Doo, Joker Boat e Saver.',
     home_learn_more: 'Scopri di più',
+    home_hero_eyebrow: 'Lago di Garda · Dal 2003',
+    home_hero_title: 'Il tuo partner sul lago, dalla vendita all\'assistenza.',
+    home_hero_subtitle: 'Moto d\'acqua Sea-Doo, barche, noleggio e officina mobile su tutto il Lago di Garda.',
+    home_contact_us: 'Contattaci',
+    home_services_eyebrow: 'Cosa facciamo',
+    home_about_eyebrow: 'Chi siamo',
+    home_about_title: 'Affidabilità e competenza dal 2003',
+    home_cta_title: 'Serve assistenza sulla tua moto d\'acqua?',
+    home_cta_desc: 'Chiamaci o scrivici su WhatsApp, ti aiutiamo a trovare la soluzione giusta.',
+    common_call: 'Chiama',
+    footer_nav: 'Navigazione',
 
     // Vendita
     vendita_title: 'Vendita',
@@ -327,6 +349,17 @@ export const translations: Record<Language, TranslationKeys> = {
     home_about_4: 'In addition to professional competence, there is adequate knowledge and experience in regulatory matters, guaranteeing the highest quality standards required in the repair of all types of boats and engines.',
     home_about_5: 'We represent the main brands in the sector: Evinrude, Selva, Sea Doo, Joker Boat and Saver.',
     home_learn_more: 'Learn more',
+    home_hero_eyebrow: 'Lake Garda · Since 2003',
+    home_hero_title: 'Your partner on the lake, from sales to service.',
+    home_hero_subtitle: 'Sea-Doo watercraft, boats, rentals and a mobile workshop all around Lake Garda.',
+    home_contact_us: 'Contact us',
+    home_services_eyebrow: 'What we do',
+    home_about_eyebrow: 'About us',
+    home_about_title: 'Reliability and expertise since 2003',
+    home_cta_title: 'Need service for your watercraft?',
+    home_cta_desc: 'Call us or message us on WhatsApp and we\'ll help you find the right solution.',
+    common_call: 'Call',
+    footer_nav: 'Navigation',
 
     // Vendita
     vendita_title: 'Sales',
@@ -475,6 +508,17 @@ export const translations: Record<Language, TranslationKeys> = {
     home_about_4: 'Neben der fachlichen Kompetenz gibt es angemessene Kenntnisse und Erfahrungen in regulatorischen Fragen, die die höchsten Qualitätsstandards bei der Reparatur aller Arten von Booten und Motoren garantieren.',
     home_about_5: 'Wir vertreten die wichtigsten Marken der Branche: Evinrude, Selva, Sea Doo, Joker Boat und Saver.',
     home_learn_more: 'Mehr erfahren',
+    home_hero_eyebrow: 'Gardasee · Seit 2003',
+    home_hero_title: 'Ihr Partner am See – vom Verkauf bis zum Service.',
+    home_hero_subtitle: 'Sea-Doo Jetskis, Boote, Vermietung und mobile Werkstatt rund um den Gardasee.',
+    home_contact_us: 'Kontakt',
+    home_services_eyebrow: 'Was wir tun',
+    home_about_eyebrow: 'Über uns',
+    home_about_title: 'Zuverlässigkeit und Kompetenz seit 2003',
+    home_cta_title: 'Brauchen Sie Service für Ihren Jetski?',
+    home_cta_desc: 'Rufen Sie uns an oder schreiben Sie uns per WhatsApp – wir finden die passende Lösung.',
+    common_call: 'Anrufen',
+    footer_nav: 'Navigation',
 
     // Vendita
     vendita_title: 'Verkauf',

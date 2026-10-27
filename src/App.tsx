@@ -12,6 +12,7 @@ import Usato from './pages/Usato';
 import Ricambi from './pages/Ricambi';
 import RicambiMaintenance from './pages/RicambiMaintenance';
 import News from './pages/News';
+import Noleggio from './pages/Noleggio';
 import Payment from './pages/Payment';
 import Checkout from './pages/Checkout';
 import Contatti from './pages/Contatti';
@@ -52,6 +53,8 @@ function App() {
       // Kill switch: Ricambi - riattivare in features.ts
       case 'ricambi':
         return FEATURES.RICAMBI_ENABLED ? <Ricambi /> : <RicambiMaintenance />;
+      case 'noleggio':
+        return FEATURES.NOLEGGIO_ENABLED ? <Noleggio /> : <Home onNavigate={handleNavigate} />;
       case 'news':
         return <News />;
       case 'contatti':
@@ -68,7 +71,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F4F7F6]">
+    <div className="min-h-screen flex flex-col bg-sand">
       <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
       <main className="flex-grow">{renderPage()}</main>
       <Footer onNavigate={handleNavigate} />

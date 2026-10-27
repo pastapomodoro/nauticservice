@@ -163,8 +163,8 @@ export default function Checkout({ onNavigate }: CheckoutProps) {
               Aggiungi alcuni prodotti al carrello per iniziare lo shopping
             </p>
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
               onClick={() => onNavigate('ricambi')}
               className="bg-[#2cd5c4] hover:bg-[#00D9CC] text-white px-8 py-3 rounded-lg font-semibold transition-colors"
             >

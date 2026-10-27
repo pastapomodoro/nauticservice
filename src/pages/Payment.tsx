@@ -54,14 +54,15 @@ export default function Payment({ onNavigate }: PaymentProps) {
     return (
       <div className="bg-[#F4F7F6] min-h-screen flex items-center justify-center px-4">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
           className="bg-white rounded-lg shadow-2xl p-8 max-w-md w-full text-center"
         >
           <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.3 }}
+            initial={{ opacity: 0, scale: 0.6 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ type: 'spring', duration: 0.5, bounce: 0.3, delay: 0.15 }}
             className="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6"
           >
             <Check className="h-10 w-10 text-green-600" />
@@ -75,8 +76,8 @@ export default function Payment({ onNavigate }: PaymentProps) {
             €{total.toLocaleString()}
           </p>
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.97 }}
             onClick={() => onNavigate('home')}
             className="w-full bg-[#2cd5c4] hover:bg-[#00D9CC] text-white px-6 py-3 rounded-lg font-semibold transition-colors"
           >
@@ -282,8 +283,8 @@ export default function Payment({ onNavigate }: PaymentProps) {
                 </button>
                 {step < 3 ? (
                   <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.97 }}
                     onClick={handleNextStep}
                     className="flex-1 bg-[#2cd5c4] hover:bg-[#00D9CC] text-white px-6 py-3 rounded-lg font-semibold transition-colors"
                   >
@@ -291,8 +292,8 @@ export default function Payment({ onNavigate }: PaymentProps) {
                   </motion.button>
                 ) : (
                   <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.97 }}
                     onClick={handlePlaceOrder}
                     className="flex-1 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
                   >

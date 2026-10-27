@@ -166,24 +166,25 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
             className="fixed inset-0 bg-black/60 z-50"
             onClick={onClose}
           />
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.96, y: 8 }}
+            animate={{ opacity: 1, scale: 1, y: 0, transition: { duration: 0.25, ease: [0.23, 1, 0.32, 1] } }}
+            exit={{ opacity: 0, scale: 0.98, transition: { duration: 0.15, ease: [0.23, 1, 0.32, 1] } }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="bg-white rounded-lg shadow-2xl max-w-4xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
+            <div className="bg-white rounded-[24px] shadow-float max-w-4xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto overscroll-contain">
               <div className="sticky top-0 bg-white border-b border-gray-200 px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center z-10">
-                <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-[#0E0E0E] pr-2 line-clamp-2">
+                <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-ink pr-2 line-clamp-2">
                   {displayName.replace(/\d{6,}/g, '').replace(/\s{2,}/g, ' ').trim() || displayName}
                 </h2>
                 <button
                   onClick={onClose}
-                  className="text-[#6B6F72] hover:text-[#0E0E0E] active:text-[#0E0E0E] transition-colors flex-shrink-0 touch-manipulation"
+                  className="text-ink-muted hover:text-ink active:text-ink transition-colors flex-shrink-0 touch-manipulation"
                   aria-label={t('common_close')}
                 >
                   <X className="h-5 w-5 sm:h-6 sm:w-6" />
@@ -209,7 +210,7 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
 
                   <div className="flex flex-col">
                     <div className="mb-3 sm:mb-4 flex flex-wrap gap-2">
-                      <span className="inline-block bg-[#2cd5c4] text-[#0E0E0E] px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold">
+                      <span className="inline-block bg-[#2cd5c4] text-ink px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold">
                         {product.category?.startsWith('Ricambi - ') 
                           ? product.category.replace('Ricambi - ', '')
                           : product.category}
@@ -222,11 +223,11 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                     </div>
 
                     <div className="mb-4 sm:mb-6">
-                      <p className="text-2xl sm:text-3xl font-bold text-[#0E0E0E] mb-3 sm:mb-4">
+                      <p className="text-2xl sm:text-3xl font-bold text-ink mb-3 sm:mb-4">
                         €{product.price.toLocaleString()}
                       </p>
-                      <h3 className="text-base sm:text-lg font-semibold text-[#0E0E0E] mb-2">{t('product_description')}</h3>
-                      <p className="text-sm sm:text-base text-[#0E0E0E] leading-relaxed whitespace-pre-line">
+                      <h3 className="text-base sm:text-lg font-semibold text-ink mb-2">{t('product_description')}</h3>
+                      <p className="text-sm sm:text-base text-ink leading-relaxed whitespace-pre-line">
                         {displayDescription}
                       </p>
                     </div>
@@ -246,7 +247,7 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                             e.stopPropagation();
                             window.location.href = `mailto:manuel@nautic-service.it?subject=Richiesta Preventivo - ${displayName}&body=Salve,%0D%0A%0D%0AVorrei ricevere un preventivo per: ${displayName}%0D%0APrezzo indicativo: €${product.price.toLocaleString()}%0D%0A%0D%0ACordiali saluti`;
                           }}
-                          className="w-full bg-[#2cd5c4] hover:bg-[#00D9CC] active:bg-[#00D9CC] text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base font-semibold transition-colors touch-manipulation"
+                          className="w-full bg-ink hover:bg-ink-soft active:bg-ink-soft text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg text-sm sm:text-base font-semibold transition-colors touch-manipulation"
                         >
                           {t('vendita_request_quote')}
                         </button>

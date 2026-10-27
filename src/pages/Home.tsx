@@ -1,5 +1,6 @@
-import { Ship, Settings, RotateCcw, Anchor } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { Ship, Settings, RotateCcw, Anchor, ArrowRight, Phone, MessageCircle } from 'lucide-react';
+import { useEffect, useRef } from 'react';
+import type { CSSProperties } from 'react';
 import SEO from '../components/SEO';
 import { useLanguage } from '../contexts/LanguageContext';
 import { FEATURES } from '../config/features';
@@ -8,47 +9,57 @@ type HomeProps = {
   onNavigate: (page: string) => void;
 };
 
+const stagger = (i: number) => ({ '--i': i } as CSSProperties);
+
 export default function Home({ onNavigate }: HomeProps) {
-  const textContainerRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [imageHeight, setImageHeight] = useState<string>('auto');
   const { t } = useLanguage();
 
+  // Alcuni browser bloccano l'autoplay finché il video non è pronto
   useEffect(() => {
-    const updateImageHeight = () => {
-      if (textContainerRef.current && imageRef.current) {
-        const textHeight = textContainerRef.current.offsetHeight;
-        setImageHeight(`${textHeight}px`);
-      }
-    };
-
-    const timer = setTimeout(() => {
-      updateImageHeight();
-    }, 100);
-
-    window.addEventListener('resize', updateImageHeight);
-    
-    // Forza il video a partire dopo un breve delay
-    const playVideo = () => {
-      if (videoRef.current) {
-        videoRef.current.play().catch((err) => {
-          console.error('Errore riproduzione video:', err);
-        });
-      }
-    };
-    
-    // Prova a far partire il video dopo che è caricato
-    setTimeout(playVideo, 500);
-    setTimeout(playVideo, 1000);
-    setTimeout(playVideo, 2000);
-    
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener('resize', updateImageHeight);
-    };
+    const video = videoRef.current;
+    if (!video) return;
+    const play = () => video.play().catch(() => {});
+    play();
+    video.addEventListener('canplay', play);
+    return () => video.removeEventListener('canplay', play);
   }, []);
-  
+
+  const services = [
+    {
+      id: 'vendita',
+      icon: Ship,
+      title: t('home_vendita_title'),
+      desc: t('home_vendita_desc'),
+      image: 'https://images.pexels.com/photos/2662116/pexels-photo-2662116.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      enabled: true,
+    },
+    {
+      id: 'ricambi',
+      icon: Settings,
+      title: t('home_ricambi_title'),
+      desc: t('home_ricambi_desc'),
+      image: 'https://images.pexels.com/photos/163236/luxury-yacht-boat-speed-water-163236.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      enabled: FEATURES.RICAMBI_ENABLED,
+    },
+    {
+      id: 'usato',
+      icon: RotateCcw,
+      title: t('home_usato_title'),
+      desc: t('home_usato_desc'),
+      image: '/jet-ski.jpg',
+      enabled: FEATURES.USATO_ENABLED,
+    },
+    {
+      id: 'noleggio',
+      icon: Anchor,
+      title: t('home_noleggio_title'),
+      desc: t('home_noleggio_desc'),
+      image: 'https://images.pexels.com/photos/1430676/pexels-photo-1430676.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      enabled: FEATURES.NOLEGGIO_ENABLED,
+    },
+  ].filter((s) => s.enabled);
+
   return (
     <>
       <SEO
@@ -57,248 +68,170 @@ export default function Home({ onNavigate }: HomeProps) {
         keywords="riparazione moto d'acqua, assistenza Sea Doo, vendita barche, ricambi nautici, officina nautica, jet ski, meccanico barche, manutenzione motori marini, noleggio moto d'acqua, accessori nautici, barche usate, PWC service"
         url="/"
       />
-      <div className="bg-[#F4F7F6]">
-      <div className="relative h-[500px] sm:h-[700px] md:h-[900px] overflow-hidden bg-black">
-        {/* Video di sfondo con fallback immagine */}
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="absolute inset-0 w-full h-full object-cover z-0"
-          style={{ minWidth: '100%', minHeight: '100%' }}
-          onError={(e) => {
-            console.error('Errore caricamento video:', e);
-            const target = e.currentTarget;
-            console.error('Video error code:', target.error?.code);
-            console.error('Video error message:', target.error?.message);
-          }}
-          onLoadedMetadata={() => {
-            console.log('Video metadata caricata');
-            if (videoRef.current) {
-              videoRef.current.play().catch((err) => {
-                console.error('Errore play video:', err);
-              });
-            }
-          }}
-          onCanPlay={() => {
-            console.log('Video può essere riprodotto');
-            if (videoRef.current) {
-              videoRef.current.play().catch((err) => {
-                console.error('Errore play video:', err);
-              });
-            }
-          }}
-        >
-          <source src="/landing.mp4" type="video/mp4" />
-          <source src="/landing.webm" type="video/webm" />
-          <source src="/landing.mov" type="video/quicktime" />
-        </video>
-        
-        {/* Contenuto */}
-        <div className="relative h-full flex flex-col items-center justify-center text-center text-white px-4 z-10">
-          <h1 className="sr-only">Nautic Service SRL - Riparazione Moto d'Acqua, Vendita Barche e Ricambi - Lago di Garda</h1>
-          {/* Logo */}
-          <div className="flex items-center justify-center mb-4 animate-[fadeIn_1.5s_ease-out_forwards] opacity-0 px-4" style={{ animationDelay: '0.3s' }}>
-            <img
-              src="/nautic.png"
-              alt="Nautic Service Logo"
-              className="w-full max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl h-auto object-contain"
-            />
-          </div>
-          <p className="text-base sm:text-lg md:text-xl text-white/90 font-medium tracking-wide animate-[fadeIn_1.5s_ease-out_forwards] opacity-0" style={{ animationDelay: '0.6s' }}>
-            {t('home_about_1').split('.')[0]}.
-          </p>
-        </div>
-        
-        {/* Bottone in basso */}
-        <div className="absolute bottom-0 left-0 right-0 w-full flex justify-center pb-8 sm:pb-12 md:pb-16 z-10">
-          <div className="animate-[fadeIn_1.5s_ease-out_forwards] opacity-0" style={{ animationDelay: '0.6s' }}>
-            <button
-              onClick={() => onNavigate('vendita')}
-              className="group relative text-white px-8 sm:px-10 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-bold transition-all duration-300 touch-manipulation overflow-hidden shadow-2xl"
-              style={{
-                background: 'linear-gradient(135deg, #2cd5c4 0%, #00D9CC 50%, #9BE870 100%)',
-                backgroundSize: '200% 200%',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundPosition = '100% 50%';
-                e.currentTarget.style.transform = 'scale(1.05)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundPosition = '0% 50%';
-                e.currentTarget.style.transform = 'scale(1)';
-              }}
-            >
-              <span className="relative z-10 flex items-center gap-2">
-                {t('home_discover_products')}
-                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-[#9BE870]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </button>
-          </div>
-        </div>
-      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-[#0E0E0E] mb-6 sm:mb-8 md:mb-12">
+      {/* Hero */}
+      <section className="px-2 sm:px-3 pt-2 sm:pt-3">
+        <div className="relative min-h-[560px] h-[calc(100svh-80px)] max-h-[880px] rounded-[20px] sm:rounded-[28px] overflow-hidden bg-ink">
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src="/landing.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/40 to-ink/10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/50 to-transparent" />
+
+          <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end pb-10 sm:pb-16">
+            <p className="eyebrow text-primary reveal" style={stagger(0)}>
+              {t('home_hero_eyebrow')}
+            </p>
+            <h1
+              className="mt-3 max-w-3xl text-[2.5rem] leading-[1.05] sm:text-6xl lg:text-7xl font-semibold tracking-tight text-white reveal"
+              style={stagger(1)}
+            >
+              {t('home_hero_title')}
+            </h1>
+            <p className="mt-5 max-w-xl text-base sm:text-lg text-white/80 reveal" style={stagger(2)}>
+              {t('home_hero_subtitle')}
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3 reveal" style={stagger(3)}>
+              <button
+                onClick={() => onNavigate('vendita')}
+                className="inline-flex items-center gap-2 ps-6 pe-5 py-3.5 rounded-full bg-primary text-ink font-semibold hover:bg-primary-light transition-colors duration-150"
+              >
+                {t('home_discover_products')}
+                <ArrowRight className="w-[18px] h-[18px]" strokeWidth={2} absoluteStrokeWidth />
+              </button>
+              <button
+                onClick={() => onNavigate('contatti')}
+                className="inline-flex items-center px-6 py-3.5 rounded-full bg-white/10 text-white font-semibold backdrop-blur-md shadow-[inset_0_0_0_1px_oklch(1_0_0/0.2)] hover:bg-white/20 transition-colors duration-150"
+              >
+                {t('home_contact_us')}
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Servizi */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+        <p className="eyebrow text-teal-ink">{t('home_services_eyebrow')}</p>
+        <h2 className="mt-2 text-3xl sm:text-5xl font-semibold tracking-tight text-ink">
           {t('home_our_services')}
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-          <div
-            onClick={() => onNavigate('vendita')}
-            className="group relative bg-white rounded-2xl p-5 sm:p-6 md:p-8 shadow-xl hover:shadow-2xl active:shadow-lg active:scale-[0.98] transition-all duration-200 cursor-pointer touch-manipulation overflow-hidden border-2 border-[#2cd5c4]/20 hover:border-[#2cd5c4] hover:-translate-y-1 transform"
-          >
-            <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#2cd5c4]/20 to-transparent rounded-full blur-3xl group-hover:from-[#2cd5c4]/40 transition-all duration-500"></div>
-            <div className="relative z-10">
-              <div className="bg-gradient-to-br from-[#2cd5c4] to-[#00D9CC] w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-4 shadow-xl group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-[#2cd5c4]/60 transition-all duration-300">
-                <Ship className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 text-white" />
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-[#0E0E0E] mb-3 group-hover:text-[#2cd5c4] transition-colors duration-300">{t('home_vendita_title')}</h3>
-              <p className="text-sm sm:text-base text-gray-600 mb-4 leading-relaxed">
-                {t('home_vendita_desc')}
-              </p>
-              <div className="flex items-center text-[#2cd5c4] font-semibold group-hover:translate-x-2 transition-transform duration-300">
-                <span className="text-sm sm:text-base">{t('home_learn_more')}</span>
-                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </div>
-            </div>
-            <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-[#2cd5c4] via-[#00D9CC] to-[#9BE870] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-          </div>
-
-          {/* Kill switch: Ricambi - riattivare in features.ts */}
-          {FEATURES.RICAMBI_ENABLED && (
-            <div
-              onClick={() => onNavigate('ricambi')}
-              className="group relative bg-white rounded-2xl p-5 sm:p-6 md:p-8 shadow-xl hover:shadow-2xl active:shadow-lg active:scale-[0.98] transition-all duration-200 cursor-pointer touch-manipulation overflow-hidden border-2 border-[#2cd5c4]/20 hover:border-[#2cd5c4] hover:-translate-y-1 transform"
+        <div className="mt-8 sm:mt-12 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          {services.map((service) => (
+            <button
+              key={service.id}
+              onClick={() => onNavigate(service.id)}
+              className="group text-left surface surface-interactive bg-white rounded-[28px] p-2 flex flex-col"
             >
-              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#2cd5c4]/20 to-transparent rounded-full blur-3xl group-hover:from-[#2cd5c4]/40 transition-all duration-500"></div>
-              <div className="relative z-10">
-                <div className="bg-gradient-to-br from-[#2cd5c4] to-[#00D9CC] w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-4 shadow-xl group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-[#2cd5c4]/60 transition-all duration-300">
-                  <Settings className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 text-white" />
-                </div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-[#0E0E0E] mb-3 group-hover:text-[#2cd5c4] transition-colors duration-300">{t('home_ricambi_title')}</h3>
-                <p className="text-sm sm:text-base text-gray-600 mb-4 leading-relaxed">
-                  {t('home_ricambi_desc')}
-                </p>
-                <div className="flex items-center text-[#2cd5c4] font-semibold group-hover:translate-x-2 transition-transform duration-300">
-                  <span className="text-sm sm:text-base">{t('home_learn_more')}</span>
-                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </div>
+              {/* 28px = 20px interno + 8px di padding */}
+              <div className="relative aspect-[16/10] rounded-[20px] overflow-hidden bg-sand-deep">
+                <img
+                  src={service.image}
+                  alt=""
+                  className="img-outline w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
+                />
+                <span className="absolute top-3 left-3 w-10 h-10 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-ink">
+                  <service.icon className="w-5 h-5" strokeWidth={2} absoluteStrokeWidth />
+                </span>
               </div>
-              <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-[#2cd5c4] via-[#00D9CC] to-[#9BE870] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-            </div>
-          )}
-
-          {/* Kill switch: Usato - riattivare in features.ts */}
-          {FEATURES.USATO_ENABLED && (
-            <div
-              onClick={() => onNavigate('usato')}
-              className="group relative bg-white rounded-2xl p-5 sm:p-6 md:p-8 shadow-xl hover:shadow-2xl active:shadow-lg active:scale-[0.98] transition-all duration-200 cursor-pointer touch-manipulation overflow-hidden border-2 border-[#2cd5c4]/20 hover:border-[#2cd5c4] hover:-translate-y-1 transform"
-            >
-              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#2cd5c4]/20 to-transparent rounded-full blur-3xl group-hover:from-[#2cd5c4]/40 transition-all duration-500"></div>
-              <div className="relative z-10">
-                <div className="bg-gradient-to-br from-[#2cd5c4] to-[#00D9CC] w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-4 shadow-xl group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-[#2cd5c4]/60 transition-all duration-300">
-                  <RotateCcw className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 text-white" />
+              <div className="flex items-end justify-between gap-4 p-4 sm:p-5">
+                <div>
+                  <h3 className="text-2xl font-semibold tracking-tight text-ink">{service.title}</h3>
+                  <p className="mt-1.5 text-ink-muted leading-relaxed">{service.desc}</p>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-[#0E0E0E] mb-3 group-hover:text-[#2cd5c4] transition-colors duration-300">{t('home_usato_title')}</h3>
-                <p className="text-sm sm:text-base text-gray-600 mb-4 leading-relaxed">
-                  {t('home_usato_desc')}
-                </p>
-                <div className="flex items-center text-[#2cd5c4] font-semibold group-hover:translate-x-2 transition-transform duration-300">
-                  <span className="text-sm sm:text-base">{t('home_learn_more')}</span>
-                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
-                </div>
+                <span className="shrink-0 w-11 h-11 rounded-full bg-ink/[0.05] text-ink flex items-center justify-center transition-colors duration-150 group-hover:bg-ink group-hover:text-white">
+                  <ArrowRight className="w-5 h-5" strokeWidth={2} absoluteStrokeWidth />
+                  <span className="sr-only">{t('home_learn_more')}</span>
+                </span>
               </div>
-              <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-[#2cd5c4] via-[#00D9CC] to-[#9BE870] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-            </div>
-          )}
-
-          <div
-            onClick={() => onNavigate('noleggio')}
-            className="group relative bg-white rounded-2xl p-5 sm:p-6 md:p-8 shadow-xl hover:shadow-2xl active:shadow-lg active:scale-[0.98] transition-all duration-200 cursor-pointer touch-manipulation overflow-hidden border-2 border-[#2cd5c4]/20 hover:border-[#2cd5c4] hover:-translate-y-1 transform"
-          >
-            <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#2cd5c4]/20 to-transparent rounded-full blur-3xl group-hover:from-[#2cd5c4]/40 transition-all duration-500"></div>
-            <div className="relative z-10">
-              <div className="bg-gradient-to-br from-[#2cd5c4] to-[#00D9CC] w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 rounded-2xl flex items-center justify-center mb-4 shadow-xl group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-[#2cd5c4]/60 transition-all duration-300">
-                <Anchor className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 text-white" />
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-[#0E0E0E] mb-3 group-hover:text-[#2cd5c4] transition-colors duration-300">{t('home_noleggio_title')}</h3>
-              <p className="text-sm sm:text-base text-gray-600 mb-4 leading-relaxed">
-                {t('home_noleggio_desc')}
-              </p>
-              <div className="flex items-center text-[#2cd5c4] font-semibold group-hover:translate-x-2 transition-transform duration-300">
-                <span className="text-sm sm:text-base">{t('home_learn_more')}</span>
-                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </div>
-            </div>
-            <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-[#2cd5c4] via-[#00D9CC] to-[#9BE870] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-          </div>
+            </button>
+          ))}
         </div>
-      </div>
+      </section>
 
-      <div className="bg-white py-6 sm:py-8 md:py-12 lg:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start">
-            <div className="w-full order-1 lg:order-1">
-              <img 
-                ref={imageRef}
-                src="/jet-ski.jpg" 
-                alt="Sea Doo Moto d'acqua" 
-                className="w-full h-auto object-cover rounded-xl shadow-xl aspect-[4/3] md:aspect-[3/2]"
+      {/* Chi siamo */}
+      <section className="bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-24 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+          <div className="lg:col-span-5">
+            <div className="lg:sticky lg:top-28">
+              <img
+                src="/jet-ski.jpg"
+                alt="Sea Doo Moto d'acqua"
+                className="img-outline w-full aspect-[4/5] object-cover rounded-[24px]"
               />
             </div>
-            <div ref={textContainerRef} className="order-2 lg:order-2 space-y-4 sm:space-y-5 md:space-y-6">
-              <p className="text-sm sm:text-base md:text-lg leading-relaxed text-[#0E0E0E]">
-                {t('home_about_1')}
-              </p>
-              <p className="text-sm sm:text-base md:text-lg leading-relaxed text-[#0E0E0E]">
-                {t('home_about_2')}
-              </p>
-              <p className="text-sm sm:text-base md:text-lg leading-relaxed text-[#0E0E0E]">
-                {t('home_about_3')}
-              </p>
-              <p className="text-sm sm:text-base md:text-lg leading-relaxed text-[#0E0E0E]">
-                {t('home_about_4')}
-              </p>
-              <p className="text-sm sm:text-base md:text-lg leading-relaxed text-[#0E0E0E] mb-6">
-                {t('home_about_5')}
-              </p>
-              
-              {/* Loghi Partner */}
-              <div className="flex items-center justify-start gap-4 sm:gap-6 md:gap-8 mt-6 flex-nowrap overflow-x-auto">
-                <img
-                  src="/loghi/logo-rotax.png"
-                  alt="Rotax Logo"
-                  className="h-10 sm:h-14 md:h-18 w-auto object-contain flex-shrink-0 max-w-[120px] sm:max-w-[160px] md:max-w-[200px]"
-                  onError={(e) => {
-                    console.error('Errore caricamento logo Rotax');
-                  }}
-                />
-                <img
-                  src="/loghi/logoseadoo.jpg"
-                  alt="Sea-Doo Logo"
-                  className="h-10 sm:h-14 md:h-18 w-auto object-contain flex-shrink-0 max-w-[120px] sm:max-w-[160px] md:max-w-[200px]"
-                />
-              </div>
+          </div>
+          <div className="lg:col-span-7">
+            <p className="eyebrow text-teal-ink">{t('home_about_eyebrow')}</p>
+            <h2 className="mt-2 text-3xl sm:text-5xl font-semibold tracking-tight text-ink">
+              {t('home_about_title')}
+            </h2>
+            <p className="mt-6 text-lg sm:text-xl leading-relaxed text-ink">
+              {t('home_about_1')}
+            </p>
+            <div className="mt-6 space-y-5 text-base leading-relaxed text-ink-muted max-w-[65ch]">
+              <p>{t('home_about_2')}</p>
+              <p>{t('home_about_3')}</p>
+              <p>{t('home_about_4')}</p>
+              <p className="text-ink font-semibold">{t('home_about_5')}</p>
+            </div>
+
+            {/* Loghi Partner */}
+            <div className="mt-10 pt-8 border-t border-ink/10 flex items-center gap-8 sm:gap-12">
+              <img
+                src="/loghi/logo-rotax.png"
+                alt="Rotax"
+                className="h-10 sm:h-12 w-auto object-contain"
+              />
+              <img
+                src="/loghi/logoseadoo.jpg"
+                alt="Sea-Doo"
+                className="h-10 sm:h-12 w-auto object-contain mix-blend-multiply"
+              />
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+
+      {/* Invito al contatto */}
+      <section className="px-2 sm:px-3 pt-2 sm:pt-3 pb-12 sm:pb-16">
+        <div className="relative overflow-hidden rounded-[20px] sm:rounded-[28px] bg-ink text-white">
+          <div className="absolute -right-24 -top-24 w-80 h-80 rounded-full bg-primary/20 blur-3xl" />
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+            <div className="max-w-2xl">
+              <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight">{t('home_cta_title')}</h2>
+              <p className="mt-4 text-lg text-white/70">{t('home_cta_desc')}</p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="tel:+393278992159"
+                className="inline-flex items-center gap-2 ps-5 pe-6 py-3.5 rounded-full bg-primary text-ink font-semibold hover:bg-primary-light transition-colors duration-150"
+              >
+                <Phone className="w-[18px] h-[18px]" strokeWidth={2} absoluteStrokeWidth />
+                327 899 2159
+              </a>
+              <a
+                href="https://wa.me/393278992159"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 ps-5 pe-6 py-3.5 rounded-full bg-white/10 text-white font-semibold shadow-[inset_0_0_0_1px_oklch(1_0_0/0.2)] hover:bg-white/15 transition-colors duration-150"
+              >
+                <MessageCircle className="w-[18px] h-[18px]" strokeWidth={2} absoluteStrokeWidth />
+                WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

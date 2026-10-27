@@ -1,5 +1,6 @@
-import { MapPin, Phone, Mail, Clock, User, Facebook, Instagram } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, User, Facebook, Instagram, MessageCircle } from 'lucide-react';
 import SEO from '../components/SEO';
+import PageHero from '../components/PageHero';
 import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Contatti() {
@@ -13,102 +14,93 @@ export default function Contatti() {
         keywords="contatti Nautic Service, telefono officina nautica, dove siamo, come raggiungerci, WhatsApp Nautic Service, indirizzo Castelnuovo del Garda, orari apertura, preventivo riparazione moto d'acqua"
         url="/contatti"
       />
-      <div className="bg-[#F4F7F6]">
-      <div
-        className="relative h-[400px] bg-cover bg-center"
-        style={{
-          backgroundImage:
-            'url(https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg?auto=compress&cs=tinysrgb&w=1920)',
-        }}
-      >
-        <div className="absolute inset-0 bg-black/70"></div>
-        <div className="relative h-full flex items-center justify-center text-center text-white px-4">
-          <div>
-            <h1 className="text-5xl md:text-6xl font-bold">{t('contatti_title')}</h1>
-            <p className="text-xl md:text-2xl mt-4">{t('contatti_subtitle')}</p>
-          </div>
-        </div>
-      </div>
+      <div>
+      <PageHero
+        eyebrow="Castelnuovo del Garda"
+        title={t('contatti_title')}
+        subtitle={t('contatti_subtitle')}
+        image="https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg?auto=compress&cs=tinysrgb&w=1920"
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-10 sm:mb-16">
           <div>
-            <h2 className="text-4xl font-bold text-[#0E0E0E] mb-6">{t('contatti_contact_us')}</h2>
-            <p className="text-lg text-[#0E0E0E] mb-8 leading-relaxed">
+            <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight text-ink mb-5">{t('contatti_contact_us')}</h2>
+            <p className="text-lg text-ink-muted mb-10 leading-relaxed max-w-[60ch]">
               {t('contatti_contact_desc')}
             </p>
 
-            <div className="space-y-6">
-              <div className="flex items-start space-x-4">
-                <div className="bg-[#2cd5c4] w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
-                  <MapPin className="h-6 w-6 text-[#0E0E0E]" />
+            <div className="divide-y divide-ink/10 border-y border-ink/10">
+              <div className="flex items-start gap-4 py-5">
+                <div className="bg-primary/15 text-teal-ink w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0">
+                  <MapPin className="h-5 w-5" strokeWidth={2} absoluteStrokeWidth />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-[#0E0E0E] mb-2">{t('contatti_sede')}</h3>
-                  <p className="text-[#0E0E0E]">
+                  <h3 className="eyebrow text-ink-muted mb-1.5">{t('contatti_sede')}</h3>
+                  <p className="text-ink">
                     Via Venezia 9<br />
                     Castelnuovo del Garda (Vr)
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4">
-                <div className="bg-[#2cd5c4] w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
-                  <User className="h-6 w-6 text-[#0E0E0E]" />
+              <div className="flex items-start gap-4 py-5">
+                <div className="bg-primary/15 text-teal-ink w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0">
+                  <User className="h-5 w-5" strokeWidth={2} absoluteStrokeWidth />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-[#0E0E0E] mb-2">{t('contatti_referente')}</h3>
-                  <p className="text-[#0E0E0E]">
+                  <h3 className="eyebrow text-ink-muted mb-1.5">{t('contatti_referente')}</h3>
+                  <p className="text-ink">
                     <a href="mailto:manuel@nautic-service.it" className="hover:underline">manuel@nautic-service.it</a>
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4">
-                <div className="bg-[#2cd5c4] w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Mail className="h-6 w-6 text-[#0E0E0E]" />
+              <div className="flex items-start gap-4 py-5">
+                <div className="bg-primary/15 text-teal-ink w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0">
+                  <Mail className="h-5 w-5" strokeWidth={2} absoluteStrokeWidth />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-[#0E0E0E] mb-2">{t('contatti_email')}</h3>
-                  <p className="text-[#0E0E0E] mb-2">
+                  <h3 className="eyebrow text-ink-muted mb-1.5">{t('contatti_email')}</h3>
+                  <p className="text-ink mb-2">
                     <a href="mailto:manuel@nautic-service.it" className="hover:underline">manuel@nautic-service.it</a>
-                    <span className="text-[#6B6F72] text-sm block mt-1">{t('contatti_info')}</span>
+                    <span className="text-ink-muted text-sm block mt-1">{t('contatti_info')}</span>
                   </p>
-                  <p className="text-[#0E0E0E]">
+                  <p className="text-ink">
                     <a href="mailto:manuel@nautic-service.it" className="hover:underline">manuel@nautic-service.it</a>
-                    <span className="text-[#6B6F72] text-sm block mt-1">{t('contatti_preventivo')}</span>
+                    <span className="text-ink-muted text-sm block mt-1">{t('contatti_preventivo')}</span>
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4">
-                <div className="bg-[#2cd5c4] w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Phone className="h-6 w-6 text-[#0E0E0E]" />
+              <div className="flex items-start gap-4 py-5">
+                <div className="bg-primary/15 text-teal-ink w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0">
+                  <Phone className="h-5 w-5" strokeWidth={2} absoluteStrokeWidth />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-[#0E0E0E] mb-2">{t('contatti_telefono')}</h3>
-                  <p className="text-[#0E0E0E] mb-2">
+                  <h3 className="eyebrow text-ink-muted mb-1.5">{t('contatti_telefono')}</h3>
+                  <p className="text-ink mb-2">
                     <a href="tel:+390456450847" className="hover:underline">045 645 0847</a>
-                    <span className="text-[#6B6F72] text-sm block mt-1">{t('contatti_fisso')}</span>
+                    <span className="text-ink-muted text-sm block mt-1">{t('contatti_fisso')}</span>
                   </p>
-                  <p className="text-[#0E0E0E] mb-2">
+                  <p className="text-ink mb-2">
                     <a href="tel:+393278992159" className="hover:underline">+39 327.8992159</a>
-                    <span className="text-[#6B6F72] text-sm block mt-1">Manuel</span>
+                    <span className="text-ink-muted text-sm block mt-1">Manuel</span>
                   </p>
-                  <p className="text-[#0E0E0E]">
+                  <p className="text-ink">
                     <a href="tel:+393478239844" className="hover:underline">+39 347.8239844</a>
-                    <span className="text-[#6B6F72] text-sm block mt-1">Domenico</span>
+                    <span className="text-ink-muted text-sm block mt-1">Domenico</span>
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start space-x-4">
-                <div className="bg-[#2cd5c4] w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Clock className="h-6 w-6 text-[#0E0E0E]" />
+              <div className="flex items-start gap-4 py-5">
+                <div className="bg-primary/15 text-teal-ink w-11 h-11 rounded-full flex items-center justify-center flex-shrink-0">
+                  <Clock className="h-5 w-5" strokeWidth={2} absoluteStrokeWidth />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-[#0E0E0E] mb-2">{t('contatti_orari')}</h3>
-                  <div className="text-[#0E0E0E] space-y-1">
+                  <h3 className="eyebrow text-ink-muted mb-1.5">{t('contatti_orari')}</h3>
+                  <div className="text-ink space-y-1">
                     <p>{t('contatti_orari_feriali')}</p>
                     <p>{t('contatti_orari_domenica')}</p>
                   </div>
@@ -118,54 +110,56 @@ export default function Contatti() {
           </div>
 
           <div className="space-y-6">
-            <div className="bg-white rounded-lg shadow-lg p-8 flex flex-col items-center justify-center min-h-[400px]">
-              <h3 className="text-2xl font-bold text-[#0E0E0E] mb-6 text-center">{t('contatti_whatsapp_title')}</h3>
-              <p className="text-[#0E0E0E] mb-8 text-center">
-                {t('contatti_whatsapp_desc')}
-              </p>
-              <a
-                href="https://wa.me/393278992159"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Chat on WhatsApp"
-                className="inline-block transition-transform hover:scale-105"
-              >
-                <img 
-                  alt="Chat on WhatsApp" 
-                  src="/whatsapp.png"
-                  className="w-auto h-auto max-w-full"
-                />
-              </a>
+            <div className="relative overflow-hidden bg-ink text-white rounded-[28px] p-8 sm:p-10">
+              <div className="absolute -right-20 -top-20 w-72 h-72 rounded-full bg-[#25D366]/20 blur-3xl" />
+              <div className="relative">
+                <span className="w-12 h-12 rounded-full bg-[#25D366] text-ink flex items-center justify-center">
+                  <MessageCircle className="h-6 w-6" strokeWidth={2} absoluteStrokeWidth />
+                </span>
+                <h3 className="mt-6 text-2xl sm:text-3xl font-semibold tracking-tight">{t('contatti_whatsapp_title')}</h3>
+                <p className="mt-2 text-white/70">
+                  {t('contatti_whatsapp_desc')}
+                </p>
+                <a
+                  href="https://wa.me/393278992159"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-8 inline-flex items-center gap-2 ps-5 pe-6 py-3.5 rounded-full bg-[#25D366] text-ink font-semibold hover:bg-[#3ee07a] transition-colors duration-150"
+                >
+                  <MessageCircle className="h-[18px] w-[18px]" strokeWidth={2} absoluteStrokeWidth />
+                  Chat WhatsApp
+                </a>
+              </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow-lg p-8 flex flex-col items-center justify-center">
-              <h3 className="text-2xl font-bold text-[#0E0E0E] mb-6 text-center">{t('contatti_social_title')}</h3>
-              <div className="flex gap-6 items-center justify-center">
+            <div className="surface bg-white rounded-[28px] p-8 flex items-center justify-between gap-6">
+              <h3 className="text-xl font-semibold tracking-tight text-ink">{t('contatti_social_title')}</h3>
+              <div className="flex gap-3 items-center">
                 <a
                   href="https://www.facebook.com/nauticservicelagodigarda"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Visita la nostra pagina Facebook"
-                  className="bg-[#1877F2] hover:bg-[#166FE5] active:bg-[#166FE5] text-white p-4 rounded-full transition-all duration-300 hover:scale-110 active:scale-95 shadow-md"
+                  className="bg-[#1877F2] hover:bg-[#166FE5] active:bg-[#166FE5] text-white p-3 rounded-full transition-colors duration-150"
                 >
-                  <Facebook className="h-8 w-8" />
+                  <Facebook className="h-5 w-5" strokeWidth={2} absoluteStrokeWidth />
                 </a>
                 <a
                   href="https://www.instagram.com/nauticservice_/?hl=it"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Visita il nostro profilo Instagram"
-                  className="bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#FCB045] hover:opacity-90 active:opacity-90 text-white p-4 rounded-full transition-all duration-300 hover:scale-110 active:scale-95 shadow-md"
+                  className="bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#FCB045] hover:opacity-90 active:opacity-90 text-white p-3 rounded-full transition-colors duration-150"
                 >
-                  <Instagram className="h-8 w-8" />
+                  <Instagram className="h-5 w-5" strokeWidth={2} absoluteStrokeWidth />
                 </a>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-          <div className="w-full h-96">
+        <div className="surface bg-white rounded-[28px] p-2">
+          <div className="w-full h-96 rounded-[20px] overflow-hidden">
             <iframe
               src="https://www.google.com/maps?q=Via+Venezia+9,+37014+Cavalcaselle+VR&output=embed"
               width="100%"

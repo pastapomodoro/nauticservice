@@ -14,7 +14,7 @@ export default function MobileFloatingButtons() {
             href="https://wa.me/393278992159?text=Ciao!%20Vorrei%20informazioni%20sui%20vostri%20servizi."
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 bg-[#25D366] text-white pl-4 pr-5 py-3 rounded-full shadow-lg active:scale-95 transition-transform animate-slideIn"
+            className="flex items-center gap-3 bg-[#25D366] text-white pl-4 pr-5 py-3 rounded-full shadow-lg active:scale-96 transition-transform animate-slideIn"
             style={{ animationDelay: '0ms' }}
           >
             <MessageCircle className="w-6 h-6" />
@@ -24,7 +24,7 @@ export default function MobileFloatingButtons() {
           {/* Phone Button */}
           <a
             href="tel:+393278992159"
-            className="flex items-center gap-3 bg-[#2cd5c4] text-white pl-4 pr-5 py-3 rounded-full shadow-lg active:scale-95 transition-transform animate-slideIn"
+            className="flex items-center gap-3 bg-ink text-white pl-4 pr-5 py-3 rounded-full shadow-float active:scale-96 transition-transform animate-slideIn"
             style={{ animationDelay: '50ms' }}
           >
             <Phone className="w-6 h-6" />
@@ -36,7 +36,7 @@ export default function MobileFloatingButtons() {
       {/* Main FAB */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className={`w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 active:scale-95 ${
+        className={`w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition duration-300 active:scale-96 ${
           isExpanded 
             ? 'bg-gray-700 rotate-0' 
             : 'bg-[#25D366] animate-pulse-subtle'

@@ -138,7 +138,7 @@ export default function CookieBanner() {
         <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-lg border border-gray-200">
           <div className="p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
             <div className="flex items-start gap-3 flex-1">
-              <Cookie className="h-5 w-5 text-[#2cd5c4] flex-shrink-0 mt-0.5" />
+              <Cookie className="h-5 w-5 text-teal-ink flex-shrink-0 mt-0.5" />
               <p className="text-sm text-gray-700">
                 Usiamo cookie tecnici e, con il tuo consenso, cookie di analisi/marketing.{' '}
                 <a
@@ -147,7 +147,7 @@ export default function CookieBanner() {
                     e.preventDefault();
                     window.dispatchEvent(new CustomEvent('navigate', { detail: 'privacy' }));
                   }}
-                  className="text-[#2cd5c4] hover:underline"
+                  className="text-teal-ink hover:underline"
                 >
                   Privacy Policy
                 </a>
@@ -170,7 +170,7 @@ export default function CookieBanner() {
               </button>
               <button
                 onClick={handleAcceptAll}
-                className="px-3 py-2 bg-[#2cd5c4] hover:bg-[#00D9CC] text-white rounded-lg text-sm font-medium transition-colors"
+                className="px-3 py-2 bg-ink hover:bg-ink-soft text-white rounded-lg text-sm font-medium transition-colors"
               >
                 Accetta
               </button>
@@ -186,7 +186,7 @@ export default function CookieBanner() {
           onClick={() => setIsPrefsOpen(false)}
         >
           <div
-            className="bg-white rounded-xl shadow-2xl w-full max-w-lg"
+            className="bg-white rounded-[24px] shadow-float w-full max-w-lg max-h-[90vh] overflow-y-auto overscroll-contain"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between px-5 py-4 border-b border-gray-200">
@@ -249,7 +249,7 @@ export default function CookieBanner() {
               </button>
               <button
                 onClick={handleAcceptAll}
-                className="px-4 py-2 bg-[#2cd5c4] hover:bg-[#00D9CC] text-white rounded-lg text-sm font-medium transition-colors"
+                className="px-4 py-2 bg-ink hover:bg-ink-soft text-white rounded-lg text-sm font-medium transition-colors"
               >
                 Accetta tutti
               </button>

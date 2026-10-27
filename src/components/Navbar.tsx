@@ -1,4 +1,4 @@
-import { Menu, X, ChevronRight, Home, Ship, RotateCcw, Settings, Newspaper, Phone, MessageCircle, Globe } from 'lucide-react';
+import { Menu, X, ChevronRight, ChevronDown, Home, Ship, RotateCcw, Settings, Newspaper, Phone, MessageCircle } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Language } from '../i18n/translations';
@@ -18,6 +18,7 @@ const flags: Record<Language, { flag: string; label: string }> = {
 export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { language, setLanguage, t } = useLanguage();
 
   // Blocca scroll quando menu mobile è aperto
@@ -31,6 +32,14 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
       document.body.style.overflow = 'unset';
     };
   }, [isMenuOpen]);
+
+  // Linea di separazione solo quando la pagina scorre sotto la barra
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const navItems = [
     { id: 'home', label: t('nav_home'), icon: Home },
@@ -54,89 +63,108 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
 
   return (
     <>
-      <nav className="bg-[#2cd5c4] shadow-lg sticky top-0 z-50">
+      <nav
+        className={`sticky top-0 z-50 bg-sand/80 backdrop-blur-xl backdrop-saturate-150 transition-shadow duration-150 ${
+          isScrolled || isMenuOpen ? 'shadow-[0_1px_0_0_oklch(0_0_0/0.08)]' : ''
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 sm:h-20">
+          <div className="flex justify-between items-center h-16 md:h-[72px]">
             {/* Logo */}
-            <div
-              className="flex items-center cursor-pointer active:scale-95 transition-transform"
+            <button
+              type="button"
+              className="flex items-center -ml-1 px-1"
               onClick={() => handleNavigate('home')}
+              aria-label="Nautic Service - Home"
             >
               <img
                 src="/nautic.png"
                 alt="Nautic Service Logo"
-                className="h-12 sm:h-16 md:h-20 lg:h-24 w-auto"
+                // Il PNG è quadrato con molto margine: object-cover ritaglia la sola scritta
+                className="h-10 w-[110px] md:h-12 md:w-[132px] object-cover"
               />
-            </div>
+            </button>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
+            <div className="hidden md:flex items-center gap-1">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => handleNavigate(item.id)}
-                  className={`text-sm lg:text-base font-medium transition-all duration-200 py-2 px-1 ${
+                  aria-current={currentPage === item.id ? 'page' : undefined}
+                  className={`px-3.5 py-2 rounded-full text-[15px] font-semibold transition-colors duration-150 ${
                     currentPage === item.id
-                      ? 'text-white border-b-2 border-white'
-                      : 'text-white/90 hover:text-white hover:border-b-2 hover:border-white/50'
+                      ? 'bg-ink/[0.06] text-ink'
+                      : 'text-ink/60 hover:text-ink hover:bg-ink/[0.04]'
                   }`}
                 >
                   {item.label}
                 </button>
               ))}
-              
+
               {/* Language Selector Desktop */}
-              <div className="relative">
+              <div className="relative ml-1">
                 <button
                   onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-                  className="flex items-center gap-1 text-white/90 hover:text-white transition-colors px-3 py-2 rounded-lg hover:bg-white/10 active:bg-white/20"
+                  aria-expanded={isLangMenuOpen}
+                  aria-label={t('nav_language')}
+                  className="flex items-center gap-1 ps-3 pe-2.5 py-2 rounded-full text-ink/70 hover:text-ink hover:bg-ink/[0.04] transition-colors duration-150"
                 >
-                  <span className="text-xl">{flags[language].flag}</span>
-                  <svg className={`w-4 h-4 transition-transform duration-200 ${isLangMenuOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
+                  <span className="text-lg leading-none">{flags[language].flag}</span>
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform duration-200 ease-out ${isLangMenuOpen ? 'rotate-180' : ''}`}
+                    strokeWidth={2}
+                    absoluteStrokeWidth
+                  />
                 </button>
-                
+
                 {isLangMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-40 bg-white rounded-xl shadow-xl overflow-hidden z-50 border border-gray-100">
+                  <div className="absolute right-0 mt-2 w-44 p-1.5 bg-white rounded-2xl shadow-float z-50 origin-top-right lang-menu-enter">
                     {(Object.keys(flags) as Language[]).map((lang) => (
                       <button
                         key={lang}
                         onClick={() => handleLanguageChange(lang)}
-                        className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-gray-50 transition-colors ${
-                          language === lang ? 'bg-[#2cd5c4]/10 text-[#2cd5c4]' : 'text-gray-700'
+                        className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-[10px] text-left transition-colors duration-150 ${
+                          language === lang ? 'bg-primary/10 text-teal-ink' : 'text-ink/80 hover:bg-ink/[0.04]'
                         }`}
                       >
-                        <span className="text-xl">{flags[lang].flag}</span>
-                        <span className="text-sm font-medium">{flags[lang].label}</span>
+                        <span className="text-lg leading-none">{flags[lang].flag}</span>
+                        <span className="text-sm font-semibold">{flags[lang].label}</span>
                       </button>
                     ))}
                   </div>
                 )}
               </div>
+
+              <a
+                href="tel:+393278992159"
+                className="ml-2 inline-flex items-center gap-2 ps-4 pe-3.5 py-2.5 rounded-full bg-ink text-white text-sm font-semibold hover:bg-ink-soft transition-colors duration-150"
+              >
+                <Phone className="w-4 h-4" strokeWidth={2} absoluteStrokeWidth />
+                {t('common_call')}
+              </a>
             </div>
 
             {/* Mobile Controls */}
             <div className="md:hidden flex items-center gap-1">
-              {/* Language Selector Mobile */}
               <button
                 onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-                className="flex items-center justify-center w-11 h-11 text-white rounded-lg active:bg-white/20 transition-colors"
+                className="flex items-center justify-center w-11 h-11 rounded-full active:bg-ink/[0.06] transition-colors"
                 aria-label="Cambia lingua"
               >
-                <span className="text-2xl">{flags[language].flag}</span>
+                <span className="text-xl leading-none">{flags[language].flag}</span>
               </button>
-              
-              {/* Hamburger Menu Button */}
+
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="flex items-center justify-center w-11 h-11 text-white rounded-lg active:bg-white/20 transition-colors"
+                className="flex items-center justify-center w-11 h-11 text-ink rounded-full active:bg-ink/[0.06] transition-colors"
                 aria-label={isMenuOpen ? 'Chiudi menu' : 'Apri menu'}
+                aria-expanded={isMenuOpen}
               >
                 {isMenuOpen ? (
-                  <X className="h-7 w-7" strokeWidth={2.5} />
+                  <X className="h-6 w-6" strokeWidth={2} absoluteStrokeWidth />
                 ) : (
-                  <Menu className="h-7 w-7" strokeWidth={2.5} />
+                  <Menu className="h-6 w-6" strokeWidth={2} absoluteStrokeWidth />
                 )}
               </button>
             </div>
@@ -145,127 +173,125 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
       </nav>
 
       {/* Mobile Menu Overlay */}
-      <div 
-        className={`fixed inset-0 bg-black/50 z-40 md:hidden transition-opacity duration-300 ${
+      <div
+        className={`fixed inset-0 bg-ink/40 z-40 md:hidden transition-opacity duration-300 ${
           isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
         onClick={() => setIsMenuOpen(false)}
       />
 
       {/* Mobile Menu Panel */}
-      <div 
-        className={`fixed top-16 left-0 right-0 bottom-0 bg-white z-40 md:hidden transform transition-transform duration-300 ease-out ${
+      <div
+        className={`fixed top-16 left-0 right-0 bottom-0 bg-sand z-40 md:hidden transform transition-transform duration-300 ease-drawer ${
           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="h-full overflow-y-auto overscroll-contain">
+        <div className="h-full overflow-y-auto overscroll-contain px-4">
           {/* Navigation Items */}
-          <div className="py-4">
+          <div className="pt-4 space-y-1">
             {navItems.map((item, index) => (
               <button
                 key={item.id}
                 onClick={() => handleNavigate(item.id)}
-                className={`w-full flex items-center justify-between px-6 py-4 text-lg font-medium transition-all active:bg-gray-100 ${
-                  currentPage === item.id
-                    ? 'bg-[#2cd5c4]/10 text-[#2cd5c4] border-l-4 border-[#2cd5c4]'
-                    : 'text-gray-800 hover:bg-gray-50'
+                aria-current={currentPage === item.id ? 'page' : undefined}
+                className={`w-full flex items-center justify-between px-4 py-3.5 rounded-2xl text-lg font-semibold transition-colors active:bg-ink/[0.06] ${
+                  currentPage === item.id ? 'bg-white shadow-line text-ink' : 'text-ink/80'
                 }`}
-                style={{ 
-                  animationDelay: `${index * 50}ms`,
-                  animation: isMenuOpen ? 'slideInRight 0.3s ease-out forwards' : 'none'
+                style={{
+                  animation: isMenuOpen ? `slideInRight 250ms var(--ease-out) ${index * 40}ms both` : 'none'
                 }}
               >
-                <div className="flex items-center gap-4">
-                  <item.icon className="w-6 h-6 text-current" />
-                  <span>{item.label}</span>
-                </div>
-                <ChevronRight className={`w-5 h-5 transition-colors ${
-                  currentPage === item.id ? 'text-[#2cd5c4]' : 'text-gray-400'
-                }`} />
+                <span className="flex items-center gap-4">
+                  <item.icon
+                    className={`w-5 h-5 ${currentPage === item.id ? 'text-teal-ink' : 'text-ink/50'}`}
+                    strokeWidth={2}
+                    absoluteStrokeWidth
+                  />
+                  {item.label}
+                </span>
+                <ChevronRight className="w-5 h-5 text-ink/30" strokeWidth={2} absoluteStrokeWidth />
               </button>
             ))}
           </div>
 
-          {/* Divider */}
-          <div className="mx-6 border-t border-gray-200" />
-
           {/* Language Selection */}
-          <div className="py-4 px-6">
-            <p className="text-sm font-medium text-gray-500 mb-3 uppercase tracking-wide">
+          <div className="pt-6">
+            <p className="eyebrow text-ink/50 mb-3 px-1">
               {t('nav_language') || 'Lingua'}
             </p>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-2">
               {(Object.keys(flags) as Language[]).map((lang) => (
                 <button
                   key={lang}
                   onClick={() => handleLanguageChange(lang)}
-                  className={`flex flex-col items-center gap-2 py-4 px-3 rounded-xl transition-all active:scale-95 ${
-                    language === lang 
-                      ? 'bg-[#2cd5c4] text-white shadow-lg' 
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  aria-pressed={language === lang}
+                  className={`flex flex-col items-center gap-1.5 py-3 rounded-2xl transition-colors ${
+                    language === lang
+                      ? 'bg-ink text-white'
+                      : 'bg-white shadow-line text-ink/80'
                   }`}
                 >
-                  <span className="text-3xl">{flags[lang].flag}</span>
-                  <span className="text-xs font-medium">{flags[lang].label}</span>
+                  <span className="text-2xl leading-none">{flags[lang].flag}</span>
+                  <span className="text-xs font-semibold">{flags[lang].label}</span>
                 </button>
               ))}
             </div>
           </div>
 
           {/* Contact Quick Actions */}
-          <div className="py-4 px-6">
-            <p className="text-sm font-medium text-gray-500 mb-3 uppercase tracking-wide">
+          <div className="pt-6">
+            <p className="eyebrow text-ink/50 mb-3 px-1">
               {t('contatti_title') || 'Contatti'}
             </p>
-            <div className="space-y-3">
+            <div className="grid grid-cols-2 gap-2">
               <a
                 href="tel:+393278992159"
-                className="flex items-center gap-4 py-4 px-4 bg-[#2cd5c4] text-white rounded-xl active:scale-98 transition-transform shadow-lg"
+                className="flex flex-col gap-3 p-4 bg-ink text-white rounded-2xl"
               >
-                <Phone className="w-6 h-6 flex-shrink-0" />
-                <div>
-                  <p className="font-semibold">Chiamaci</p>
-                  <p className="text-sm opacity-90">+39 327.8992159</p>
-                </div>
+                <Phone className="w-5 h-5" strokeWidth={2} absoluteStrokeWidth />
+                <span>
+                  <span className="block font-semibold">{t('common_call')}</span>
+                  <span className="block text-sm text-white/70">327 899 2159</span>
+                </span>
               </a>
               <a
                 href="https://wa.me/393278992159"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-4 py-4 px-4 bg-[#25D366] text-white rounded-xl active:scale-98 transition-transform shadow-lg"
+                className="flex flex-col gap-3 p-4 bg-[#25D366] text-ink rounded-2xl"
               >
-                <MessageCircle className="w-6 h-6 flex-shrink-0" />
-                <div>
-                  <p className="font-semibold">WhatsApp</p>
-                  <p className="text-sm opacity-90">Scrivici ora</p>
-                </div>
+                <MessageCircle className="w-5 h-5" strokeWidth={2} absoluteStrokeWidth />
+                <span>
+                  <span className="block font-semibold">WhatsApp</span>
+                  <span className="block text-sm text-ink/70">Chat</span>
+                </span>
               </a>
             </div>
           </div>
 
           {/* Bottom Padding for safe area */}
-          <div className="h-20" />
+          <div className="h-24" />
         </div>
       </div>
 
       {/* Language Menu Dropdown (for mobile when menu is closed) */}
       {isLangMenuOpen && !isMenuOpen && (
         <>
-          <div 
-            className="fixed inset-0 z-40" 
+          <div
+            className="fixed inset-0 z-40 md:hidden"
             onClick={() => setIsLangMenuOpen(false)}
           />
-          <div className="fixed top-16 right-4 w-44 bg-white rounded-xl shadow-xl overflow-hidden z-50 border border-gray-100 md:hidden">
+          <div className="fixed top-[60px] right-4 w-48 p-1.5 bg-white rounded-2xl shadow-float z-50 md:hidden origin-top-right lang-menu-enter">
             {(Object.keys(flags) as Language[]).map((lang) => (
               <button
                 key={lang}
                 onClick={() => handleLanguageChange(lang)}
-                className={`w-full flex items-center gap-3 px-4 py-4 text-left active:bg-gray-100 transition-colors ${
-                  language === lang ? 'bg-[#2cd5c4]/10 text-[#2cd5c4]' : 'text-gray-700'
+                className={`w-full flex items-center gap-3 px-3 py-3 rounded-[10px] text-left active:bg-ink/[0.06] transition-colors ${
+                  language === lang ? 'bg-primary/10 text-teal-ink' : 'text-ink/80'
                 }`}
               >
-                <span className="text-2xl">{flags[lang].flag}</span>
-                <span className="text-base font-medium">{flags[lang].label}</span>
+                <span className="text-xl leading-none">{flags[lang].flag}</span>
+                <span className="text-base font-semibold">{flags[lang].label}</span>
               </button>
             ))}
           </div>
@@ -274,8 +300,8 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
 
       {/* Click outside to close language menu on desktop */}
       {isLangMenuOpen && (
-        <div 
-          className="fixed inset-0 z-30 hidden md:block" 
+        <div
+          className="fixed inset-0 z-30 hidden md:block"
           onClick={() => setIsLangMenuOpen(false)}
         />
       )}
@@ -286,10 +312,17 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
             opacity: 0;
             transform: translateX(20px);
           }
-          to {
-            opacity: 1;
-            transform: translateX(0);
+        }
+
+        @keyframes langMenuIn {
+          from {
+            opacity: 0;
+            transform: scale(0.95) translateY(-4px);
           }
+        }
+
+        .lang-menu-enter {
+          animation: langMenuIn 150ms var(--ease-out);
         }
       `}</style>
     </>

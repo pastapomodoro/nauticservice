@@ -12,8 +12,8 @@ export default function AnimatedCard({ children, delay = 0, hover = true }: Anim
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      whileHover={hover ? { y: -8, boxShadow: '0 20px 40px rgba(0, 0, 0, 0.2)' } : {}}
-      transition={{ duration: 0.4, delay }}
+      whileHover={hover ? { y: -4, boxShadow: '0 16px 32px rgba(0, 0, 0, 0.15)' } : {}}
+      transition={{ duration: 0.3, delay, ease: [0.23, 1, 0.32, 1] }}
       viewport={{ once: true, amount: 0.3 }}
     >
       {children}

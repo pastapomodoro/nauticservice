@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import ProductModal from '../components/ProductModal';
 import SEO from '../components/SEO';
+import PageHero from '../components/PageHero';
 import { useLanguage } from '../contexts/LanguageContext';
 import { getProductTranslation, getCategoryTranslation, venditaCategoryLabels } from '../i18n/productTranslations';
 
@@ -276,39 +277,29 @@ export default function Vendita({ onNavigate }: VenditaProps) {
         keywords="vendita moto d'acqua Sea Doo, dealer Sea Doo Italia, comprare jet ski, Spark Sea Doo prezzo, GTI Sea Doo, GTX Limited, RXP-X 325, vendita barche nuove, Joker Boat, Saver, PWC vendita, moto d'acqua prezzi"
         url="/vendita"
       />
-      <div className="bg-[#F4F7F6] min-h-screen">
-      <div
-        className="relative h-[300px] bg-cover bg-center"
-        style={{
-          backgroundImage:
-            'url(https://images.pexels.com/photos/2662116/pexels-photo-2662116.jpeg?auto=compress&cs=tinysrgb&w=1920)',
-        }}
-      >
-        <div className="absolute inset-0 bg-black/70"></div>
-        <div className="relative h-full flex items-center justify-center text-center text-white px-4">
-          <div>
-            <h1 className="text-5xl md:text-6xl font-bold">{t('vendita_title')}</h1>
-            <p className="text-xl md:text-2xl mt-4">
-              {t('vendita_subtitle')}
-            </p>
-          </div>
-        </div>
-      </div>
+      <div className="min-h-screen">
+      <PageHero
+        eyebrow="Sea-Doo 2026"
+        title={t('vendita_title')}
+        subtitle={t('vendita_subtitle')}
+        image="https://images.pexels.com/photos/2662116/pexels-photo-2662116.jpeg?auto=compress&cs=tinysrgb&w=1920"
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-20">
         {/* Menu delle categorie - scrollabile su mobile */}
-        <div className="sticky top-16 sm:top-20 z-40 mb-6 sm:mb-8 -mx-4 sm:mx-0">
-          <div className="bg-white shadow-md border-b sm:border-2 sm:border-gray-200 sm:rounded-lg">
+        <div className="sticky top-16 md:top-[72px] z-40 mb-8 sm:mb-12 -mx-4 sm:-mx-6 lg:-mx-8">
+          <div className="bg-sand/80 backdrop-blur-xl backdrop-saturate-150">
             <div className="overflow-x-auto scrollbar-hide">
-              <div className="flex px-4 py-3 sm:p-4 gap-1 sm:gap-3 min-w-max sm:min-w-0 sm:justify-center">
+              <div className="flex px-4 sm:px-6 lg:px-8 py-3 gap-2 min-w-max sm:min-w-0">
                 {venditaCategories.map((category) => (
                   <button
                     key={category.id}
                     onClick={() => handleCategoryClick(category.id)}
-                    className={`relative px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium transition-all duration-200 whitespace-nowrap rounded-full ${
+                    aria-current={activeCategory === category.id ? 'true' : undefined}
+                    className={`px-4 py-2 text-sm font-semibold transition-colors duration-150 whitespace-nowrap rounded-full ${
                       activeCategory === category.id
-                        ? 'bg-[#2cd5c4] text-white'
-                        : 'bg-gray-100 text-[#0E0E0E] hover:bg-gray-200 active:bg-gray-300'
+                        ? 'bg-ink text-white'
+                        : 'bg-white shadow-line text-ink/70 hover:text-ink'
                     }`}
                   >
                     {category.label}
@@ -324,61 +315,56 @@ export default function Vendita({ onNavigate }: VenditaProps) {
           const categoryTrans = getCategoryTranslation(category.id, language);
           
           return (
-            <div key={category.id} id={`category-${category.id}`} className="mb-12 md:mb-16 scroll-mt-32 sm:scroll-mt-36">
-              <div className="mb-6">
-                <h2 className="text-3xl md:text-4xl font-bold text-[#0E0E0E]">{categoryTrans.name}</h2>
-              </div>
-              
-              <p className="text-lg text-[#0E0E0E] mb-8 leading-relaxed max-w-4xl">
+            <div key={category.id} id={`category-${category.id}`} className="mb-14 md:mb-20 scroll-mt-32 md:scroll-mt-36">
+              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-ink">{categoryTrans.name}</h2>
+              <p className="mt-3 mb-8 text-base sm:text-lg text-ink-muted leading-relaxed max-w-3xl">
                 {categoryTrans.description}
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 {categoryProducts.map((product) => {
                   const productTrans = getProductTranslation(product.id, language);
                   
                   return (
                     <div
                       key={product.id}
-                      className="bg-white rounded-lg shadow-md border-2 border-gray-200 overflow-hidden flex flex-col cursor-pointer hover:shadow-xl hover:border-[#2cd5c4] transition-all duration-300"
+                      className="group surface surface-interactive bg-white rounded-[28px] p-2 flex flex-col cursor-pointer"
                       onClick={() => {
                         const seaDooLink = getSeaDooLink(product.name);
                         window.open(seaDooLink, '_blank', 'noopener,noreferrer');
                       }}
                     >
-                      <div className="h-64 bg-gray-100 overflow-hidden flex items-center justify-center">
+                      <div className="h-56 sm:h-60 rounded-[20px] bg-gradient-to-b from-sand to-sand-deep overflow-hidden flex items-center justify-center">
                         <img
                           src={product.image}
                           alt={`${productTrans.name} ${product.year}`}
-                          className="w-full h-full object-contain transition-transform duration-300 hover:scale-105"
+                          className="w-full h-full object-contain p-4 transition-transform duration-300 ease-out group-hover:scale-[1.03]"
                           onError={(e) => {
                             e.currentTarget.src = 'https://images.pexels.com/photos/163236/luxury-yacht-boat-speed-water-163236.jpeg?auto=compress&cs=tinysrgb&w=800';
                           }}
                         />
                       </div>
-                      <div className="p-6 flex flex-col flex-grow">
-                        <div className="mb-4">
-                          <div className="flex items-center justify-between mb-2">
-                            <h3 className="text-2xl font-bold text-[#0E0E0E]">{productTrans.name}</h3>
-                            <span className="text-sm text-gray-500 font-medium">{product.year}</span>
+                      <div className="p-4 sm:p-5 flex flex-col flex-grow">
+                        <div className="mb-3">
+                          <div className="flex items-baseline justify-between gap-3">
+                            <h3 className="text-2xl font-semibold tracking-tight text-ink">{productTrans.name}</h3>
+                            <span className="text-sm text-ink-muted tabular-nums">{product.year}</span>
                           </div>
-                          <div className="flex items-center gap-2 mb-4">
-                            <span className="text-xl font-bold text-[#0E0E0E]">{t('common_from')} {product.price} €</span>
+                          <div className="mt-1 flex items-center justify-between gap-3">
+                            <span className="text-ink tabular-nums"><span className="text-ink-muted">{t('common_from')}</span> <span className="font-semibold">{product.price} €</span></span>
                             <button 
                               onClick={(e) => {
                                 e.stopPropagation();
                                 setSelectedProduct(product);
                                 setIsModalOpen(true);
                               }}
-                              className="w-6 h-6 rounded-full border-2 border-[#2cd5c4] flex items-center justify-center hover:bg-[#2cd5c4] transition-colors"
-                              aria-label="Informazioni prodotto"
-                              title={t('vendita_view_details')}
+                              className="min-h-0 px-3 py-1.5 rounded-full bg-ink/[0.05] text-sm font-semibold text-ink hover:bg-ink hover:text-white transition-colors duration-150"
                             >
-                              <span className="text-xs text-[#2cd5c4] hover:text-white font-bold">i</span>
+                              {t('vendita_view_details')}
                             </button>
                           </div>
                         </div>
-                        <p className="text-sm text-gray-700 leading-relaxed flex-grow line-clamp-3">
+                        <p className="text-sm text-ink-muted leading-relaxed flex-grow line-clamp-3">
                           {productTrans.description}
                         </p>
                       </div>
@@ -390,12 +376,15 @@ export default function Vendita({ onNavigate }: VenditaProps) {
           );
         })}
 
-        <div className="text-center bg-gradient-to-r from-[#2cd5c4] to-[#9BE870] rounded-lg p-6 sm:p-8 text-white mt-12">
-          <h3 className="text-xl sm:text-2xl font-bold mb-2">{t('vendita_not_found_title')}</h3>
-          <p className="mb-4 sm:mb-6 text-sm sm:text-base">{t('vendita_not_found_desc')}</p>
+        <div className="relative overflow-hidden bg-ink rounded-[28px] px-6 py-10 sm:p-14 text-white flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="absolute -right-24 -top-24 w-80 h-80 rounded-full bg-primary/20 blur-3xl" />
+          <div className="relative max-w-xl">
+            <h3 className="text-2xl sm:text-4xl font-semibold tracking-tight">{t('vendita_not_found_title')}</h3>
+            <p className="mt-3 text-white/70">{t('vendita_not_found_desc')}</p>
+          </div>
           <button
             onClick={() => onNavigate('contatti')}
-            className="bg-white text-[#0E0E0E] px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg font-semibold hover:bg-[#F4F7F6] active:bg-[#9BE870]/20 transition-colors touch-manipulation"
+            className="relative self-start md:self-auto px-6 py-3.5 rounded-full bg-primary text-ink font-semibold hover:bg-primary-light transition-colors duration-150"
           >
             {t('nav_contatti')}
           </button>

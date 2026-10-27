@@ -198,7 +198,7 @@ export default function RicambiFilterMenu({ products, onFilterChange, onCategory
                     <button
                       key={brand}
                       onClick={() => handleBrandSelect(brand)}
-                      className="w-full text-left px-3 py-2 rounded-lg transition-all text-sm bg-gray-50 hover:bg-[#2cd5c4]/30 text-[#0E0E0E] hover:font-semibold"
+                      className="w-full text-left px-3 py-2 rounded-lg transition text-sm bg-gray-50 hover:bg-[#2cd5c4]/30 text-[#0E0E0E] hover:font-semibold"
                     >
                       {brand}
                     </button>
@@ -225,7 +225,7 @@ export default function RicambiFilterMenu({ products, onFilterChange, onCategory
                   <button
                     key={category}
                     onClick={() => handleCategorySelect(category)}
-                    className="w-full text-left px-3 py-2 rounded-lg transition-all flex items-center justify-between text-sm bg-gray-50 hover:bg-[#2cd5c4]/30 text-[#0E0E0E]"
+                    className="w-full text-left px-3 py-2 rounded-lg transition flex items-center justify-between text-sm bg-gray-50 hover:bg-[#2cd5c4]/30 text-[#0E0E0E]"
                   >
                     <span>{category}</span>
                     <ChevronRight className="h-4 w-4" />
