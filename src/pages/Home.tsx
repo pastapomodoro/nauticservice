@@ -1,9 +1,8 @@
-import { Ship, Settings, RotateCcw, Anchor, ArrowRight, Phone, MessageCircle } from 'lucide-react';
+import { ArrowRight, Phone, MessageCircle } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import type { CSSProperties } from 'react';
 import SEO from '../components/SEO';
 import { useLanguage } from '../contexts/LanguageContext';
-import { FEATURES } from '../config/features';
 
 type HomeProps = {
   onNavigate: (page: string) => void;
@@ -25,40 +24,12 @@ export default function Home({ onNavigate }: HomeProps) {
     return () => video.removeEventListener('canplay', play);
   }, []);
 
-  const services = [
-    {
-      id: 'vendita',
-      icon: Ship,
-      title: t('home_vendita_title'),
-      desc: t('home_vendita_desc'),
-      image: 'https://images.pexels.com/photos/2662116/pexels-photo-2662116.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      enabled: true,
-    },
-    {
-      id: 'ricambi',
-      icon: Settings,
-      title: t('home_ricambi_title'),
-      desc: t('home_ricambi_desc'),
-      image: 'https://images.pexels.com/photos/163236/luxury-yacht-boat-speed-water-163236.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      enabled: FEATURES.RICAMBI_ENABLED,
-    },
-    {
-      id: 'usato',
-      icon: RotateCcw,
-      title: t('home_usato_title'),
-      desc: t('home_usato_desc'),
-      image: '/jet-ski.jpg',
-      enabled: FEATURES.USATO_ENABLED,
-    },
-    {
-      id: 'noleggio',
-      icon: Anchor,
-      title: t('home_noleggio_title'),
-      desc: t('home_noleggio_desc'),
-      image: 'https://images.pexels.com/photos/1430676/pexels-photo-1430676.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      enabled: FEATURES.NOLEGGIO_ENABLED,
-    },
-  ].filter((s) => s.enabled);
+  // Modelli in evidenza nella sezione Vendita
+  const models = [
+    { name: 'GTX', image: '/moto/gtx.avif' },
+    { name: 'Spark', image: '/moto/spark.avif' },
+    { name: 'RXP-X', image: '/moto/rxp-x.avif' },
+  ];
 
   return (
     <>
@@ -118,41 +89,39 @@ export default function Home({ onNavigate }: HomeProps) {
         </div>
       </section>
 
-      {/* Servizi */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
-        <p className="eyebrow text-teal-ink">{t('home_services_eyebrow')}</p>
-        <h2 className="mt-2 text-3xl sm:text-5xl font-semibold tracking-tight text-ink">
-          {t('home_our_services')}
-        </h2>
+      {/* Vendita */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-24 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+        <div className="lg:col-span-5">
+          <p className="eyebrow text-teal-ink">{t('home_vendita_title')} · Sea-Doo 2026</p>
+          <h2 className="mt-2 text-3xl sm:text-5xl font-semibold tracking-tight text-ink">
+            {t('home_vendita_desc')}
+          </h2>
+          <button
+            onClick={() => onNavigate('vendita')}
+            className="mt-8 inline-flex items-center gap-2 ps-6 pe-5 py-3.5 rounded-full bg-ink text-white font-semibold hover:bg-ink-soft transition-colors duration-150"
+          >
+            {t('home_discover_products')}
+            <ArrowRight className="w-[18px] h-[18px]" strokeWidth={2} absoluteStrokeWidth />
+          </button>
+        </div>
 
-        <div className="mt-8 sm:mt-12 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-          {services.map((service) => (
+        <div className="lg:col-span-7 grid grid-cols-2 gap-3 sm:gap-4">
+          {models.map((model, index) => (
             <button
-              key={service.id}
-              onClick={() => onNavigate(service.id)}
-              className="group text-left surface surface-interactive bg-white rounded-[28px] p-2 flex flex-col"
+              key={model.name}
+              onClick={() => onNavigate('vendita')}
+              className={`group relative rounded-[24px] bg-gradient-to-b from-white to-sand-deep overflow-hidden text-left ${
+                index === 0 ? 'col-span-2 aspect-[2/1]' : 'aspect-[4/3]'
+              }`}
             >
-              {/* 28px = 20px interno + 8px di padding */}
-              <div className="relative aspect-[16/10] rounded-[20px] overflow-hidden bg-sand-deep">
-                <img
-                  src={service.image}
-                  alt=""
-                  className="img-outline w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
-                />
-                <span className="absolute top-3 left-3 w-10 h-10 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-ink">
-                  <service.icon className="w-5 h-5" strokeWidth={2} absoluteStrokeWidth />
-                </span>
-              </div>
-              <div className="flex items-end justify-between gap-4 p-4 sm:p-5">
-                <div>
-                  <h3 className="text-2xl font-semibold tracking-tight text-ink">{service.title}</h3>
-                  <p className="mt-1.5 text-ink-muted leading-relaxed">{service.desc}</p>
-                </div>
-                <span className="shrink-0 w-11 h-11 rounded-full bg-ink/[0.05] text-ink flex items-center justify-center transition-colors duration-150 group-hover:bg-ink group-hover:text-white">
-                  <ArrowRight className="w-5 h-5" strokeWidth={2} absoluteStrokeWidth />
-                  <span className="sr-only">{t('home_learn_more')}</span>
-                </span>
-              </div>
+              <img
+                src={model.image}
+                alt={`Sea-Doo ${model.name} 2026`}
+                className="absolute inset-0 w-full h-full object-contain p-2 sm:p-4 scale-[1.15] transition-transform duration-300 ease-out group-hover:scale-[1.19]"
+              />
+              <span className="absolute left-4 bottom-3 sm:left-5 sm:bottom-4 font-heading text-lg sm:text-xl font-semibold tracking-tight text-ink">
+                {model.name}
+              </span>
             </button>
           ))}
         </div>
