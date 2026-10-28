@@ -129,33 +129,26 @@ export default function Home({ onNavigate }: HomeProps) {
 
       {/* Chi siamo */}
       <section className="bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-24 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
-          <div className="lg:col-span-5">
-            <div className="lg:sticky lg:top-28">
-              <img
-                src="/jet-ski.jpg"
-                alt="Sea Doo Moto d'acqua"
-                className="img-outline w-full aspect-[4/5] object-cover rounded-[24px]"
-              />
-            </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-24 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 lg:items-stretch">
+          {/* Su desktop la foto segue l'altezza della colonna di testo */}
+          <div className="relative aspect-[4/3] lg:aspect-auto lg:min-h-[440px] rounded-[24px] overflow-hidden bg-sand-deep">
+            <img
+              src="/jet-ski.jpg"
+              alt="Sea Doo Moto d'acqua"
+              className="img-outline absolute inset-0 w-full h-full object-cover rounded-[24px]"
+            />
           </div>
-          <div className="lg:col-span-7">
-            <p className="eyebrow text-teal-ink">{t('home_about_eyebrow')}</p>
-            <h2 className="mt-2 text-3xl sm:text-5xl font-semibold tracking-tight text-ink">
+          <div className="flex flex-col justify-center">
+            <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight text-ink">
               {t('home_about_title')}
             </h2>
-            <p className="mt-6 text-lg sm:text-xl leading-relaxed text-ink">
-              {t('home_about_1')}
-            </p>
-            <div className="mt-6 space-y-5 text-base leading-relaxed text-ink-muted max-w-[65ch]">
-              <p>{t('home_about_2')}</p>
-              <p>{t('home_about_3')}</p>
-              <p>{t('home_about_4')}</p>
-              <p className="text-ink font-semibold">{t('home_about_5')}</p>
+            <div className="mt-6 space-y-4 text-lg leading-relaxed text-ink-muted max-w-[52ch]">
+              <p>{t('home_about_short_1')}</p>
+              <p>{t('home_about_short_2')}</p>
             </div>
 
             {/* Loghi Partner */}
-            <div className="mt-10 pt-8 border-t border-ink/10 flex items-center gap-8 sm:gap-12">
+            <div className="mt-10 pt-8 border-t border-ink/10 flex flex-wrap items-center gap-8 sm:gap-12">
               <img
                 src="/loghi/logo-rotax.png"
                 alt="Rotax"

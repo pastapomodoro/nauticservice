@@ -37,6 +37,8 @@ export type TranslationKeys = {
   home_services_eyebrow: string;
   home_about_eyebrow: string;
   home_about_title: string;
+  home_about_short_1: string;
+  home_about_short_2: string;
   home_cta_title: string;
   home_cta_desc: string;
   common_call: string;
@@ -196,7 +198,9 @@ export const translations: Record<Language, TranslationKeys> = {
     home_contact_us: 'Contattaci',
     home_services_eyebrow: 'Cosa facciamo',
     home_about_eyebrow: 'Chi siamo',
-    home_about_title: 'Affidabilità e competenza dal 2003',
+    home_about_title: 'Ripariamo e vendiamo moto d\'acqua dal 2003',
+    home_about_short_1: 'Siamo un\'officina piccola: due tecnici specializzati e un furgone attrezzato. Così veniamo noi da te, in qualsiasi punto del lago.',
+    home_about_short_2: 'Mettiamo mano a barche e motori di ogni tipo, nel rispetto delle normative. Trattiamo Evinrude, Selva, Sea-Doo, Joker Boat e Saver.',
     home_cta_title: 'Serve assistenza sulla tua moto d\'acqua?',
     home_cta_desc: 'Chiamaci o scrivici su WhatsApp, ti aiutiamo a trovare la soluzione giusta.',
     common_call: 'Chiama',
@@ -355,7 +359,9 @@ export const translations: Record<Language, TranslationKeys> = {
     home_contact_us: 'Contact us',
     home_services_eyebrow: 'What we do',
     home_about_eyebrow: 'About us',
-    home_about_title: 'Reliability and expertise since 2003',
+    home_about_title: 'Repairing and selling watercraft since 2003',
+    home_about_short_1: 'We\'re a small workshop: two specialized technicians and a fully equipped van, so we come to you, anywhere on the lake.',
+    home_about_short_2: 'We work on boats and engines of every kind, in line with the regulations. We carry Evinrude, Selva, Sea-Doo, Joker Boat and Saver.',
     home_cta_title: 'Need service for your watercraft?',
     home_cta_desc: 'Call us or message us on WhatsApp and we\'ll help you find the right solution.',
     common_call: 'Call',
@@ -514,7 +520,9 @@ export const translations: Record<Language, TranslationKeys> = {
     home_contact_us: 'Kontakt',
     home_services_eyebrow: 'Was wir tun',
     home_about_eyebrow: 'Über uns',
-    home_about_title: 'Zuverlässigkeit und Kompetenz seit 2003',
+    home_about_title: 'Reparatur und Verkauf von Jetskis seit 2003',
+    home_about_short_1: 'Wir sind eine kleine Werkstatt: zwei spezialisierte Techniker und ein voll ausgestatteter Transporter. So kommen wir zu Ihnen, überall am See.',
+    home_about_short_2: 'Wir arbeiten an Booten und Motoren aller Art, nach den geltenden Vorschriften. Unsere Marken: Evinrude, Selva, Sea-Doo, Joker Boat und Saver.',
     home_cta_title: 'Brauchen Sie Service für Ihren Jetski?',
     home_cta_desc: 'Rufen Sie uns an oder schreiben Sie uns per WhatsApp – wir finden die passende Lösung.',
     common_call: 'Anrufen',
