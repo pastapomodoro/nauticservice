@@ -164,7 +164,6 @@ export default function Ricambi() {
   const [loading, setLoading] = useState(true);
   const [menuCategory, setMenuCategory] = useState<string | null>(null);
   const [menuBrand, setMenuBrand] = useState<string | null>(null);
-  const [availableBrands, setAvailableBrands] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -216,12 +215,6 @@ export default function Ricambi() {
     setMenuBrand(brand);
   };
 
-  // Handler per quando viene selezionata una categoria (riceve i brand disponibili)
-  const handleCategorySelect = (category: string | null, brands: string[]) => {
-    setAvailableBrands(brands);
-    // Non resettiamo il brand qui, viene gestito dal menu
-  };
-  
   // Filtra per categoria, brand e ricerca
   const filteredProducts = products.filter((p) => {
     const displayCategory = getDisplayCategory(p.category);
@@ -294,7 +287,6 @@ export default function Ricambi() {
             <RicambiFilterMenu 
               products={products} 
               onFilterChange={handleFilterChange}
-              onCategorySelect={handleCategorySelect}
             />
           </aside>
 

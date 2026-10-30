@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ShopifyBuyButton from './ShopifyBuyButton';
-import { useCart } from '../contexts/CartContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import { getProductTranslation } from '../i18n/productTranslations';
 
@@ -125,7 +124,6 @@ const LocalImageWithFallback = ({ shopifyUrl, alt, className }: { shopifyUrl: st
 };
 
 export default function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
-  const { addItem } = useCart();
   const { language, t } = useLanguage();
   
   // Ottieni la traduzione del prodotto se disponibile
@@ -145,18 +143,6 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
   }, [isOpen]);
 
   if (!product) return null;
-
-  const handleAddToCart = () => {
-    addItem({
-      id: product.id,
-      name: product.name,
-      description: product.description,
-      price: product.price,
-      image_url: product.image_url,
-      shopify_product_id: product.shopify_product_id,
-      handle: product.handle,
-    });
-  };
 
   return (
     <AnimatePresence>
@@ -237,7 +223,7 @@ export default function ProductModal({ product, isOpen, onClose }: ProductModalP
                         <div onClick={(e) => e.stopPropagation()}>
                           <ShopifyBuyButton
                             productId={product.shopify_product_id}
-                            productHandle={product.handle}
+                            productHandle={product.handle ?? undefined}
                             className="w-full"
                           />
                         </div>

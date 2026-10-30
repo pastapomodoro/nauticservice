@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Cookie, X } from 'lucide-react';
 
 export default function CookieBanner() {
@@ -19,18 +19,6 @@ export default function CookieBanner() {
     analytics: false,
     marketing: false,
   });
-
-  const consent: ConsentState | null = useMemo(() => {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return null;
-      const parsed = JSON.parse(raw) as ConsentState;
-      if (!parsed || parsed.necessary !== true) return null;
-      return parsed;
-    } catch {
-      return null;
-    }
-  }, [isVisible]); // recompute after saving/closing
 
   const saveConsent = (next: Omit<ConsentState, 'timestamp'>) => {
     const payload: ConsentState = {
