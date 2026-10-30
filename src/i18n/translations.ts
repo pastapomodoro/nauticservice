@@ -104,6 +104,7 @@ export type TranslationKeys = {
   contatti_telefono: string;
   contatti_orari: string;
   contatti_orari_feriali: string;
+  contatti_orari_sabato: string;
   contatti_orari_domenica: string;
   contatti_whatsapp_title: string;
   contatti_whatsapp_desc: string;
@@ -265,7 +266,8 @@ export const translations: Record<Language, TranslationKeys> = {
     contatti_email: 'Email',
     contatti_telefono: 'Telefono',
     contatti_orari: 'Orari di Apertura',
-    contatti_orari_feriali: 'Lunedì – Sabato: 8.30 – 12.30 e 14 – 18',
+    contatti_orari_feriali: 'Lunedì – Venerdì: 9 – 12.30 e 14 – 18',
+    contatti_orari_sabato: 'Sabato: 9 – 12.30',
     contatti_orari_domenica: 'Domenica: Chiuso',
     contatti_whatsapp_title: 'Contattaci su WhatsApp',
     contatti_whatsapp_desc: 'Scrivici direttamente su WhatsApp per una risposta rapida',
@@ -426,7 +428,8 @@ export const translations: Record<Language, TranslationKeys> = {
     contatti_email: 'Email',
     contatti_telefono: 'Phone',
     contatti_orari: 'Opening Hours',
-    contatti_orari_feriali: 'Monday – Saturday: 8.30 – 12.30 and 14 – 18',
+    contatti_orari_feriali: 'Monday – Friday: 9 – 12.30 and 14 – 18',
+    contatti_orari_sabato: 'Saturday: 9 – 12.30',
     contatti_orari_domenica: 'Sunday: Closed',
     contatti_whatsapp_title: 'Contact us on WhatsApp',
     contatti_whatsapp_desc: 'Write to us directly on WhatsApp for a quick response',
@@ -587,7 +590,8 @@ export const translations: Record<Language, TranslationKeys> = {
     contatti_email: 'E-Mail',
     contatti_telefono: 'Telefon',
     contatti_orari: 'Öffnungszeiten',
-    contatti_orari_feriali: 'Montag – Samstag: 8.30 – 12.30 und 14 – 18',
+    contatti_orari_feriali: 'Montag – Freitag: 9 – 12.30 und 14 – 18',
+    contatti_orari_sabato: 'Samstag: 9 – 12.30',
     contatti_orari_domenica: 'Sonntag: Geschlossen',
     contatti_whatsapp_title: 'Kontaktieren Sie uns über WhatsApp',
     contatti_whatsapp_desc: 'Schreiben Sie uns direkt auf WhatsApp für eine schnelle Antwort',

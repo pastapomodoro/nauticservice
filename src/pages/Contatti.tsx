@@ -10,7 +10,7 @@ export default function Contatti() {
     <>
       <SEO
         title="Contatti e Dove Siamo | Nautic Service - Castelnuovo del Garda"
-        description="Contatta Nautic Service per riparazione moto d'acqua, preventivi e informazioni. Via Venezia 9, Castelnuovo del Garda (VR). Tel: +39 327.8992159. WhatsApp disponibile. Orari: Lun-Sab 8.30-12.30 e 14-18. Raggiungi facilmente da Peschiera, Lazise, Verona."
+        description="Contatta Nautic Service per riparazione moto d'acqua, preventivi e informazioni. Via Venezia 9, Castelnuovo del Garda (VR). Tel: +39 327.8992159. WhatsApp disponibile. Orari: Lun-Ven 9-12.30 e 14-18, Sab 9-12.30. Raggiungi facilmente da Peschiera, Lazise, Verona."
         keywords="contatti Nautic Service, telefono officina nautica, dove siamo, come raggiungerci, WhatsApp Nautic Service, indirizzo Castelnuovo del Garda, orari apertura, preventivo riparazione moto d'acqua"
         url="/contatti"
       />
@@ -83,13 +83,9 @@ export default function Contatti() {
                     <a href="tel:+390456450847" className="hover:underline">045 645 0847</a>
                     <span className="text-ink-muted text-sm block mt-1">{t('contatti_fisso')}</span>
                   </p>
-                  <p className="text-ink mb-2">
+                  <p className="text-ink">
                     <a href="tel:+393278992159" className="hover:underline">+39 327.8992159</a>
                     <span className="text-ink-muted text-sm block mt-1">Manuel</span>
-                  </p>
-                  <p className="text-ink">
-                    <a href="tel:+393478239844" className="hover:underline">+39 347.8239844</a>
-                    <span className="text-ink-muted text-sm block mt-1">Domenico</span>
                   </p>
                 </div>
               </div>
@@ -102,6 +98,7 @@ export default function Contatti() {
                   <h3 className="eyebrow text-ink-muted mb-1.5">{t('contatti_orari')}</h3>
                   <div className="text-ink space-y-1">
                     <p>{t('contatti_orari_feriali')}</p>
+                    <p>{t('contatti_orari_sabato')}</p>
                     <p>{t('contatti_orari_domenica')}</p>
                   </div>
                 </div>

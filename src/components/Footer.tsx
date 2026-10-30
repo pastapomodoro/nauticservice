@@ -52,10 +52,6 @@ export default function Footer({ onNavigate }: FooterProps) {
                 <a href="tel:+393278992159" className="hover:text-white transition-colors duration-150">+39 327.8992159</a>
               </li>
               <li className="flex items-center gap-2.5">
-                <Phone className="h-4 w-4 text-primary shrink-0" strokeWidth={1.5} absoluteStrokeWidth />
-                <a href="tel:+393478239844" className="hover:text-white transition-colors duration-150">+39 347.8239844</a>
-              </li>
-              <li className="flex items-center gap-2.5">
                 <Mail className="h-4 w-4 text-primary shrink-0" strokeWidth={1.5} absoluteStrokeWidth />
                 <a href="mailto:manuel@nautic-service.it" className="hover:text-white transition-colors duration-150">manuel@nautic-service.it</a>
               </li>
@@ -70,6 +66,7 @@ export default function Footer({ onNavigate }: FooterProps) {
             <h3 className="eyebrow text-white/40 mb-4">{t('footer_orari')}</h3>
             <ul className="space-y-2.5 text-sm text-white/80">
               <li>{t('contatti_orari_feriali')}</li>
+              <li>{t('contatti_orari_sabato')}</li>
               <li>{t('contatti_orari_domenica')}</li>
             </ul>
             <h3 className="eyebrow text-white/40 mt-8 mb-4">{t('footer_servizi')}</h3>
